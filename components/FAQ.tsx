@@ -4,28 +4,40 @@ import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
-    q: "How is Flax different from other influencer marketing agencies?",
-    a: "Most agencies send cold outreach to random influencers and hope something sticks. We've built a curated network of creators we actually work with. We coordinate campaigns as synchronized bursts — your brand appears everywhere at once. It's infrastructure, not middleman services."
+    q: "Can I run a pilot campaign first?",
+    a: "Absolutely. Most brands start with a single pilot campaign to see results before committing to ongoing work. No long-term contracts required upfront — just valuable insights and real distribution."
   },
   {
-    q: "Do you guarantee impressions?",
-    a: "We provide projected reach ranges based on the creators in your campaign. While we can't guarantee viral outcomes (no one honestly can), we can guarantee professional execution, quality creators, and transparent reporting on exactly what you get."
+    q: "How much does a campaign cost?",
+    a: "Campaign pricing depends on your goals, target audience, and scale. We'll scope everything on a strategy call and provide a clear proposal. We work with budgets from startups to enterprises — the key is alignment on objectives, not a specific number."
   },
   {
-    q: "How do you measure ROI?",
-    a: "We track impressions, engagement, click-throughs (where applicable), and provide full analytics. More importantly, we help you define what success looks like before the campaign — whether that's awareness, signups, or sales pipeline."
+    q: "How is Flax different from other influencer agencies?",
+    a: "Most agencies blast cold outreach to random influencers and hope something sticks. We've built a curated network of creators we actually work with. We coordinate campaigns as synchronized bursts — your brand appears everywhere at once. It's infrastructure, not middleman services."
   },
   {
-    q: "Do you work globally?",
-    a: "Yes. Our creator network spans US, UK, Europe, and select international markets. We can target specific geographies or go broad depending on your goals."
+    q: "Do you guarantee impressions or results?",
+    a: "We provide projected reach ranges based on the creators in your campaign. While no one can honestly guarantee viral outcomes, we guarantee professional execution, quality creators, and transparent reporting on exactly what you get."
   },
   {
-    q: "What's the typical timeline?",
-    a: "From kickoff to campaign completion: 30 days. Week 1 is strategy and creator matching. Week 2 is coordination and content prep. Weeks 3-4 are activation and amplification."
+    q: "How do you measure success?",
+    a: "We track impressions, engagement, click-throughs, and conversions where applicable. More importantly, we define what success looks like before the campaign — whether that's awareness, signups, pipeline, or press coverage."
   },
   {
-    q: "What if I'm not happy with the results?",
-    a: "We're selective about who we work with precisely to avoid this. In the strategy call, we'll be honest about whether Flax is right for your situation. If we don't think we can deliver value, we'll tell you."
+    q: "What platforms do you cover?",
+    a: "Our network spans LinkedIn, Twitter/X, Instagram, TikTok, YouTube, and newsletters. We match platforms to your audience — B2B typically means LinkedIn and Twitter, consumer products might lean Instagram and TikTok."
+  },
+  {
+    q: "How long does a campaign take?",
+    a: "From kickoff to completion: 30 days. Week 1 is strategy and creator matching. Week 2 is coordination and content prep. Weeks 3-4 are activation and amplification."
+  },
+  {
+    q: "Do I need to talk to creators directly?",
+    a: "No. We handle all creator communication, negotiation, briefing, and coordination. You approve the campaign plan and content direction — we manage everything else."
+  },
+  {
+    q: "What if I want to continue after the pilot?",
+    a: "Most clients do. After a successful pilot, we can move into an ongoing partnership with monthly campaigns, strategic planning, and priority access to our best creators. We'll discuss options based on your results."
   }
 ];
 
