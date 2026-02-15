@@ -16,8 +16,8 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: 'How It Works', href: '#methodology' },
-    { label: 'Results', href: '#why-us' },
     { label: 'Pricing', href: '#pricing' },
+    { label: 'FAQ', href: '#faq' },
   ];
 
   return (
@@ -29,7 +29,7 @@ export const Navbar: React.FC = () => {
           transition-all duration-500 ease-out
           w-full
           ${isScrolled 
-            ? 'max-w-[calc(100%-2rem)] md:max-w-[600px] bg-[#0A0A0A]/80 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/50 py-2.5 px-4 rounded-full' 
+            ? 'max-w-[calc(100%-2rem)] md:max-w-[600px] bg-[#0A0A0A]/90 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/50 py-2.5 px-4 rounded-full' 
             : 'max-w-7xl py-3 md:py-4 px-4 md:px-6 bg-transparent border-transparent'
           }
         `}>
@@ -60,7 +60,7 @@ export const Navbar: React.FC = () => {
               data-cal-link="hari-prasad/flax"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
             >
-              Book a Call
+              Book Strategy Call
             </Button>
           </div>
 
@@ -97,7 +97,7 @@ export const Navbar: React.FC = () => {
               data-cal-link="hari-prasad/flax"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
             >
-              Book a Call
+              Book Strategy Call
             </Button>
           </div>
         </div>

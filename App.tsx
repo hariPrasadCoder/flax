@@ -3,11 +3,13 @@ import { getCalApi } from "@calcom/embed-react";
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Problem } from './components/Problem';
-import { Reframe } from './components/Reframe';
-import { Services } from './components/Services';
-import { WhyUs } from './components/WhyUs';
+import { Positioning } from './components/Positioning';
 import { Process } from './components/Process';
-import { Trust } from './components/Trust';
+import { Audience } from './components/Audience';
+import { Proof } from './components/Proof';
+import { Differentiation } from './components/Differentiation';
+import { Pricing } from './components/Pricing';
+import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 
 function App() {
@@ -24,11 +26,13 @@ function App() {
       <main className="overflow-x-hidden">
         <Hero />
         <Problem />
-        <Reframe />
-        <Services />
-        <WhyUs />
+        <Positioning />
         <Process />
-        <Trust />
+        <Audience />
+        <Proof />
+        <Differentiation />
+        <Pricing />
+        <FAQ />
       </main>
       <Footer />
     </div>

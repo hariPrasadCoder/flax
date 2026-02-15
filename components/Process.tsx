@@ -2,58 +2,105 @@ import React from 'react';
 import { Section } from './ui/Section';
 
 export const Process: React.FC = () => {
+  const steps = [
+    { 
+      num: "01", 
+      title: "Strategy Alignment", 
+      desc: "We define positioning, audience, and campaign angle. Clear objectives before any creator outreach.",
+      week: "Week 1"
+    },
+    { 
+      num: "02", 
+      title: "Creator Deployment", 
+      desc: "We activate curated creators in your niche simultaneously. Coordinated messaging, synchronized timing.",
+      week: "Week 2"
+    },
+    { 
+      num: "03", 
+      title: "Amplification Layer", 
+      desc: "Content spreads across platforms within a defined window. Momentum compounds visibility.",
+      week: "Week 3-4"
+    }
+  ];
+
   return (
-    <Section id="methodology" className="bg-background">
-       <div className="grid md:grid-cols-2 gap-12 items-center">
-         <div>
-            <h2 className="text-3xl md:text-5xl font-medium text-white mb-6">How It Works</h2>
-            <p className="text-secondary mb-8">
-               Three simple steps. You focus on your business.
-            </p>
-            <div className="space-y-6">
-               {[
-                  { title: "01. Tell Us Your Goals", desc: "Share your target audience, budget, and objectives. We'll craft a distribution strategy tailored to your business." },
-                  { title: "02. We Activate Our Network", desc: "We match you with the perfect influencers, negotiate terms, and coordinate campaigns across platforms." },
-                  { title: "03. Watch The Results", desc: "Your message reaches millions. Track real-time metrics, engagement, and conversions in your dashboard." }
-               ].map((step, i) => (
-                  <div key={i} className="flex gap-4 group">
-                     <div className="mt-1 font-mono text-primary opacity-50 group-hover:opacity-100 transition-opacity">{step.title.split('.')[0]}</div>
-                     <div>
-                        <h3 className="text-white font-medium group-hover:text-primary transition-colors">{step.title.split('. ')[1]}</h3>
-                        <p className="text-sm text-gray-500">{step.desc}</p>
-                        {i === 0 && (
-                           <div className="mt-4 text-sm text-gray-500">
-                              <p className="font-medium text-gray-400 mb-2">We handle the complexity</p>
-                              <p className="mb-1">Finding influencers is hard. Negotiating is harder.</p>
-                              <p className="mb-1">We've done thousands of campaigns.</p>
-                              <p>You just approve the final plan.</p>
-                           </div>
-                        )}
-                     </div>
+    <Section id="methodology" className="bg-background border-t border-white/5">
+      <div className="max-w-6xl mx-auto">
+        
+        <div className="mb-20">
+          <span className="text-primary font-mono text-xs tracking-widest uppercase mb-4 block">How It Works</span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-white">
+            From Budget To Millions
+            <br />
+            <span className="text-gray-600">Of Impressions</span>
+          </h2>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          
+          {/* Steps */}
+          <div className="space-y-12">
+            {steps.map((step, i) => (
+              <div key={i} className="group">
+                <div className="flex items-start gap-6">
+                  <div className="flex-shrink-0">
+                    <div className="w-14 h-14 rounded-2xl bg-surface border border-white/5 flex items-center justify-center group-hover:border-primary/30 group-hover:bg-primary/5 transition-all duration-300">
+                      <span className="text-primary font-mono text-lg font-bold">{step.num}</span>
+                    </div>
                   </div>
-               ))}
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-primary transition-colors">{step.title}</h3>
+                    <p className="text-gray-500 leading-relaxed">{step.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Timeline Visual */}
+          <div className="relative">
+            <div className="glass-panel rounded-3xl p-8 md:p-10">
+              <h4 className="text-sm font-mono text-gray-500 uppercase tracking-wider mb-8">Campaign Timeline</h4>
+              
+              <div className="space-y-6">
+                {steps.map((step, i) => (
+                  <div key={i} className="relative">
+                    <div className="flex items-center gap-4 mb-3">
+                      <div className={`w-3 h-3 rounded-full ${i === 2 ? 'bg-primary shadow-[0_0_12px_rgba(74,66,216,0.6)]' : 'bg-white/20'}`}></div>
+                      <span className="text-sm font-mono text-gray-400">{step.week}</span>
+                      <span className="text-sm text-white">{step.title}</span>
+                    </div>
+                    <div className="ml-1.5 pl-6 border-l border-white/10">
+                      <div 
+                        className={`h-2 rounded-full ${
+                          i === 0 ? 'w-1/4 bg-gradient-to-r from-primary/60 to-primary/20' :
+                          i === 1 ? 'w-2/3 bg-gradient-to-r from-primary/40 to-primary/60' :
+                          'w-full bg-gradient-to-r from-primary/60 to-primary'
+                        }`}
+                      ></div>
+                    </div>
+                    {i < steps.length - 1 && <div className="h-4"></div>}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10 pt-8 border-t border-white/5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-xs text-gray-500 font-mono mb-1">TYPICAL REACH</div>
+                    <div className="text-2xl font-bold text-white">2M - 10M+</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 font-mono mb-1">TIMEFRAME</div>
+                    <div className="text-2xl font-bold text-white">30 Days</div>
+                  </div>
+                </div>
+              </div>
             </div>
-         </div>
-         <div className="relative flex justify-center items-center py-10">
-             <div className="relative w-64 h-64 flex items-center justify-center">
-                
-                <div className="absolute inset-0 rounded-full border border-white/5 animate-spin-slow"></div>
-                <div className="absolute inset-4 rounded-full border border-dashed border-white/10 animate-spin-reverse-slow"></div>
-                
-                <div className="absolute inset-12 rounded-full border border-white/10 animate-[spin_8s_linear_infinite]">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-primary rounded-full shadow-[0_0_10px_rgba(74,66,216,0.8)]"></div>
-                </div>
+          </div>
 
-                <div className="absolute inset-20 rounded-full border border-primary/20 animate-[spin_4s_linear_infinite_reverse]"></div>
-
-                <div className="absolute w-16 h-16 rounded-full bg-primary/10 backdrop-blur-md flex items-center justify-center animate-pulse">
-                   <div className="w-4 h-4 bg-primary rounded-full shadow-[0_0_20px_rgba(74,66,216,0.8)]"></div>
-                </div>
-
-                <div className="absolute inset-0 bg-primary/5 blur-3xl rounded-full -z-10"></div>
-             </div>
-         </div>
-       </div>
+        </div>
+      </div>
     </Section>
   );
 };
