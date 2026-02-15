@@ -18,22 +18,22 @@ export const Differentiation: React.FC = () => {
             {
               icon: Users,
               num: "01",
-              title: "Curated Creator Network",
-              desc: "We don't blast to random influencers. Every creator is vetted for authentic engagement in your specific vertical. Quality over quantity.",
-              highlight: "500+ vetted creators"
+              title: "Curated LinkedIn Network",
+              desc: "We don't blast cold outreach to random creators. Every LinkedIn creator in our network is vetted for authentic engagement and B2B relevance.",
+              highlight: "Quality over quantity"
             },
             {
               icon: Zap,
               num: "02", 
               title: "Coordinated Launch Windows",
-              desc: "Momentum beats randomness. We synchronize creator posts to create a wave effect — your brand appears everywhere at once.",
+              desc: "Momentum beats randomness. We synchronize creator posts to create a wave effect — your brand appears across LinkedIn feeds simultaneously.",
               highlight: "Simultaneous deployment"
             },
             {
               icon: MessageSquare,
               num: "03",
               title: "Strategic Narrative Control",
-              desc: "Messaging stays aligned with your business goals. We work with creators to ensure your story is told right — no rogue posts.",
+              desc: "Messaging stays aligned with your business goals. We work with creators to ensure your story is told right — professional, on-brand, effective.",
               highlight: "Brand-safe execution"
             }
           ].map((item, i) => (

@@ -12,8 +12,12 @@ const faqs = [
     a: "Campaign pricing depends on your goals, target audience, and scale. We'll scope everything on a strategy call and provide a clear proposal. We work with budgets from startups to enterprises — the key is alignment on objectives, not a specific number."
   },
   {
-    q: "How is Flax different from other influencer agencies?",
-    a: "Most agencies blast cold outreach to random influencers and hope something sticks. We've built a curated network of creators we actually work with. We coordinate campaigns as synchronized bursts — your brand appears everywhere at once. It's infrastructure, not middleman services."
+    q: "Why LinkedIn specifically?",
+    a: "LinkedIn is the #1 B2B platform with 1 billion professionals. It has 2x conversion rates compared to other channels, and the audience is high-intent decision makers. For B2B companies, LinkedIn creator marketing delivers the highest ROI."
+  },
+  {
+    q: "How is Flax different from other agencies?",
+    a: "Most agencies blast cold outreach to random influencers and hope something sticks. We've built a curated network of LinkedIn creators we actually work with. We coordinate campaigns as synchronized bursts — your brand appears everywhere at once. It's infrastructure, not middleman services."
   },
   {
     q: "Do you guarantee impressions or results?",
@@ -21,11 +25,7 @@ const faqs = [
   },
   {
     q: "How do you measure success?",
-    a: "We track impressions, engagement, click-throughs, and conversions where applicable. More importantly, we define what success looks like before the campaign — whether that's awareness, signups, pipeline, or press coverage."
-  },
-  {
-    q: "What platforms do you cover?",
-    a: "Our network spans LinkedIn, Twitter/X, Instagram, TikTok, YouTube, and newsletters. We match platforms to your audience — B2B typically means LinkedIn and Twitter, consumer products might lean Instagram and TikTok."
+    a: "We track impressions, engagement, profile visits, and conversions where applicable. More importantly, we define what success looks like before the campaign — whether that's awareness, inbound leads, or pipeline influence."
   },
   {
     q: "How long does a campaign take?",

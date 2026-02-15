@@ -156,16 +156,16 @@ export const Hero: React.FC = () => {
 
         <div className="relative mb-8 max-w-5xl mx-auto">
            <h1 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] font-semibold tracking-tight text-white leading-[1.1] md:leading-[1.05] opacity-0 animate-fade-in-up delay-100">
-             Distribution Infrastructure
+             LinkedIn Creator Marketing
              <br />
              <span className="text-transparent bg-clip-text bg-gradient-to-b from-gray-400 via-gray-500 to-gray-600">
-               for AI & SaaS Companies
+               for B2B Companies
              </span>
            </h1>
         </div>
 
         <p className="text-lg md:text-xl text-secondary max-w-2xl mx-auto mb-12 font-light leading-relaxed opacity-0 animate-fade-in-up delay-200">
-          Flax connects funded startups and growing brands with curated creators to generate millions of high-intent impressions in 30 days.
+          We connect your brand with trusted LinkedIn creators to generate millions of impressions among your target buyers — coordinated, measured, done for you.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up delay-300">

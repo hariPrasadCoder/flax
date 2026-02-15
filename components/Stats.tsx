@@ -3,10 +3,10 @@ import { Section } from './ui/Section';
 
 export const Stats: React.FC = () => {
   const stats = [
-    { value: "6.5x", label: "Average ROI", sublabel: "on influencer marketing spend", source: "Influencer Marketing Hub" },
+    { value: "1B+", label: "LinkedIn Users", sublabel: "World's largest professional network", source: "LinkedIn" },
+    { value: "2x", label: "Conversion Rate", sublabel: "vs other social platforms", source: "WebFX" },
     { value: "92%", label: "Trust Creators", sublabel: "over traditional advertising", source: "Nielsen" },
-    { value: "11x", label: "Higher ROI", sublabel: "than banner ads", source: "TapInfluence" },
-    { value: "49%", label: "Of Consumers", sublabel: "depend on influencer recommendations", source: "Digital Marketing Institute" }
+    { value: "$33.80", label: "LinkedIn Ad CPM", sublabel: "Creator content costs less", source: "The B2B House" }
   ];
 
   return (
@@ -14,9 +14,9 @@ export const Stats: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         
         <div className="text-center mb-16">
-          <span className="text-primary font-mono text-xs tracking-widest uppercase mb-4 block">The Data</span>
+          <span className="text-primary font-mono text-xs tracking-widest uppercase mb-4 block">Why LinkedIn</span>
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-white">
-            Creator Marketing Works.
+            The #1 Platform for B2B.
             <span className="text-gray-600"> The Numbers Prove It.</span>
           </h2>
         </div>

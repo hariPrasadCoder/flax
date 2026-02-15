@@ -14,17 +14,17 @@ export const Positioning: React.FC = () => {
             <span className="text-gray-600">Influencer Agency.</span>
           </h2>
           <p className="text-xl text-secondary max-w-2xl">
-            We're distribution infrastructure. Here's the difference.
+            We're LinkedIn creator marketing infrastructure. Here's the difference.
           </p>
         </div>
 
         {/* What Flax Is */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
           {[
-            { icon: Network, title: "Curated Creator Network", desc: "Vetted creators in your exact vertical" },
-            { icon: Layers, title: "Campaign Orchestration", desc: "Coordinated deployment, not random posts" },
-            { icon: Target, title: "Strategic Partner", desc: "Distribution aligned with business goals" },
-            { icon: BarChart3, title: "Performance Tracked", desc: "Clear metrics, not vanity numbers" }
+            { icon: Network, title: "Curated LinkedIn Network", desc: "Vetted B2B creators with engaged professional audiences" },
+            { icon: Layers, title: "Campaign Orchestration", desc: "Coordinated deployment, not random sponsored posts" },
+            { icon: Target, title: "Strategic Partner", desc: "Distribution aligned with your business goals" },
+            { icon: BarChart3, title: "Performance Tracked", desc: "Clear metrics tied to business outcomes" }
           ].map((item, i) => (
             <div key={i} className="glass-panel rounded-2xl p-6 group hover:border-white/10 transition-colors">
               <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary group-hover:bg-primary/20 transition-colors">
@@ -49,11 +49,11 @@ export const Positioning: React.FC = () => {
           </div>
           
           {[
-            { aspect: "Influencer Selection", traditional: "Random influencer deals", flax: "Coordinated campaign bursts" },
+            { aspect: "Creator Selection", traditional: "Random influencer outreach", flax: "Curated LinkedIn creator network" },
             { aspect: "Campaign Management", traditional: "Manual spreadsheets", flax: "Structured orchestration" },
-            { aspect: "Success Metrics", traditional: "Vanity metrics", flax: "Strategic distribution impact" },
-            { aspect: "Timing", traditional: "Whenever available", flax: "Synchronized launch windows" },
-            { aspect: "Messaging", traditional: "Creator decides", flax: "Narrative control maintained" }
+            { aspect: "Success Metrics", traditional: "Vanity metrics (likes)", flax: "Business impact (leads, pipeline)" },
+            { aspect: "Timing", traditional: "Whenever creators are free", flax: "Synchronized launch windows" },
+            { aspect: "Messaging", traditional: "Creator decides everything", flax: "Strategic narrative control" }
           ].map((row, i) => (
             <div key={i} className="grid grid-cols-3 border-b border-white/5 last:border-b-0">
               <div className="p-6 flex items-center">

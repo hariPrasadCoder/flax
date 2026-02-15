@@ -5,10 +5,10 @@ import { Check, X } from 'lucide-react';
 export const VsAds: React.FC = () => {
   const comparisons = [
     { aspect: "Trust & Authenticity", creator: "Built on real relationships", ads: "Perceived as interruption" },
-    { aspect: "Cost Efficiency", creator: "Lower CPM, higher engagement", ads: "Expensive ($30+ CPM on LinkedIn)" },
+    { aspect: "Cost Efficiency", creator: "Lower CPM, higher engagement", ads: "Expensive ($33+ CPM on LinkedIn)" },
     { aspect: "Reach Type", creator: "Organic, algorithm-friendly", ads: "Paid, stops when budget stops" },
     { aspect: "Audience Experience", creator: "Value-add content", ads: "Disruptive, often ignored" },
-    { aspect: "Storytelling", creator: "Rich, authentic narratives", ads: "Limited by format" },
+    { aspect: "Storytelling", creator: "Rich, authentic narratives", ads: "Limited by ad format" },
     { aspect: "Longevity", creator: "Content lives on, compounds", ads: "Disappears when spend stops" },
   ];
 
@@ -18,12 +18,12 @@ export const VsAds: React.FC = () => {
         
         <div className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-5xl font-semibold text-white mb-4">
-            Ditch the Ad Spend.
+            Ditch LinkedIn Ads.
             <br />
             <span className="text-gray-600">Build Real Trust.</span>
           </h2>
           <p className="text-secondary text-lg max-w-2xl mx-auto">
-            People trust people, not ads. Creator marketing reaches your buyers through voices they already follow.
+            B2B buyers trust people, not ads. Creator marketing reaches your buyers through voices they already follow and respect.
           </p>
         </div>
 
@@ -33,7 +33,7 @@ export const VsAds: React.FC = () => {
             <div className="p-5"></div>
             <div className="p-5 text-center border-l border-white/5">
               <div className="text-xs font-mono text-gray-500 mb-1">TRADITIONAL</div>
-              <span className="text-white font-medium">Paid Ads</span>
+              <span className="text-white font-medium">LinkedIn Ads</span>
             </div>
             <div className="p-5 text-center border-l border-white/5 bg-primary/5">
               <div className="text-xs font-mono text-primary mb-1">FLAX</div>
