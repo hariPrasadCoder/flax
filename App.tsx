@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import { getCalApi } from "@calcom/embed-react";
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { Featured } from './components/Featured';
 import { Problem } from './components/Problem';
+import { Stats } from './components/Stats';
+import { VsAds } from './components/VsAds';
 import { Positioning } from './components/Positioning';
 import { Process } from './components/Process';
 import { Audience } from './components/Audience';
@@ -25,7 +28,10 @@ function App() {
       <Navbar />
       <main className="overflow-x-hidden">
         <Hero />
+        <Featured />
         <Problem />
+        <Stats />
+        <VsAds />
         <Positioning />
         <Process />
         <Audience />
