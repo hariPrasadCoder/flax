@@ -78,7 +78,7 @@ const Book3D: React.FC = () => {
               {/* Bottom section */}
               <div className="flex items-end justify-between">
                 <div className="text-[10px] md:text-xs text-gray-500">
-                  Hari Prasad
+                  Hari Prasad & Sunjana Ramana
                 </div>
                 <div className="flex gap-1">
                   {[...Array(3)].map((_, i) => (
@@ -394,8 +394,8 @@ const About: React.FC = () => (
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-violet-500" />
             <div>
-              <div className="text-white font-medium">Hari Prasad</div>
-              <div className="text-gray-500 text-sm">Author & Curator</div>
+              <div className="text-white font-medium">Hari Prasad & Sunjana Ramana</div>
+              <div className="text-gray-500 text-sm">Authors & Curators</div>
             </div>
           </div>
         </div>
