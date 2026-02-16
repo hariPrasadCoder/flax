@@ -11,14 +11,25 @@ const FlaxLogo = () => (
       </linearGradient>
     </defs>
     <rect x="5" y="5" width="90" height="90" rx="20" fill="url(#gradFoot)"/>
-    <g transform="translate(50, 50)">
-      <ellipse cx="0" cy="-18" rx="8" ry="14" fill="white" transform="rotate(0)"/>
-      <ellipse cx="0" cy="-18" rx="8" ry="14" fill="white" transform="rotate(72)"/>
-      <ellipse cx="0" cy="-18" rx="8" ry="14" fill="white" transform="rotate(144)"/>
-      <ellipse cx="0" cy="-18" rx="8" ry="14" fill="white" transform="rotate(216)"/>
-      <ellipse cx="0" cy="-18" rx="8" ry="14" fill="white" transform="rotate(288)"/>
-      <circle cx="0" cy="0" r="8" fill="rgba(74,66,216,0.5)"/>
+    {/* Petal outlines */}
+    <g fill="none" stroke="white" strokeWidth="2.5">
+      <ellipse cx="50" cy="28" rx="10" ry="16" transform="rotate(0, 50, 50)"/>
+      <ellipse cx="50" cy="28" rx="10" ry="16" transform="rotate(72, 50, 50)"/>
+      <ellipse cx="50" cy="28" rx="10" ry="16" transform="rotate(144, 50, 50)"/>
+      <ellipse cx="50" cy="28" rx="10" ry="16" transform="rotate(216, 50, 50)"/>
+      <ellipse cx="50" cy="28" rx="10" ry="16" transform="rotate(288, 50, 50)"/>
     </g>
+    {/* Inner network lines */}
+    <g stroke="white" strokeWidth="1.5" opacity="0.5">
+      <line x1="50" y1="50" x2="50" y2="28"/>
+      <line x1="50" y1="50" x2="69" y2="37"/>
+      <line x1="50" y1="50" x2="62" y2="64"/>
+      <line x1="50" y1="50" x2="38" y2="64"/>
+      <line x1="50" y1="50" x2="31" y2="37"/>
+    </g>
+    {/* Center node */}
+    <circle cx="50" cy="50" r="8" fill="white"/>
+    <circle cx="50" cy="50" r="4" fill="url(#gradFoot)"/>
   </svg>
 );
 
