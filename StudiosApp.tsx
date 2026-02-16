@@ -32,8 +32,8 @@ const FloatingMic: React.FC = () => {
       const rect = micRef.current.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      const rotateY = ((e.clientX - centerX) / window.innerWidth) * 15;
-      const rotateX = ((centerY - e.clientY) / window.innerHeight) * 10;
+      const rotateY = ((e.clientX - centerX) / window.innerWidth) * 12;
+      const rotateX = ((centerY - e.clientY) / window.innerHeight) * 8;
       micRef.current.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
     };
     window.addEventListener('mousemove', handleMouseMove);
@@ -42,43 +42,67 @@ const FloatingMic: React.FC = () => {
 
   return (
     <div className="relative w-[280px] h-[320px] md:w-[320px] md:h-[380px]" style={{ perspective: '1000px' }}>
-      {/* Glow effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-violet-500/30 to-primary/40 blur-[80px] opacity-60 animate-pulse-glow" />
+      {/* Background glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-violet-500/20 to-primary/30 blur-[100px] opacity-50" />
       
       {/* Floating container */}
       <div 
         ref={micRef}
         className="relative w-full h-full transition-transform duration-200 ease-out flex items-center justify-center"
       >
-        {/* Outer ring */}
-        <div className="absolute w-64 h-64 md:w-72 md:h-72 rounded-full border border-white/10 animate-spin-slow" />
-        <div className="absolute w-56 h-56 md:w-64 md:h-64 rounded-full border border-primary/20" style={{ animation: 'spin 20s linear infinite reverse' }} />
+        {/* Sound wave rings - pulsing outward */}
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full border border-primary/30"
+            style={{
+              width: `${160 + i * 50}px`,
+              height: `${160 + i * 50}px`,
+              animation: `soundwave 3s ease-out infinite`,
+              animationDelay: `${i * 0.6}s`,
+            }}
+          />
+        ))}
         
-        {/* Inner glow circle */}
-        <div className="absolute w-40 h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-primary/20 to-violet-500/10 blur-xl" />
+        {/* Soft inner glow */}
+        <div className="absolute w-44 h-44 md:w-52 md:h-52 rounded-full bg-gradient-to-br from-primary/15 to-violet-500/5 blur-2xl" />
         
         {/* Mic icon container */}
-        <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-[#1a1a2e] to-[#0a0a0f] border border-white/10 flex items-center justify-center shadow-2xl">
+        <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-[#1a1a2e] to-[#0a0a0f] border border-white/10 flex items-center justify-center shadow-2xl group">
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-transparent" />
-          <Mic className="w-12 h-12 md:w-16 md:h-16 text-primary" strokeWidth={1.5} />
+          
+          {/* Mic with subtle float */}
+          <div className="animate-float-gentle">
+            <Mic className="w-12 h-12 md:w-16 md:h-16 text-primary" strokeWidth={1.5} />
+          </div>
           
           {/* Live indicator */}
-          <div className="absolute -top-2 -right-2 flex items-center gap-1.5 bg-background/80 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10">
+          <div className="absolute -top-2 -right-2 flex items-center gap-1.5 bg-background/90 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10 shadow-lg">
             <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
             <span className="text-[10px] font-mono text-white uppercase tracking-wider">Recording</span>
           </div>
         </div>
 
-        {/* Floating particles */}
-        {[...Array(6)].map((_, i) => (
+        {/* Floating orbs */}
+        {[
+          { size: 10, x: 15, y: 25, delay: 0, duration: 4 },
+          { size: 6, x: 80, y: 20, delay: 1, duration: 5 },
+          { size: 8, x: 85, y: 70, delay: 0.5, duration: 4.5 },
+          { size: 5, x: 20, y: 75, delay: 1.5, duration: 3.5 },
+          { size: 7, x: 50, y: 10, delay: 2, duration: 4 },
+          { size: 4, x: 70, y: 85, delay: 0.8, duration: 5 },
+        ].map((orb, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 rounded-full bg-primary/60"
+            className="absolute rounded-full bg-gradient-to-br from-primary to-violet-400"
             style={{
-              top: `${20 + Math.random() * 60}%`,
-              left: `${20 + Math.random() * 60}%`,
-              animation: `float ${3 + Math.random() * 2}s ease-in-out infinite`,
-              animationDelay: `${i * 0.5}s`,
+              width: `${orb.size}px`,
+              height: `${orb.size}px`,
+              left: `${orb.x}%`,
+              top: `${orb.y}%`,
+              animation: `orb-float ${orb.duration}s ease-in-out infinite`,
+              animationDelay: `${orb.delay}s`,
+              opacity: 0.6,
             }}
           />
         ))}
@@ -485,23 +509,40 @@ function StudiosApp() {
           0%, 100% { transform: scaleY(0.5); }
           50% { transform: scaleY(1); }
         }
-        @keyframes float {
-          0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
-          50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+        @keyframes soundwave {
+          0% { 
+            transform: scale(1); 
+            opacity: 0.6; 
+          }
+          100% { 
+            transform: scale(1.8); 
+            opacity: 0; 
+          }
         }
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+        @keyframes orb-float {
+          0%, 100% { 
+            transform: translateY(0) translateX(0); 
+            opacity: 0.6; 
+          }
+          25% { 
+            transform: translateY(-15px) translateX(8px); 
+            opacity: 0.8; 
+          }
+          50% { 
+            transform: translateY(-5px) translateX(-5px); 
+            opacity: 0.5; 
+          }
+          75% { 
+            transform: translateY(-20px) translateX(-8px); 
+            opacity: 0.7; 
+          }
         }
-        .animate-spin-slow {
-          animation: spin 30s linear infinite;
+        .animate-float-gentle {
+          animation: float-gentle 3s ease-in-out infinite;
         }
-        .animate-pulse-glow {
-          animation: pulse-glow 3s ease-in-out infinite;
-        }
-        @keyframes pulse-glow {
-          0%, 100% { opacity: 0.4; }
-          50% { opacity: 0.7; }
+        @keyframes float-gentle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
         }
         .animate-fade-in-up {
           animation: fade-in-up 0.8s ease-out forwards;
