@@ -2,6 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/Button';
 
+const FlaxLogo = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-8 h-8">
+    <defs>
+      <linearGradient id="gradNav" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style={{stopColor:'#4A42D8'}}/>
+        <stop offset="100%" style={{stopColor:'#6B63E8'}}/>
+      </linearGradient>
+    </defs>
+    <rect x="5" y="5" width="90" height="90" rx="20" fill="url(#gradNav)"/>
+    <g transform="translate(50, 50)">
+      <ellipse cx="0" cy="-18" rx="8" ry="14" fill="white" transform="rotate(0)"/>
+      <ellipse cx="0" cy="-18" rx="8" ry="14" fill="white" transform="rotate(72)"/>
+      <ellipse cx="0" cy="-18" rx="8" ry="14" fill="white" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-18" rx="8" ry="14" fill="white" transform="rotate(216)"/>
+      <ellipse cx="0" cy="-18" rx="8" ry="14" fill="white" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="8" fill="rgba(74,66,216,0.5)"/>
+    </g>
+  </svg>
+);
+
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,6 +55,7 @@ export const Navbar: React.FC = () => {
         `}>
           
           <a href="#" className="flex items-center gap-2 group relative z-10 flex-shrink-0">
+            <FlaxLogo />
             <span className="text-base md:text-lg font-semibold tracking-tight text-white">
               Flax
             </span>
