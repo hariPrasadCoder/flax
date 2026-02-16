@@ -11,6 +11,12 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: false
+    sourcemap: false,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        book: path.resolve(__dirname, 'book/index.html'),
+      },
+    },
   }
 });
