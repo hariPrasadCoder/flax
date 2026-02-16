@@ -4,40 +4,28 @@ import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
-    q: "Can I run a pilot campaign first?",
-    a: "Absolutely. Most brands start with a single pilot campaign to see results before committing to ongoing work. No long-term contracts required upfront — just valuable insights and real distribution."
+    q: "How do I know which path is right for me?",
+    a: "It depends on your stage and goals. Early-stage founders often start by building their own voice — it's more affordable and builds long-term equity. Funded startups ready to scale fast typically go the creator route for immediate reach. We'll help you figure this out on the strategy call."
   },
   {
-    q: "How much does a campaign cost?",
-    a: "Campaign pricing depends on your goals, target audience, and scale. We'll scope everything on a strategy call and provide a clear proposal. We work with budgets from startups to enterprises — the key is alignment on objectives, not a specific number."
+    q: "Can I start with one and add the other later?",
+    a: "Absolutely. Many founders start by building their voice, then add creator campaigns when they're ready to scale. Or vice versa — some use creator reach first, then invest in building their own presence. We're flexible."
+  },
+  {
+    q: "How much does this cost?",
+    a: "It depends on scope. We'll discuss your goals on the strategy call and put together a custom proposal. We work with everyone from bootstrapped founders to funded startups — the key is finding the right fit for your situation."
+  },
+  {
+    q: "Can I try this without a long commitment?",
+    a: "Yes. We offer pilot engagements so you can see results before committing to anything ongoing. No long-term contracts required to get started."
   },
   {
     q: "Why LinkedIn specifically?",
-    a: "LinkedIn is the #1 B2B platform with 1 billion professionals. It has 2x conversion rates compared to other channels, and the audience is high-intent decision makers. For B2B companies, LinkedIn creator marketing delivers the highest ROI."
+    a: "LinkedIn is the #1 B2B platform with 1 billion professionals. It has 2x conversion rates compared to other channels. For B2B founders, it's where your buyers and partners actually are."
   },
   {
-    q: "How is Flax different from other agencies?",
-    a: "Most agencies blast cold outreach to random influencers and hope something sticks. We've built a curated network of LinkedIn creators we actually work with. We coordinate campaigns as synchronized bursts — your brand appears everywhere at once. It's infrastructure, not middleman services."
-  },
-  {
-    q: "Do you guarantee impressions or results?",
-    a: "We provide projected reach ranges based on the creators in your campaign. While no one can honestly guarantee viral outcomes, we guarantee professional execution, quality creators, and transparent reporting on exactly what you get."
-  },
-  {
-    q: "How do you measure success?",
-    a: "We track impressions, engagement, profile visits, and conversions where applicable. More importantly, we define what success looks like before the campaign — whether that's awareness, inbound leads, or pipeline influence."
-  },
-  {
-    q: "How long does a campaign take?",
-    a: "From kickoff to completion: 30 days. Week 1 is strategy and creator matching. Week 2 is coordination and content prep. Weeks 3-4 are activation and amplification."
-  },
-  {
-    q: "Do I need to talk to creators directly?",
-    a: "No. We handle all creator communication, negotiation, briefing, and coordination. You approve the campaign plan and content direction — we manage everything else."
-  },
-  {
-    q: "What if I want to continue after the pilot?",
-    a: "Most clients do. After a successful pilot, we can move into an ongoing partnership with monthly campaigns, strategic planning, and priority access to our best creators. We'll discuss options based on your results."
+    q: "How much of my time does this take?",
+    a: "Minimal. For the 'Build Your Voice' path, we extract content from your existing work — calls, docs, thoughts. You spend maybe 30 minutes a week. For creator campaigns, even less — you approve the plan and we handle execution."
   }
 ];
 
@@ -48,11 +36,10 @@ export const FAQ: React.FC = () => {
     <Section id="faq" className="bg-background relative border-t border-white/5">
       <div className="max-w-3xl mx-auto">
         
-        <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl font-semibold text-white mb-4">
+        <div className="text-center mb-12">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-white mb-4">
             Questions
           </h2>
-          <p className="text-secondary">Straight answers.</p>
         </div>
 
         <div className="space-y-3">
