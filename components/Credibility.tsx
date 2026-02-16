@@ -4,7 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 
 export const Credibility: React.FC = () => {
   return (
-    <Section className="bg-background relative border-t border-white/5">
+    <Section id="credibility" className="bg-background relative border-t border-white/5">
       <div className="max-w-4xl mx-auto">
         
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -18,17 +18,28 @@ export const Credibility: React.FC = () => {
               <span className="text-gray-600">About Distribution.</span>
             </h2>
             <p className="text-gray-400 mb-8 leading-relaxed">
-              We've built it ourselves. Combined, we have 72K+ followers and 13M+ impressions on LinkedIn. A network of B2B creators ready to deploy. This isn't theory — it's what we do every day.
+              We've built it ourselves. Combined, we have 72K+ followers and 13M+ impressions on LinkedIn. A network of B2B creators ready to deploy. This isn't theory. It's what we do every day.
             </p>
-            <a 
-              href="https://www.linkedin.com/in/hariprasad20/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="inline-flex items-center gap-2 text-white border-b border-white/20 pb-1 hover:border-primary hover:text-primary transition-colors group"
-            >
-              See the proof on LinkedIn
-              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
+            <div className="flex flex-wrap gap-4">
+              <a 
+                href="https://www.linkedin.com/in/hariprasad20/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2 text-white border-b border-white/20 pb-1 hover:border-primary hover:text-primary transition-colors group"
+              >
+                Hari's LinkedIn
+                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/sunjana-ramana/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2 text-white border-b border-white/20 pb-1 hover:border-primary hover:text-primary transition-colors group"
+              >
+                Sunjana's LinkedIn
+                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
+            </div>
           </div>
 
           {/* Right - Stats */}

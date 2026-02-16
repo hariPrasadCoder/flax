@@ -12,7 +12,7 @@ export const Problem: React.FC = () => {
           <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[1.05]">
             The Old Playbook
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-red-400 via-red-500 to-red-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-gray-400 via-gray-500 to-gray-600">
               Is Broken.
             </span>
           </h2>
@@ -21,7 +21,7 @@ export const Problem: React.FC = () => {
           </p>
         </div>
 
-        {/* Pain Points - More Visual */}
+        {/* Pain Points */}
         <div className="grid md:grid-cols-3 gap-6 mb-20">
           {[
             { 
@@ -40,9 +40,9 @@ export const Problem: React.FC = () => {
               pain: "Great product, zero distribution"
             }
           ].map((item, i) => (
-            <div key={i} className="glass-panel rounded-2xl p-8 text-center group hover:border-red-500/20 transition-all duration-300">
-              <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">
-                <X className="text-red-400" size={24} />
+            <div key={i} className="glass-panel rounded-2xl p-8 text-center group hover:border-white/10 transition-all duration-300">
+              <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-4">
+                <X className="text-gray-500" size={24} />
               </div>
               <div className="text-4xl md:text-5xl font-bold text-white mb-2">{item.stat}</div>
               <div className="text-white font-medium mb-2">{item.label}</div>

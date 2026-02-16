@@ -5,15 +5,15 @@ import { ChevronDown } from 'lucide-react';
 const faqs = [
   {
     q: "How do I know which path is right for me?",
-    a: "It depends on your stage and goals. Early-stage founders often start by building their own voice — it's more affordable and builds long-term equity. Funded startups ready to scale fast typically go the creator route for immediate reach. We'll help you figure this out on the strategy call."
+    a: "It depends on your stage and goals. Early-stage founders often start by building their own voice. It's more affordable and builds long-term equity. Funded startups ready to scale fast typically go the creator route for immediate reach. We'll help you figure this out on the strategy call."
   },
   {
     q: "Can I start with one and add the other later?",
-    a: "Absolutely. Many founders start by building their voice, then add creator campaigns when they're ready to scale. Or vice versa — some use creator reach first, then invest in building their own presence. We're flexible."
+    a: "Absolutely. Many founders start by building their voice, then add creator campaigns when they're ready to scale. Or vice versa. Some use creator reach first, then invest in building their own presence. We're flexible."
   },
   {
     q: "How much does this cost?",
-    a: "It depends on scope. We'll discuss your goals on the strategy call and put together a custom proposal. We work with everyone from bootstrapped founders to funded startups — the key is finding the right fit for your situation."
+    a: "It depends on scope. We'll discuss your goals on the strategy call and put together a custom proposal. We work with everyone from bootstrapped founders to funded startups. The key is finding the right fit for your situation."
   },
   {
     q: "Can I try this without a long commitment?",
@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: "How much of my time does this take?",
-    a: "Minimal. For the 'Build Your Voice' path, we extract content from your existing work — calls, docs, thoughts. You spend maybe 30 minutes a week. For creator campaigns, even less — you approve the plan and we handle execution."
+    a: "Minimal. For the 'Build Your Voice' path, we extract content from your existing work like calls, docs, and thoughts. You spend maybe 30 minutes a week. For creator campaigns, even less. You approve the plan and we handle execution."
   }
 ];
 

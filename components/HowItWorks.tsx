@@ -11,7 +11,7 @@ export const HowItWorks: React.FC = () => {
     { 
       num: "02", 
       title: "Custom Plan", 
-      desc: "We design a distribution strategy — whether that's building your voice, creator campaigns, or both."
+      desc: "We design a distribution strategy, whether that's building your voice, creator campaigns, or both."
     },
     { 
       num: "03", 

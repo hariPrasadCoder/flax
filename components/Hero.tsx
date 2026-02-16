@@ -105,7 +105,7 @@ export const Hero: React.FC = () => {
         </div>
 
         <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed opacity-0 animate-fade-in-up delay-200">
-          The best B2B companies win on distribution through content — either by building their founder's voice or by leveraging creators who already have reach.
+          The best B2B companies win on distribution through content. Either by building their founder's voice or by leveraging creators who already have reach.
           <br /><br />
           <span className="text-white">We do both.</span>
         </p>
