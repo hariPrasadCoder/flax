@@ -205,11 +205,10 @@ const StudiosHero: React.FC = () => (
       {/* Left side - Content */}
       <div className="text-center lg:text-left">
         {/* Badge */}
-        <div className="inline-flex items-center relative mb-8 opacity-0 animate-fade-in-up">
-          <div className="inline-flex h-full w-full items-center justify-center rounded-full bg-white/[0.03] px-4 py-1.5 text-xs font-mono text-gray-300 border border-white/10 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent animate-shimmer" />
-            <Radio className="w-3.5 h-3.5 mr-2 text-primary relative z-10" />
-            <span className="relative z-10">Coming Soon</span>
+        <div className="inline-block mb-8 opacity-0 animate-fade-in-up">
+          <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 text-xs font-mono text-primary border border-primary/20">
+            <Radio className="w-3.5 h-3.5 mr-2" />
+            Coming Soon
           </div>
         </div>
 
