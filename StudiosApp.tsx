@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Mic, Play, Radio, Sparkles, Users, Zap, MessageSquare, TrendingUp, Award, ChevronRight } from 'lucide-react';
+import { ArrowRight, Mic, Play, Radio, Users, MessageSquare, TrendingUp, Award, ChevronRight } from 'lucide-react';
 
 // ============ ANIMATED WAVEFORM ============
 
@@ -403,15 +403,6 @@ const ComingSoon: React.FC = () => (
 // ============ APPLY SECTION ============
 
 const ApplySection: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Add form submission
-    setSubmitted(true);
-  };
-
   return (
     <Section id="apply" className="relative border-t border-white/5">
       <div className="max-w-3xl mx-auto text-center">
@@ -431,32 +422,21 @@ const ApplySection: React.FC = () => {
             We're looking for founders with real stories. Not everything has to be a success. The best lessons come from the hard stuff.
           </p>
 
-          {!submitted ? (
-            <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="flex-1 px-5 py-3.5 rounded-full bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
-                />
-                <Button className="whitespace-nowrap">
-                  Apply Now
-                </Button>
-              </div>
-              <p className="text-xs text-gray-600 mt-4">
-                We'll reach out within 48 hours if it's a fit.
-              </p>
-            </form>
-          ) : (
-            <div className="bg-primary/10 border border-primary/20 rounded-2xl p-8 max-w-md mx-auto">
-              <Sparkles className="w-8 h-8 text-primary mx-auto mb-4" />
-              <p className="text-white font-medium mb-2">Application received!</p>
-              <p className="text-gray-400 text-sm">We'll be in touch soon.</p>
-            </div>
-          )}
+          <a 
+            href="mailto:contact@joinflax.com?subject=Flax Studios - I want to share my story"
+            className="inline-flex items-center gap-3 bg-primary text-white hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 px-8 py-4 rounded-full font-medium transition-all duration-300 text-lg group"
+          >
+            <span>Reach out to us</span>
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+          </a>
+          
+          <p className="text-gray-500 mt-6">
+            <a href="mailto:contact@joinflax.com" className="text-primary hover:underline">contact@joinflax.com</a>
+          </p>
+          
+          <p className="text-xs text-gray-600 mt-4">
+            We'll get back to you within 48 hours.
+          </p>
         </div>
       </div>
     </Section>

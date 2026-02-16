@@ -61,10 +61,13 @@ export const Footer: React.FC = () => {
       </Section>
 
       {/* Footer */}
-      <div className="container mx-auto px-6 max-w-7xl pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="container mx-auto px-6 max-w-7xl pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
         <a href="#" className="flex items-center gap-2">
           <FlaxLogo />
           <span className="text-white font-semibold">Flax</span>
+        </a>
+        <a href="mailto:contact@joinflax.com" className="text-sm text-gray-500 hover:text-primary transition-colors">
+          contact@joinflax.com
         </a>
         <div className="text-xs text-gray-600">
           © 2026 Flax
