@@ -9,6 +9,7 @@ import { Credibility } from './components/Credibility';
 import { HowItWorks } from './components/HowItWorks';
 import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
+import StudiosApp from './StudiosApp';
 
 // Book page - redirects to Cal.com
 function BookPage() {
@@ -54,6 +55,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/book" element={<BookPage />} />
+        <Route path="/studios" element={<StudiosApp />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
