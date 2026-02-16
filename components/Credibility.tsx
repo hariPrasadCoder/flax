@@ -18,7 +18,7 @@ export const Credibility: React.FC = () => {
               <span className="text-gray-600">About Distribution.</span>
             </h2>
             <p className="text-gray-400 mb-8 leading-relaxed">
-              We've built it ourselves. 47K+ followers on LinkedIn. 10M+ impressions. A network of B2B creators. This isn't theory — it's what we do every day.
+              We've built it ourselves. Combined, we have 72K+ followers and 13M+ impressions on LinkedIn. A network of B2B creators ready to deploy. This isn't theory — it's what we do every day.
             </p>
             <a 
               href="https://www.linkedin.com/in/hariprasad20/" 
@@ -35,20 +35,16 @@ export const Credibility: React.FC = () => {
           <div className="glass-panel rounded-3xl p-8">
             <div className="grid grid-cols-2 gap-6">
               <div className="text-center p-4">
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">47K+</div>
-                <div className="text-sm text-gray-500">LinkedIn Followers</div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">72K+</div>
+                <div className="text-sm text-gray-500">Combined Followers</div>
               </div>
               <div className="text-center p-4">
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">10M+</div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">13M+</div>
                 <div className="text-sm text-gray-500">Impressions</div>
               </div>
-              <div className="text-center p-4">
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">100+</div>
-                <div className="text-sm text-gray-500">Founders at Events</div>
-              </div>
-              <div className="text-center p-4">
+              <div className="text-center p-4 col-span-2">
                 <div className="text-4xl md:text-5xl font-bold text-primary mb-2">B2B</div>
-                <div className="text-sm text-gray-500">Creator Network</div>
+                <div className="text-sm text-gray-500">Creator Network Ready to Deploy</div>
               </div>
             </div>
           </div>

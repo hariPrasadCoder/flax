@@ -14,6 +14,12 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navLinks = [
+    { label: 'The Problem', href: '#problem' },
+    { label: 'Solutions', href: '#paths' },
+    { label: 'FAQ', href: '#faq' },
+  ];
+
   return (
     <>
       <nav className="fixed top-4 md:top-6 left-0 right-0 z-[100] flex justify-center px-4 pointer-events-none max-w-full">
@@ -23,7 +29,7 @@ export const Navbar: React.FC = () => {
           transition-all duration-500 ease-out
           w-full
           ${isScrolled 
-            ? 'max-w-[calc(100%-2rem)] md:max-w-[500px] bg-[#0A0A0A]/90 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/50 py-2.5 px-4 rounded-full' 
+            ? 'max-w-[calc(100%-2rem)] md:max-w-[600px] bg-[#0A0A0A]/90 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/50 py-2.5 px-4 rounded-full' 
             : 'max-w-7xl py-3 md:py-4 px-4 md:px-6 bg-transparent border-transparent'
           }
         `}>
@@ -33,6 +39,18 @@ export const Navbar: React.FC = () => {
               Flax
             </span>
           </a>
+
+          <div className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+            {navLinks.map((link) => (
+              <a 
+                key={link.label} 
+                href={link.href}
+                className="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors font-medium whitespace-nowrap"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
 
           <div className="hidden md:flex items-center gap-3 ml-auto">
             <Button 
@@ -59,6 +77,17 @@ export const Navbar: React.FC = () => {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-[90] bg-black/95 backdrop-blur-xl pt-24 px-4 md:hidden overflow-y-auto">
           <div className="flex flex-col gap-6 items-center text-center min-h-full justify-center pb-20">
+            {navLinks.map((link) => (
+              <a 
+                key={link.label} 
+                href={link.href}
+                className="text-2xl sm:text-3xl font-medium text-gray-300 hover:text-white transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="w-full max-w-xs h-px bg-white/10 my-4" />
             <Button 
               fullWidth 
               variant="primary" 
