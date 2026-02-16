@@ -163,33 +163,139 @@ const Section: React.FC<{ children: React.ReactNode; className?: string; id?: st
 
 // ============ NAVBAR ============
 
+const FlaxLogo = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-8 h-8">
+    <defs>
+      <linearGradient id="gradNav" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style={{stopColor:'#4A42D8'}}/>
+        <stop offset="100%" style={{stopColor:'#6B63E8'}}/>
+      </linearGradient>
+    </defs>
+    <rect x="5" y="5" width="90" height="90" rx="20" fill="url(#gradNav)"/>
+    <g fill="none" stroke="white" strokeWidth="2.5">
+      <ellipse cx="50" cy="28" rx="10" ry="16" transform="rotate(0, 50, 50)"/>
+      <ellipse cx="50" cy="28" rx="10" ry="16" transform="rotate(72, 50, 50)"/>
+      <ellipse cx="50" cy="28" rx="10" ry="16" transform="rotate(144, 50, 50)"/>
+      <ellipse cx="50" cy="28" rx="10" ry="16" transform="rotate(216, 50, 50)"/>
+      <ellipse cx="50" cy="28" rx="10" ry="16" transform="rotate(288, 50, 50)"/>
+    </g>
+    <g stroke="white" strokeWidth="1.5" opacity="0.5">
+      <line x1="50" y1="50" x2="50" y2="28"/>
+      <line x1="50" y1="50" x2="69" y2="37"/>
+      <line x1="50" y1="50" x2="62" y2="64"/>
+      <line x1="50" y1="50" x2="38" y2="64"/>
+      <line x1="50" y1="50" x2="31" y2="37"/>
+    </g>
+    <circle cx="50" cy="50" r="8" fill="white"/>
+    <circle cx="50" cy="50" r="4" fill="url(#gradNav)"/>
+  </svg>
+);
+
 const StudiosNavbar: React.FC = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-xl border-b border-white/5' : ''}`}>
-      <div className="container mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2 group">
-          <span className="text-base md:text-lg font-semibold tracking-tight text-white">Flax</span>
-          <span className="text-xs text-primary font-mono">/studios</span>
-        </a>
+  const navLinks = [
+    { label: 'Why Join', href: '#why' },
+    { label: 'Format', href: '#format' },
+    { label: 'Apply', href: '#apply' },
+  ];
 
-        <div className="flex items-center gap-4">
-          <a href="/" className="text-sm text-gray-400 hover:text-white transition-colors hidden sm:block">
-            ← Back to Flax
+  return (
+    <>
+      <nav className="fixed top-4 md:top-6 left-0 right-0 z-[100] flex justify-center px-4 pointer-events-none max-w-full">
+        <div className={`
+          pointer-events-auto
+          flex items-center justify-between 
+          transition-all duration-500 ease-out
+          w-full
+          ${isScrolled 
+            ? 'max-w-[calc(100%-2rem)] md:max-w-[600px] bg-[#0A0A0A]/90 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/50 py-2.5 px-4 rounded-full' 
+            : 'max-w-7xl py-3 md:py-4 px-4 md:px-6 bg-transparent border-transparent'
+          }
+        `}>
+          
+          <a href="/" className="flex items-center gap-2 group relative z-10 flex-shrink-0">
+            <FlaxLogo />
+            <span className="text-base md:text-lg font-semibold tracking-tight text-white">
+              Flax
+            </span>
+            <span className="text-xs text-primary font-mono">/studios</span>
           </a>
-          <Button className="!px-5 !py-2 !text-xs !h-9" onClick={() => document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' })}>
-            Be a Guest
-          </Button>
+
+          <div className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+            {navLinks.map((link) => (
+              <a 
+                key={link.label} 
+                href={link.href}
+                className="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors font-medium whitespace-nowrap"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="hidden md:flex items-center gap-3 ml-auto">
+            <Button 
+              variant="primary" 
+              className="!px-5 !py-2 !text-xs !h-9 whitespace-nowrap"
+              onClick={() => document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Be a Guest
+            </Button>
+          </div>
+
+          <button 
+            className="md:hidden text-white p-2 pointer-events-auto flex-shrink-0 -mr-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle mobile menu"
+          >
+            {isMobileMenuOpen ? <span className="text-xl">✕</span> : <span className="text-xl">☰</span>}
+          </button>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-[90] bg-black/95 backdrop-blur-xl pt-24 px-4 md:hidden overflow-y-auto">
+          <div className="flex flex-col gap-6 items-center text-center min-h-full justify-center pb-20">
+            {navLinks.map((link) => (
+              <a 
+                key={link.label} 
+                href={link.href}
+                className="text-2xl sm:text-3xl font-medium text-gray-300 hover:text-white transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a 
+              href="/"
+              className="text-lg text-gray-500 hover:text-white transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              ← Back to Flax
+            </a>
+            <div className="w-full max-w-xs h-px bg-white/10 my-4" />
+            <Button 
+              variant="primary" 
+              className="max-w-xs w-full"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Be a Guest
+            </Button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
@@ -295,7 +401,7 @@ const WhySection: React.FC = () => (
 // ============ FORMAT SECTION ============
 
 const FormatSection: React.FC = () => (
-  <Section className="relative border-t border-white/5">
+  <Section id="format" className="relative border-t border-white/5">
     <div className="max-w-5xl mx-auto">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
         {/* Left - Visual */}
