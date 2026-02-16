@@ -56,8 +56,8 @@ export const Navbar: React.FC = () => {
             <Button 
               variant="primary" 
               className="!px-5 !py-2 !text-xs !h-9 whitespace-nowrap"
-              data-cal-namespace="flax"
-              data-cal-link="hari-prasad/flax"
+              data-cal-namespace="strategy-call"
+              data-cal-link="joinflax/strategy-call"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
             >
               Book a Call
@@ -93,8 +93,8 @@ export const Navbar: React.FC = () => {
               variant="primary" 
               className="max-w-xs"
               onClick={() => setIsMobileMenuOpen(false)}
-              data-cal-namespace="flax"
-              data-cal-link="hari-prasad/flax"
+              data-cal-namespace="strategy-call"
+              data-cal-link="joinflax/strategy-call"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
             >
               Book a Call

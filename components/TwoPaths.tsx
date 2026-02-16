@@ -137,8 +137,8 @@ export const TwoPaths: React.FC = () => {
           <p className="text-gray-500 mb-6">Not sure which path? Let's figure it out together.</p>
           <Button 
             className="h-12 px-8 text-sm bg-white text-black hover:bg-gray-100 font-semibold"
-            data-cal-namespace="flax"
-            data-cal-link="hari-prasad/flax"
+            data-cal-namespace="strategy-call"
+            data-cal-link="joinflax/strategy-call"
             data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
           >
             Book a Free Strategy Call

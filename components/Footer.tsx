@@ -20,8 +20,8 @@ export const Footer: React.FC = () => {
           
           <Button 
             className="!text-lg !px-10 !py-5 !h-auto !rounded-full bg-white text-black hover:bg-gray-100 font-semibold shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] transition-all duration-300"
-            data-cal-namespace="flax"
-            data-cal-link="hari-prasad/flax"
+            data-cal-namespace="strategy-call"
+            data-cal-link="joinflax/strategy-call"
             data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
           >
             Book a Free Strategy Call

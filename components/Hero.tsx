@@ -164,8 +164,8 @@ export const Hero: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up delay-300">
           <Button 
             className="h-14 px-10 text-base bg-white text-black hover:bg-gray-200 hover:scale-105 transition-transform duration-200 font-semibold"
-            data-cal-namespace="flax"
-            data-cal-link="hari-prasad/flax"
+            data-cal-namespace="strategy-call"
+            data-cal-link="joinflax/strategy-call"
             data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
           >
             Book a Call
