@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Modern 6: Star network - 5 point star made of connections -->
+  <defs>
+    <linearGradient id="gradM6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A42D8"/>
+      <stop offset="100%" style="stop-color:#6B63E8"/>
+    </linearGradient>
+  </defs>
+  
+  <rect x="5" y="5" width="90" height="90" rx="20" fill="url(#gradM6)"/>
+  
+  <!-- Star connections (skipping vertices) -->
+  <g stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.5">
+    <line x1="50" y1="18" x2="68" y2="75"/>
+    <line x1="68" y1="75" x2="22" y2="40"/>
+    <line x1="22" y1="40" x2="78" y2="40"/>
+    <line x1="78" y1="40" x2="32" y2="75"/>
+    <line x1="32" y1="75" x2="50" y2="18"/>
+  </g>
+  
+  <!-- Nodes at vertices -->
+  <circle cx="50" cy="18" r="6" fill="white"/>
+  <circle cx="78" cy="40" r="6" fill="white"/>
+  <circle cx="68" cy="75" r="6" fill="white"/>
+  <circle cx="32" cy="75" r="6" fill="white"/>
+  <circle cx="22" cy="40" r="6" fill="white"/>
+  
+  <!-- Center node -->
+  <circle cx="50" cy="48" r="5" fill="white" opacity="0.8"/>
+</svg>
