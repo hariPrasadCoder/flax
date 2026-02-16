@@ -17,6 +17,9 @@ export default defineConfig({
         main: path.resolve(__dirname, 'index.html'),
         book: path.resolve(__dirname, 'book/index.html'),
         studios: path.resolve(__dirname, 'studios/index.html'),
+        playbook: path.resolve(__dirname, 'playbook/index.html'),
+        events: path.resolve(__dirname, 'events/index.html'),
+        tools: path.resolve(__dirname, 'tools/index.html'),
       },
     },
   }
