@@ -1,48 +1,26 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { getCalApi } from "@calcom/embed-react";
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Problem } from './components/Problem';
-import { TwoPaths } from './components/TwoPaths';
-import { Credibility } from './components/Credibility';
 import { HowItWorks } from './components/HowItWorks';
-import { FAQ } from './components/FAQ';
+import { Features } from './components/Features';
+import { WhoItsFor } from './components/WhoItsFor';
+import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
 import StudiosApp from './StudiosApp';
 
-// Book page - redirects to Cal.com
-function BookPage() {
-  useEffect(() => {
-    window.location.href = 'https://cal.com/joinflax/strategy-call';
-  }, []);
-  
-  return (
-    <div className="bg-background min-h-screen flex items-center justify-center text-white">
-      <p className="text-xl">Redirecting to booking...</p>
-    </div>
-  );
-}
-
-// Main landing page
 function HomePage() {
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ namespace: "strategy-call", origin: "https://app.cal.com" });
-      cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
-    })();
-  }, []);
-
   return (
-    <div className="bg-background min-h-screen text-white selection:bg-primary selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-paper text-ink overflow-x-hidden">
       <Navbar />
-      <main className="overflow-x-hidden">
+      <main>
         <Hero />
         <Problem />
-        <TwoPaths />
-        <Credibility />
         <HowItWorks />
-        <FAQ />
+        <Features />
+        <WhoItsFor />
+        <CTASection />
       </main>
       <Footer />
     </div>
@@ -54,7 +32,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/book" element={<BookPage />} />
         <Route path="/studios" element={<StudiosApp />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

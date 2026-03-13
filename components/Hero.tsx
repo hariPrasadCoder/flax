@@ -1,185 +1,134 @@
-import React, { useEffect, useRef } from 'react';
-import { Button } from './ui/Button';
-import { Section } from './ui/Section';
+import React, { useState, useEffect } from 'react';
 
-export const Hero: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const DiffMockup: React.FC = () => {
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const x = (clientX / innerWidth - 0.5) * 2;
-      const y = (clientY / innerHeight - 0.5) * 2;
-      containerRef.current.style.setProperty('--mouse-x', x.toString());
-      containerRef.current.style.setProperty('--mouse-y', y.toString());
-      containerRef.current.style.setProperty('--cursor-x', clientX + 'px');
-      containerRef.current.style.setProperty('--cursor-y', clientY + 'px');
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // Canvas Particle Animation (Stars)
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-    
-    const particles: {x: number, y: number, size: number, speedX: number, speedY: number, alpha: number}[] = [];
-    const particleCount = 60;
-
-    const initParticles = () => {
-      particles.length = 0;
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          size: Math.random() * 2 + 0.5,
-          speedX: (Math.random() - 0.5) * 0.2,
-          speedY: (Math.random() - 0.5) * 0.2,
-          alpha: Math.random() * 0.5 + 0.1
-        });
-      }
-    };
-
-    const draw = () => {
-      ctx.clearRect(0, 0, width, height);
-      
-      particles.forEach(p => {
-        p.x += p.speedX;
-        p.y += p.speedY;
-
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
-        ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * 0.3})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      
-      requestAnimationFrame(draw);
-    };
-
-    const handleResize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      initParticles();
-    };
-
-    initParticles();
-    draw();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const t1 = setTimeout(() => setStep(1), 900);
+    const t2 = setTimeout(() => setStep(2), 2600);
+    const t3 = setTimeout(() => setStep(3), 4800);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
   return (
-    <div 
-      ref={containerRef}
-      className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-background"
-    >
-      
-      {/* Animated Canvas Background (Stars/Particles) */}
-      <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none" />
+    <div className="w-full max-w-[500px] font-mono text-xs select-none">
 
-      {/* Dynamic Cursor Spotlight */}
-      <div 
-        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 opacity-50"
-        style={{
-          background: `radial-gradient(600px circle at var(--cursor-x, 50%) var(--cursor-y, 50%), rgba(255, 255, 255, 0.04), transparent 40%)`
-        }}
-      />
-
-      {/* Moving Ambient Blobs (Aurora Effect) */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] pointer-events-none animate-blob opacity-40 mix-blend-screen" />
-      <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none animate-blob animation-delay-2000 opacity-40 mix-blend-screen" />
-      <div className="absolute bottom-[-20%] left-[20%] w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-[120px] pointer-events-none animate-blob animation-delay-4000 opacity-30 mix-blend-screen" />
-
-      {/* Background Grid */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
-      
-      {/* Floating Parallax Elements (Abstract Shapes) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-         {/* Top Right Abstract Shape: Glass Cube */}
-         <div 
-            className="absolute top-[10%] right-[10%] w-24 h-24 bg-gradient-to-br from-white/5 to-transparent rounded-2xl border border-white/5 backdrop-blur-sm hidden lg:block animate-spin-reverse-slow opacity-60"
-             style={{ 
-              transform: 'translate(calc(var(--mouse-x) * 15px), calc(var(--mouse-y) * -15px)) rotate(45deg)',
-              transition: 'transform 0.2s ease-out'
-            }}
-         />
-
-          {/* Bottom Left Abstract Shape: Circle */}
-         <div 
-            className="absolute bottom-[10%] left-[10%] w-32 h-32 rounded-full border border-dashed border-white/10 hidden lg:block animate-spin-slow opacity-40"
-             style={{ 
-              transform: 'translate(calc(var(--mouse-x) * -25px), calc(var(--mouse-y) * 25px))',
-              transition: 'transform 0.2s ease-out'
-            }}
-         />
+      {/* Panel 1: Bot joined */}
+      <div className="card mb-3 overflow-hidden">
+        <div className="flex items-center justify-between px-3.5 py-2 border-b border-rule bg-paper/60">
+          <div className="flex items-center gap-2">
+            <span className={`w-1.5 h-1.5 rounded-sm ${step >= 1 ? 'bg-green-600' : 'bg-rule'} transition-colors duration-300`} />
+            <span className="section-label">Backend Sync · 12 Mar 2026</span>
+          </div>
+          <span className={`section-label transition-opacity duration-500 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+            Bot joined
+          </span>
+        </div>
+        <div className="px-3.5 py-3 text-[12px] leading-6 text-ink">
+          <p className="text-ink-muted text-[10px] mb-1.5">14:22 — Engineering Lead</p>
+          <p>"We're deprecating the <span className="bg-yellow-100 px-0.5">v1 REST API</span> by end of Q1. New endpoints move to GraphQL. Agreed unanimously."</p>
+        </div>
+        <div className={`px-3.5 pb-3 flex items-center gap-2 text-[10px] text-ink-muted transition-opacity duration-500 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+          <span className="inline-block w-16 h-0.5 bg-rule overflow-hidden relative align-middle">
+            <span className={`absolute left-0 top-0 h-full bg-ink transition-all duration-[1800ms] ${step >= 2 ? 'w-full' : 'w-0'}`} />
+          </span>
+          {step < 2 ? 'Analyzing…' : <span className="text-green-700">Analysis complete</span>}
+        </div>
       </div>
 
-      {/* Shooting Star Effect */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-         <div className="absolute top-[20%] left-[20%] w-[2px] h-[100px] bg-gradient-to-b from-transparent via-white to-transparent opacity-0 animate-[shimmer_3s_infinite_2s] rotate-45"></div>
-         <div className="absolute top-[10%] right-[30%] w-[1px] h-[150px] bg-gradient-to-b from-transparent via-primary to-transparent opacity-0 animate-[shimmer_5s_infinite_0s] rotate-12"></div>
+      {/* Panel 2: Diff */}
+      <div className={`card mb-3 overflow-hidden transition-all duration-500 ${step >= 2 ? 'opacity-100' : 'opacity-0 translate-y-1.5'}`}>
+        <div className="flex items-center justify-between px-3.5 py-2 border-b border-rule bg-paper/60">
+          <span className="section-label">Proposed Changes</span>
+          <span className="section-label text-ink-muted">architecture.md</span>
+        </div>
+        <div className="px-3.5 py-2.5 space-y-1 text-[11px] leading-5">
+          <div className="diff-remove px-2 py-0.5 rounded-sm">− v1 REST API is our primary integration layer.</div>
+          <div className="diff-add px-2 py-0.5 rounded-sm">+ v1 REST API deprecated — end of Q1 2026.</div>
+          <div className="diff-add px-2 py-0.5 rounded-sm">+ GraphQL adopted for all new endpoints.</div>
+          <div className="diff-neutral px-2 py-0.5">&nbsp;&nbsp;Auth layer unchanged.</div>
+        </div>
+        <div className="px-3.5 pb-2.5">
+          <div className="text-[10px] font-mono text-ink-muted bg-yellow-50 border border-yellow-200 px-2.5 py-1.5 rounded-sm mb-2">
+            ⚠ Flaxie is unsure which doc to update. Confirm?
+          </div>
+          <div className="flex items-center gap-2">
+            <button className="btn-accept">✓ Confirm</button>
+            <button className="btn-reject">Skip</button>
+            <span className="text-[10px] text-ink-muted ml-auto">3 changes · 1 file</span>
+          </div>
+        </div>
       </div>
 
-      <Section className="pt-32 md:pt-40 pb-20 text-center z-20 relative">
-        
-        {/* Animated Pill Badge */}
-        <div className="inline-flex items-center justify-center p-[1px] mb-8 overflow-hidden rounded-full relative group cursor-default opacity-0 animate-fade-in-up hover:scale-105 transition-transform duration-300">
-           <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#222_0%,#fff_50%,#222_100%)] opacity-30" />
-           <div className="inline-flex h-full w-full items-center justify-center rounded-full bg-background px-4 py-1.5 text-xs font-mono text-gray-300 backdrop-blur-3xl border border-white/5">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2 animate-pulse"></span>
-              FOR B2B FOUNDERS
-           </div>
+      {/* Panel 3: Done */}
+      <div className={`card overflow-hidden transition-all duration-500 ${step >= 3 ? 'opacity-100' : 'opacity-0 translate-y-1.5'}`}>
+        <div className="flex items-center justify-between px-3.5 py-2 border-b border-rule bg-paper/60">
+          <span className="section-label">architecture.md</span>
+          <span className="section-label text-green-700">✓ Updated just now</span>
         </div>
-
-        <div className="relative mb-6 max-w-4xl mx-auto">
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.05] opacity-0 animate-fade-in-up delay-100">
-            Ads Are Dead.
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-gray-300 via-gray-400 to-gray-600">
-              Content Is King.
-            </span>
-          </h1>
+        <div className="px-3.5 py-2.5 text-[11px] text-ink leading-5 space-y-0.5">
+          <p className="text-ink-muted text-[10px] mb-1">Last updated: 12 Mar 2026 via Flax</p>
+          <p>v1 REST API deprecated — end of Q1 2026.</p>
+          <p>GraphQL adopted for all new endpoints.</p>
+          <p>Auth layer unchanged.</p>
         </div>
+      </div>
 
-        <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed opacity-0 animate-fade-in-up delay-200">
-          The best B2B companies win on distribution through content. Either by building their founder's voice or by leveraging creators who already have reach.
-          <br /><br />
-          <span className="text-white">We do both.</span>
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up delay-300">
-          <Button 
-            className="h-14 px-10 text-base bg-white text-black hover:bg-gray-200 hover:scale-105 transition-transform duration-200 font-semibold"
-            data-cal-namespace="strategy-call"
-            data-cal-link="joinflax/strategy-call"
-            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-          >
-            Book a Call
-          </Button>
-          <Button 
-            variant="outline"
-            className="h-14 px-10 text-base"
-            onClick={() => document.getElementById('paths')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            See How It Works
-          </Button>
-        </div>
-
-      </Section>
     </div>
+  );
+};
+
+export const Hero: React.FC = () => {
+  return (
+    <section className="min-h-screen flex items-center pt-14 border-b border-rule">
+      <div className="max-w-6xl mx-auto px-5 md:px-8 py-20 w-full">
+
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-2">
+            <span className="section-label">Documentation Infrastructure</span>
+            <span className="section-label">Est. 2025</span>
+          </div>
+          <div className="rule-thick" />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+          {/* Left */}
+          <div>
+            <h1 className="font-serif font-black text-ink leading-[1.1] text-4xl md:text-5xl lg:text-[3.3rem] mb-5 animate-on-load animate-fade-in-up">
+              Meet Flaxie — the AI that keeps your docs current.
+            </h1>
+
+            <p className="text-ink-muted text-sm leading-7 mb-8 max-w-md animate-on-load animate-fade-in-up delay-200">
+              Flaxie joins your meetings, understands what changed, and updates your documentation automatically. It only asks for your input when it's not sure.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-3 animate-on-load animate-fade-in-up delay-300">
+              <a href="#waitlist" className="btn-primary">Get early access</a>
+              <a href="#how-it-works" className="btn-outline">See how it works</a>
+            </div>
+
+            <div className="mt-10 pt-8 border-t border-rule flex flex-wrap gap-8 animate-on-load animate-fade-in-up delay-400">
+              {[
+                { value: 'Automatic', label: 'docs update themselves' },
+                { value: 'Asks', label: 'only when uncertain' },
+                { value: 'Flaxie', label: 'your AI doc agent' },
+              ].map((s) => (
+                <div key={s.label}>
+                  <div className="font-serif font-bold text-ink text-base mb-0.5">{s.value}</div>
+                  <div className="section-label">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: Mockup */}
+          <div className="hidden lg:flex justify-center animate-on-load animate-fade-in delay-200">
+            <DiffMockup />
+          </div>
+
+        </div>
+      </div>
+    </section>
   );
 };
