@@ -1,134 +1,199 @@
 import React, { useState, useEffect } from 'react';
 
-const DiffMockup: React.FC = () => {
+/* ─── App window mockup (loops) ────────────────────────────────── */
+const AppMockup: React.FC = () => {
   const [step, setStep] = useState(0);
+  const [cycle, setCycle] = useState(0);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setStep(1), 900);
-    const t2 = setTimeout(() => setStep(2), 2600);
-    const t3 = setTimeout(() => setStep(3), 4800);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
-  }, []);
+    setStep(0);
+    const timers = [
+      setTimeout(() => setStep(1), 900),
+      setTimeout(() => setStep(2), 2500),
+      setTimeout(() => setStep(3), 3900),
+      setTimeout(() => setStep(4), 5300),
+      setTimeout(() => setCycle(c => c + 1), 8400), // pause then loop
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, [cycle]);
 
   return (
-    <div className="w-full max-w-[500px] font-mono text-xs select-none">
+    <div className="w-full rounded-lg overflow-hidden border border-rule"
+      style={{ boxShadow: '0 8px 48px rgba(0,0,0,0.13)' }}>
 
-      {/* Panel 1: Bot joined */}
-      <div className="card mb-3 overflow-hidden">
-        <div className="flex items-center justify-between px-3.5 py-2 border-b border-rule bg-paper/60">
-          <div className="flex items-center gap-2">
-            <span className={`w-1.5 h-1.5 rounded-sm ${step >= 1 ? 'bg-green-600' : 'bg-rule'} transition-colors duration-300`} />
-            <span className="section-label">Backend Sync · 12 Mar 2026</span>
-          </div>
-          <span className={`section-label transition-opacity duration-500 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`}>
-            Bot joined
-          </span>
+      {/* Chrome */}
+      <div className="bg-ink px-4 py-2.5 flex items-center gap-3 select-none">
+        <div className="flex gap-1.5">
+          {['#FF5F57','#FFBD2E','#28C840'].map(c => (
+            <div key={c} className="w-3 h-3 rounded-full" style={{ background: c, opacity: 0.75 }} />
+          ))}
         </div>
-        <div className="px-3.5 py-3 text-[12px] leading-6 text-ink">
-          <p className="text-ink-muted text-[10px] mb-1.5">14:22 — Engineering Lead</p>
-          <p>"We're deprecating the <span className="bg-yellow-100 px-0.5">v1 REST API</span> by end of Q1. New endpoints move to GraphQL. Agreed unanimously."</p>
+        <div className="flex-1 text-center">
+          <span className="font-mono text-[11px] text-white/35">architecture.md · Flax</span>
         </div>
-        <div className={`px-3.5 pb-3 flex items-center gap-2 text-[10px] text-ink-muted transition-opacity duration-500 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`}>
-          <span className="inline-block w-16 h-0.5 bg-rule overflow-hidden relative align-middle">
-            <span className={`absolute left-0 top-0 h-full bg-ink transition-all duration-[1800ms] ${step >= 2 ? 'w-full' : 'w-0'}`} />
-          </span>
-          {step < 2 ? 'Analyzing…' : <span className="text-green-700">Analysis complete</span>}
+        <div className={`flex items-center gap-1.5 transition-opacity duration-700 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+          <span className="font-mono text-[10px] text-white/45">Flaxie active</span>
         </div>
       </div>
 
-      {/* Panel 2: Diff */}
-      <div className={`card mb-3 overflow-hidden transition-all duration-500 ${step >= 2 ? 'opacity-100' : 'opacity-0 translate-y-1.5'}`}>
-        <div className="flex items-center justify-between px-3.5 py-2 border-b border-rule bg-paper/60">
-          <span className="section-label">Proposed Changes</span>
-          <span className="section-label text-ink-muted">architecture.md</span>
-        </div>
-        <div className="px-3.5 py-2.5 space-y-1 text-[11px] leading-5">
-          <div className="diff-remove px-2 py-0.5 rounded-sm">− v1 REST API is our primary integration layer.</div>
-          <div className="diff-add px-2 py-0.5 rounded-sm">+ v1 REST API deprecated — end of Q1 2026.</div>
-          <div className="diff-add px-2 py-0.5 rounded-sm">+ GraphQL adopted for all new endpoints.</div>
-          <div className="diff-neutral px-2 py-0.5">&nbsp;&nbsp;Auth layer unchanged.</div>
-        </div>
-        <div className="px-3.5 pb-2.5">
-          <div className="text-[10px] font-mono text-ink-muted bg-yellow-50 border border-yellow-200 px-2.5 py-1.5 rounded-sm mb-2">
-            ⚠ Flaxie is unsure which doc to update. Confirm?
+      {/* Body */}
+      <div className="flex bg-surface" style={{ height: '400px' }}>
+
+        {/* Sidebar — hidden on small screens */}
+        <div className="hidden sm:flex w-44 shrink-0 border-r border-rule bg-paper flex-col p-3 gap-1">
+          <div className="label mb-2 px-1">Meetings</div>
+          <div className={`px-2 py-2 rounded-sm text-[11px] font-mono transition-all duration-500
+            ${step >= 1 ? 'bg-ink text-white' : 'text-ink-muted'}`}>
+            <div className="font-medium">Backend Sync</div>
+            <div className={`text-[9px] mt-0.5 ${step >= 1 ? 'text-white/45' : 'text-ink-muted/60'}`}>
+              {step >= 1 ? '● Live · 12 Mar' : '12 Mar'}
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <button className="btn-accept">✓ Confirm</button>
-            <button className="btn-reject">Skip</button>
-            <span className="text-[10px] text-ink-muted ml-auto">3 changes · 1 file</span>
+          {['Planning Review', 'Design Sync', 'All Hands'].map((name, i) => (
+            <div key={name} className="px-2 py-2 text-[11px] font-mono text-ink-muted/60">
+              <div>{name}</div>
+              <div className="text-[9px]">{['10 Mar','8 Mar','5 Mar'][i]}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Document */}
+        <div className="flex-1 min-w-0 px-5 md:px-7 py-5 md:py-6">
+          <h2 className="font-serif font-bold text-ink text-base md:text-lg mb-5">Architecture Overview</h2>
+
+          {/* Database */}
+          <div className="mb-6">
+            <div className="label mb-2">Database Layer</div>
+            <div className="font-mono text-[11px] md:text-[12px] leading-5 space-y-1">
+              {step >= 3 ? (
+                <>
+                  <div className="diff-remove px-1.5 py-0.5 rounded-sm line-through">
+                    We use MongoDB as our primary data store.
+                  </div>
+                  <div className="diff-add px-1.5 py-0.5 rounded-sm">
+                    + PostgreSQL as primary data store (migrating Q1 2026).
+                  </div>
+                  <div className="text-[10px] text-ink-muted/55 italic pl-1 mt-0.5">
+                    ↑ Updated by Flaxie · just now
+                  </div>
+                </>
+              ) : (
+                <div className="text-ink px-1.5 py-0.5">
+                  We use{' '}
+                  <span className={step >= 2 ? 'bg-yellow-100 px-0.5' : ''}>MongoDB</span>
+                  {' '}as our primary data store.
+                </div>
+              )}
+            </div>
           </div>
+
+          {/* API */}
+          <div className="mb-5">
+            <div className="label mb-2">API Layer</div>
+            <div className="font-mono text-[11px] md:text-[12px] leading-5 space-y-1">
+              {step >= 4 ? (
+                <>
+                  <div className="diff-remove px-1.5 py-0.5 rounded-sm line-through">
+                    The v1 REST API is our primary integration layer.
+                  </div>
+                  <div className="diff-add px-1.5 py-0.5 rounded-sm">+ v1 REST API deprecated, Q1 2026.</div>
+                  <div className="diff-add px-1.5 py-0.5 rounded-sm">+ GraphQL adopted for all new endpoints.</div>
+                  <div className="text-[10px] text-ink-muted/55 italic pl-1 mt-0.5">
+                    ↑ Updated by Flaxie · just now
+                  </div>
+                </>
+              ) : (
+                <div className="text-ink px-1.5 py-0.5">
+                  The{' '}
+                  <span className={step >= 2 ? 'bg-yellow-100 px-0.5' : ''}>v1 REST API</span>
+                  {' '}is our primary integration layer.
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Status */}
+          <div className={`flex items-center gap-2 text-[10px] font-mono text-ink-muted
+            transition-opacity duration-500 ${step >= 2 && step < 4 ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="w-1 h-1 rounded-full bg-flax animate-pulse" />
+            Flaxie is reading the transcript…
+          </div>
+          {step >= 4 && (
+            <div className="flex items-center gap-2 text-[10px] font-mono text-green-700">
+              <div className="w-1 h-1 rounded-full bg-green-500" />
+              2 sections updated · no review needed
+            </div>
+          )}
         </div>
       </div>
-
-      {/* Panel 3: Done */}
-      <div className={`card overflow-hidden transition-all duration-500 ${step >= 3 ? 'opacity-100' : 'opacity-0 translate-y-1.5'}`}>
-        <div className="flex items-center justify-between px-3.5 py-2 border-b border-rule bg-paper/60">
-          <span className="section-label">architecture.md</span>
-          <span className="section-label text-green-700">✓ Updated just now</span>
-        </div>
-        <div className="px-3.5 py-2.5 text-[11px] text-ink leading-5 space-y-0.5">
-          <p className="text-ink-muted text-[10px] mb-1">Last updated: 12 Mar 2026 via Flax</p>
-          <p>v1 REST API deprecated — end of Q1 2026.</p>
-          <p>GraphQL adopted for all new endpoints.</p>
-          <p>Auth layer unchanged.</p>
-        </div>
-      </div>
-
     </div>
   );
 };
 
-export const Hero: React.FC = () => {
-  return (
-    <section className="min-h-screen flex items-center pt-14 border-b border-rule">
-      <div className="max-w-6xl mx-auto px-5 md:px-8 py-20 w-full">
+/* ─── Hero ──────────────────────────────────────────────────────── */
+export const Hero: React.FC = () => (
+  <section className="pt-14 pb-16">
+    <div className="max-w-5xl mx-auto px-6">
 
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-2">
-            <span className="section-label">Documentation Infrastructure</span>
-            <span className="section-label">Est. 2025</span>
-          </div>
-          <div className="rule-thick" />
+      {/* Copy */}
+      <div className="pt-20 pb-12 text-center">
+        <div className="inline-flex items-center gap-2 mb-8 opacity-0-start animate-fade-in">
+          <div className="w-1.5 h-1.5 rounded-full bg-flax" />
+          <span className="label">Early Access</span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <h1
+          className="font-serif font-black text-ink opacity-0-start animate-fade-in-up delay-100"
+          style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.25rem)', lineHeight: 1.08, letterSpacing: '-0.02em' }}
+        >
+          Your meetings<br />write your docs.
+        </h1>
 
-          {/* Left */}
-          <div>
-            <h1 className="font-serif font-black text-ink leading-[1.1] text-4xl md:text-5xl lg:text-[3.3rem] mb-5 animate-on-load animate-fade-in-up">
-              Meet Flaxie — the AI that keeps your docs current.
-            </h1>
+        <p className="mt-6 text-ink-muted text-lg leading-relaxed max-w-lg mx-auto opacity-0-start animate-fade-in-up delay-200">
+          Flaxie joins every meeting, reads what was decided,
+          and updates your docs, automatically.
+        </p>
 
-            <p className="text-ink-muted text-sm leading-7 mb-8 max-w-md animate-on-load animate-fade-in-up delay-200">
-              Flaxie joins your meetings, understands what changed, and updates your documentation automatically. It only asks for your input when it's not sure.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3 animate-on-load animate-fade-in-up delay-300">
-              <a href="#waitlist" className="btn-primary">Get early access</a>
-              <a href="#how-it-works" className="btn-outline">See how it works</a>
-            </div>
-
-            <div className="mt-10 pt-8 border-t border-rule flex flex-wrap gap-8 animate-on-load animate-fade-in-up delay-400">
-              {[
-                { value: 'Automatic', label: 'docs update themselves' },
-                { value: 'Asks', label: 'only when uncertain' },
-                { value: 'Flaxie', label: 'your AI doc agent' },
-              ].map((s) => (
-                <div key={s.label}>
-                  <div className="font-serif font-bold text-ink text-base mb-0.5">{s.value}</div>
-                  <div className="section-label">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: Mockup */}
-          <div className="hidden lg:flex justify-center animate-on-load animate-fade-in delay-200">
-            <DiffMockup />
-          </div>
-
+        <div className="mt-8 flex items-center justify-center gap-3 flex-wrap opacity-0-start animate-fade-in-up delay-300">
+          <a href="#waitlist" className="btn btn-primary">Request access</a>
+          <a href="#how-it-works" className="btn btn-ghost">See how it works</a>
         </div>
       </div>
-    </section>
-  );
-};
+
+      {/* App window */}
+      <div className="opacity-0-start animate-fade-in delay-400">
+        <AppMockup />
+      </div>
+
+      {/* Partner trust bar — below mockup */}
+      <div className="mt-12 pt-10 border-t border-rule flex flex-col items-center gap-5 opacity-0-start animate-fade-in delay-500">
+        <span className="label">Supported by</span>
+        <div className="flex flex-wrap items-center justify-center gap-14">
+          {[
+            { src: '/Antler_logo.svg',  alt: 'Antler',          h: 28 },
+            { src: '/FF logo.png',      alt: 'Founders Factory', h: 32 },
+            { src: '/AWS logo.png',     alt: 'AWS',              h: 44 },
+          ].map(({ src, alt, h }) => (
+            <img
+              key={alt}
+              src={src}
+              alt={alt}
+              height={h}
+              style={{
+                height: `${h}px`,
+                width: 'auto',
+                filter: 'grayscale(1)',
+                opacity: 0.4,
+                transition: 'opacity 0.2s ease',
+              }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = '0.65')}
+              onMouseLeave={e => (e.currentTarget.style.opacity = '0.4')}
+            />
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+);

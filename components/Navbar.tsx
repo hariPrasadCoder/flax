@@ -1,90 +1,63 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
-const Logo = () => (
-  <span className="font-serif font-black text-ink text-xl tracking-tight select-none">
-    Flax
-  </span>
-);
-
 export const Navbar: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 24);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    const fn = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', fn);
+    return () => window.removeEventListener('scroll', fn);
   }, []);
 
-  const navLinks = [
+  const links = [
     { label: 'How it works', href: '#how-it-works' },
-    { label: 'Features', href: '#features' },
     { label: 'Who it\'s for', href: '#who' },
   ];
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-paper border-b border-rule'
-            : 'bg-transparent border-b border-transparent'
-        }`}
-      >
-        <div className="max-w-6xl mx-auto px-5 md:px-8 flex items-center justify-between h-14">
-          <a href="/" className="flex items-center gap-2">
-            <Logo />
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
+        ${scrolled ? 'bg-paper/95 backdrop-blur-sm border-b border-rule' : 'bg-transparent'}
+      `}>
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+
+          <a href="/" className="font-serif font-black text-ink text-xl tracking-tight select-none">
+            Flax
           </a>
 
-          <div className="hidden md:flex items-center gap-7">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-xs text-ink-muted hover:text-ink transition-colors font-mono tracking-wide"
-              >
-                {link.label}
+          <div className="hidden md:flex items-center gap-8">
+            {links.map(l => (
+              <a key={l.label} href={l.href}
+                className="text-sm text-ink-muted hover:text-ink transition-colors">
+                {l.label}
               </a>
             ))}
           </div>
 
-          <div className="hidden md:flex items-center gap-3">
-            <a href="#waitlist" className="btn-primary text-xs px-4 py-2">
-              Join the waitlist
-            </a>
+          <div className="hidden md:block">
+            <a href="#waitlist" className="btn btn-primary btn-sm">Request access</a>
           </div>
 
-          <button
-            className="md:hidden text-ink p-1"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          <button className="md:hidden text-ink" onClick={() => setOpen(!open)} aria-label="Menu">
+            {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>
 
-      {isMobileMenuOpen && (
+      {open && (
         <div className="fixed inset-0 z-40 bg-paper pt-14 flex flex-col md:hidden">
-          <div className="border-b border-rule" />
-          <div className="flex flex-col px-5 py-8 gap-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-base text-ink font-mono border-b border-rule pb-5"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
+          <div className="flex flex-col px-6 py-10 gap-7">
+            {links.map(l => (
+              <a key={l.label} href={l.href}
+                className="text-xl font-serif font-bold text-ink border-b border-rule pb-6"
+                onClick={() => setOpen(false)}>
+                {l.label}
               </a>
             ))}
-            <a
-              href="#waitlist"
-              className="btn-primary self-start mt-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Join the waitlist
+            <a href="#waitlist" className="btn btn-primary self-start mt-2" onClick={() => setOpen(false)}>
+              Request access
             </a>
           </div>
         </div>

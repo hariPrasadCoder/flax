@@ -28,7 +28,7 @@ const features = [
   {
     tag: 'Integration',
     title: 'Bot joins your meetings',
-    body: 'Powered by Recall.ai. The bot joins any meeting link — Zoom, Meet, Teams. No plugins for your team.',
+    body: 'Powered by Recall.ai. The bot joins any meeting link: Zoom, Meet, Teams. No plugins for your team.',
     icon: (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
         <rect x="1" y="3" width="16" height="10" rx="2" stroke="currentColor" strokeWidth="1.4" />

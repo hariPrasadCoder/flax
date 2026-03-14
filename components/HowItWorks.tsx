@@ -1,165 +1,174 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import { Reveal } from './ui/Reveal';
 
-const flowSteps = [
+/* ── Step visuals ────────────────────────────────────────────── */
+
+const Step1Visual = () => (
+  <div className="card overflow-hidden">
+    <div className="px-4 py-2.5 bg-paper border-b border-rule flex items-center justify-between">
+      <span className="label">Calendar · Zoom</span>
+      <div className="flex items-center gap-1.5">
+        <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+        <span className="font-mono text-[10px] text-green-700">In progress</span>
+      </div>
+    </div>
+    <div className="p-5 space-y-4 bg-surface">
+      <div className="flex items-start gap-3 p-3 bg-paper rounded-sm border border-rule">
+        <div className="w-8 h-8 rounded-sm bg-flax/10 border border-flax/20 flex items-center justify-center shrink-0 mt-0.5">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-flax">
+            <rect x="1" y="2" width="12" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.2"/>
+            <path d="M4 13l3-2 3 2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div className="font-mono text-[12px] text-ink font-medium">Backend Sync</div>
+          <div className="font-mono text-[10px] text-ink-muted mt-0.5">Today · 2:00 PM · 45 min</div>
+        </div>
+      </div>
+      <div className="rule-light" />
+      <div className="flex items-center gap-2.5">
+        <div className="w-6 h-6 rounded-full bg-flax flex items-center justify-center shrink-0">
+          <span className="font-serif font-black text-white text-[9px]">F</span>
+        </div>
+        <div>
+          <div className="font-mono text-[11px] text-ink font-medium">Flaxie joined your meeting</div>
+          <div className="font-mono text-[10px] text-ink-muted">She'll update your docs after the call</div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const Step2Visual = () => (
+  <div className="card overflow-hidden">
+    <div className="px-4 py-2.5 bg-paper border-b border-rule flex items-center justify-between">
+      <span className="label">Transcript · Backend Sync</span>
+      <span className="label text-flax">● Analyzing</span>
+    </div>
+    <div className="p-5 space-y-4 bg-surface">
+      <div>
+        <div className="font-mono text-[10px] text-ink-muted mb-1.5">Engineering Lead · 14:22</div>
+        <p className="font-mono text-[12px] text-ink leading-5">
+          "We decided to{' '}
+          <span className="bg-yellow-100 border-b border-yellow-400 px-0.5">switch to PostgreSQL</span>
+          {' '}by end of Q1. Team agreed."
+        </p>
+      </div>
+      <div className="rule-light" />
+      <div>
+        <div className="font-mono text-[10px] text-ink-muted mb-1.5">Product Lead · 14:35</div>
+        <p className="font-mono text-[12px] text-ink leading-5">
+          "We're also{' '}
+          <span className="bg-yellow-100 border-b border-yellow-400 px-0.5">deprecating v1 REST</span>
+          {' '}for all new integrations."
+        </p>
+      </div>
+    </div>
+    <div className="px-4 py-2.5 border-t border-rule bg-paper/70">
+      <span className="font-mono text-[10px] text-ink-muted">
+        Flaxie found <span className="text-ink font-medium">2 decisions</span> · updating 1 document
+      </span>
+    </div>
+  </div>
+);
+
+const Step3Visual = () => (
+  <div className="card overflow-hidden">
+    <div className="px-4 py-2.5 bg-paper border-b border-rule flex items-center justify-between">
+      <span className="label">architecture.md</span>
+      <span className="font-mono text-[10px] text-green-700">✓ Updated by Flaxie</span>
+    </div>
+    <div className="p-5 bg-surface space-y-3 font-mono text-[12px] leading-5">
+      <div className="label mb-1">Database Layer</div>
+      <div className="diff-remove px-1.5 py-0.5 rounded-sm line-through text-[11px]">
+        We use MongoDB as our primary data store.
+      </div>
+      <div className="diff-add px-1.5 py-0.5 rounded-sm text-[11px]">
+        + PostgreSQL as primary data store (Q1 2026).
+      </div>
+      <div className="rule-light my-1" />
+      <div className="label mb-1">API Layer</div>
+      <div className="diff-remove px-1.5 py-0.5 rounded-sm line-through text-[11px]">
+        v1 REST API is our primary integration layer.
+      </div>
+      <div className="diff-add px-1.5 py-0.5 rounded-sm text-[11px]">+ v1 REST deprecated, Q1 2026.</div>
+      <div className="diff-add px-1.5 py-0.5 rounded-sm text-[11px]">+ GraphQL for all new endpoints.</div>
+    </div>
+    <div className="px-4 py-2.5 border-t border-rule bg-paper/70">
+      <span className="font-mono text-[10px] text-ink-muted">Flaxie was confident · no review needed</span>
+    </div>
+  </div>
+);
+
+/* ── Steps ───────────────────────────────────────────────────── */
+const steps = [
   {
     num: '01',
-    title: 'Meeting happens',
-    sub: 'Your team talks',
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <rect x="1" y="2" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.3" />
-        <path d="M5 15l3-3 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    title: 'A bot joins your call.',
+    body: 'Invite Flaxie to any Zoom, Google Meet, or Teams link. She shows up as a participant. No setup required for your team.',
+    visual: <Step1Visual />,
+    flip: false,
   },
   {
     num: '02',
-    title: 'Bot joins',
-    sub: 'Auto-transcribed',
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.3" />
-        <path d="M8 5v3l2 2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    title: 'She reads what changed.',
+    body: 'She reads the conversation, identifies decisions, pivots, and technical changes, then maps them to the right documents.',
+    visual: <Step2Visual />,
+    flip: true,
   },
   {
     num: '03',
-    title: 'AI extracts',
-    sub: 'Decisions & changes',
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M2 4h12M2 8h8M2 12h5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-        <circle cx="12.5" cy="11" r="2.5" stroke="currentColor" strokeWidth="1.3" />
-      </svg>
-    ),
-  },
-  {
-    num: '04',
-    title: 'Diff proposed',
-    sub: 'Per document',
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M2 5h12M2 8h7M2 11h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-        <path d="M11 9l2 2-2 2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    num: '05',
-    title: 'Docs updated',
-    sub: 'Auto or confirmed',
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <rect x="1" y="2" width="14" height="12" rx="2" stroke="currentColor" strokeWidth="1.3" />
-        <path d="M5 8l2.5 2.5L11 5.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    title: 'Docs updated. Automatically.',
+    body: 'When she\'s confident, she updates the doc directly. No copy-paste, no manual input, no action required from you.',
+    visual: <Step3Visual />,
+    flip: false,
   },
 ];
 
-export const HowItWorks: React.FC = () => {
-  const [active, setActive] = useState(-1);
-  const ref = useRef<HTMLDivElement>(null);
+/* ── Section ─────────────────────────────────────────────────── */
+export const HowItWorks: React.FC = () => (
+  <section id="how-it-works" className="py-24 border-b border-rule">
+    <div className="max-w-5xl mx-auto px-6">
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          flowSteps.forEach((_, i) => {
-            setTimeout(() => setActive(i), i * 280);
-          });
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <section id="how-it-works" className="border-b border-rule">
-      <div className="max-w-6xl mx-auto px-5 md:px-8 py-20">
-
-        <div className="mb-10">
-          <div className="flex items-center justify-between mb-2">
-            <span className="section-label">How It Works</span>
-            <span className="section-label">§ 2</span>
-          </div>
-          <div className="rule-thick" />
-        </div>
-
-        <div className="mb-12">
-          <h2 className="font-serif font-black text-ink text-3xl md:text-4xl leading-[1.15] max-w-xl">
-            Flaxie joins every meeting.<br />Your docs stay current.
+      <Reveal>
+        <div className="mb-20">
+          <div className="label mb-4">How it works</div>
+          <h2 className="font-serif font-black text-ink"
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.12, letterSpacing: '-0.015em' }}>
+            Flaxie works<br />while you meet.
           </h2>
         </div>
+      </Reveal>
 
-        {/* Flow diagram */}
-        <div ref={ref} className="relative">
-
-          {/* Desktop: horizontal flow */}
-          <div className="hidden md:flex items-start gap-0">
-            {flowSteps.map((step, i) => (
-              <React.Fragment key={step.num}>
-                <div
-                  className={`flex-1 transition-all duration-400 ${active >= i ? 'opacity-100' : 'opacity-25'}`}
-                >
-                  <div className={`card p-4 transition-shadow duration-300 ${active >= i ? 'shadow-editorial' : 'shadow-none'}`}>
-                    <div className={`text-ink-muted mb-3 transition-colors duration-300 ${active >= i ? 'text-ink' : ''}`}>
-                      {step.icon}
-                    </div>
-                    <div className="section-label mb-1">{step.num}</div>
-                    <div className="font-serif font-bold text-ink text-[13px] leading-snug">{step.title}</div>
-                    <div className="text-[10px] text-ink-muted font-mono mt-0.5">{step.sub}</div>
-                  </div>
-                </div>
-
-                {/* Arrow connector */}
-                {i < flowSteps.length - 1 && (
-                  <div className={`flex items-center justify-center w-8 shrink-0 pt-5 transition-opacity duration-300 ${active > i ? 'opacity-100' : 'opacity-20'}`}>
-                    <svg width="20" height="10" viewBox="0 0 20 10" fill="none">
-                      <path d="M0 5h16M13 2l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted" />
-                    </svg>
-                  </div>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-
-          {/* Mobile: vertical flow */}
-          <div className="md:hidden space-y-2">
-            {flowSteps.map((step, i) => (
-              <div key={step.num} className="flex items-start gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="card w-9 h-9 flex items-center justify-center shrink-0 text-ink">
-                    {step.icon}
-                  </div>
-                  {i < flowSteps.length - 1 && (
-                    <div className="w-px h-6 bg-rule mt-1" />
-                  )}
-                </div>
-                <div className="pt-1.5">
-                  <div className="font-serif font-bold text-ink text-sm">{step.title}</div>
-                  <div className="text-[11px] text-ink-muted font-mono">{step.sub}</div>
-                </div>
+      <div className="space-y-24">
+        {steps.map((step, i) => (
+          <Reveal key={step.num} delay={i * 60}>
+            <div className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center
+              ${step.flip ? 'md:[&>*:first-child]:order-2 md:[&>*:last-child]:order-1' : ''}`}>
+              <div>
+                <div className="label mb-4">{step.num}</div>
+                <h3 className="font-serif font-bold text-ink text-2xl md:text-3xl leading-snug mb-4">
+                  {step.title}
+                </h3>
+                <p className="text-ink-muted text-base leading-relaxed">{step.body}</p>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom note */}
-        <div className="mt-10 pt-8 border-t border-rule flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <p className="text-xs text-ink-muted font-mono max-w-md leading-6">
-            Flaxie updates docs on its own for clear decisions. When context is ambiguous, it surfaces a diff and asks you to confirm — then updates immediately.
-          </p>
-          <a href="#waitlist" className="btn-outline self-start md:self-auto shrink-0">
-            Get early access →
-          </a>
-        </div>
-
+              <div>{step.visual}</div>
+            </div>
+          </Reveal>
+        ))}
       </div>
-    </section>
-  );
-};
+
+      {/* Mid-page CTA */}
+      <Reveal delay={80}>
+        <div className="mt-20 pt-10 border-t border-rule flex flex-col sm:flex-row
+          items-start sm:items-center justify-between gap-5">
+          <p className="text-ink-muted text-base max-w-xs leading-relaxed">
+            Ready to give Flaxie to your team?
+          </p>
+          <a href="#waitlist" className="btn btn-primary shrink-0">Request access</a>
+        </div>
+      </Reveal>
+
+    </div>
+  </section>
+);
