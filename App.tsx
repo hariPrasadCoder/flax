@@ -10,6 +10,7 @@ import { WhoItsFor }    from './components/WhoItsFor';
 import { CTASection }   from './components/CTASection';
 import { Footer }       from './components/Footer';
 import StudiosApp from './StudiosApp';
+import BookApp from './BookApp';
 
 function HomePage() {
   return (
@@ -35,6 +36,7 @@ function App() {
       <Routes>
         <Route path="/"        element={<HomePage />} />
         <Route path="/studios" element={<StudiosApp />} />
+        <Route path="/book"    element={<BookApp />} />
         <Route path="*"        element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
