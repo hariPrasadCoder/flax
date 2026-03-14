@@ -163,7 +163,7 @@ const Hero: React.FC = () => (
           </p>
 
           <div className="flex items-center gap-3 flex-wrap opacity-0-start animate-fade-in-up delay-300">
-            <a href="#notify" className="btn btn-primary">Get early access</a>
+            <a href="#notify" className="btn btn-primary">Book a demo</a>
             <a href="#lessons" className="btn btn-ghost">See what's inside</a>
           </div>
 

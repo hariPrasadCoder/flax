@@ -156,7 +156,7 @@ export const Hero: React.FC = () => (
         </p>
 
         <div className="mt-8 flex items-center justify-center gap-3 flex-wrap opacity-0-start animate-fade-in-up delay-300">
-          <a href="#waitlist" className="btn btn-primary">Request access</a>
+          <button className="btn btn-primary" data-cal-link="joinflax/strategy-call" data-cal-namespace="strategy-call" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book a demo</button>
           <a href="#how-it-works" className="btn btn-ghost">See how it works</a>
         </div>
       </div>

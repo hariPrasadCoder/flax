@@ -37,7 +37,12 @@ export const Navbar: React.FC = () => {
           </div>
 
           <div className="hidden md:block">
-            <a href="#waitlist" className="btn btn-primary btn-sm">Request access</a>
+            <button className="btn btn-primary btn-sm"
+              data-cal-link="joinflax/strategy-call"
+              data-cal-namespace="strategy-call"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>
+              Book a demo
+            </button>
           </div>
 
           <button className="md:hidden text-ink" onClick={() => setOpen(!open)} aria-label="Menu">
@@ -56,9 +61,13 @@ export const Navbar: React.FC = () => {
                 {l.label}
               </a>
             ))}
-            <a href="#waitlist" className="btn btn-primary self-start mt-2" onClick={() => setOpen(false)}>
-              Request access
-            </a>
+            <button className="btn btn-primary self-start mt-2"
+              data-cal-link="joinflax/strategy-call"
+              data-cal-namespace="strategy-call"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+              onClick={() => setOpen(false)}>
+              Book a demo
+            </button>
           </div>
         </div>
       )}

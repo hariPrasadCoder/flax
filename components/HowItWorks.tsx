@@ -165,7 +165,12 @@ export const HowItWorks: React.FC = () => (
           <p className="text-ink-muted text-base max-w-xs leading-relaxed">
             Ready to give Flaxie to your team?
           </p>
-          <a href="#waitlist" className="btn btn-primary shrink-0">Request access</a>
+          <button className="btn btn-primary shrink-0"
+            data-cal-link="joinflax/strategy-call"
+            data-cal-namespace="strategy-call"
+            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>
+            Book a demo
+          </button>
         </div>
       </Reveal>
 
