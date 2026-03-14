@@ -1,48 +1,47 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { getCalApi } from "@calcom/embed-react";
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { Problem } from './components/Problem';
-import { TwoPaths } from './components/TwoPaths';
-import { Credibility } from './components/Credibility';
-import { HowItWorks } from './components/HowItWorks';
-import { FAQ } from './components/FAQ';
-import { Footer } from './components/Footer';
+import { Navbar }       from './components/Navbar';
+import { Hero }         from './components/Hero';
+import { Problem }      from './components/Problem';
+import { FlaxieIntro }  from './components/FlaxieIntro';
+import { HowItWorks }   from './components/HowItWorks';
+import { FlaxieAsks }   from './components/FlaxieAsks';
+import { WhoItsFor }    from './components/WhoItsFor';
+import { CTASection }   from './components/CTASection';
+import { Footer }       from './components/Footer';
 import StudiosApp from './StudiosApp';
+import BookApp from './BookApp';
 
-// Book page - redirects to Cal.com
-function BookPage() {
+function useCalEmbed() {
   useEffect(() => {
-    window.location.href = 'https://cal.com/joinflax/strategy-call';
+    (function (C: any, A: string, L: string) {
+      let p = (a: any, ar: any) => a.q.push(ar);
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal; let ar = arguments;
+        if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement('script')).src = A; cal.loaded = true; }
+        if (ar[0] === L) { const api: any = function () { p(api, arguments); }; const ns = ar[1]; api.q = api.q || []; if (typeof ns === 'string') { cal.ns[ns] = cal.ns[ns] || api; p(cal.ns[ns], ar); p(cal, ['initNamespace', ns]); } else p(cal, ar); return; } p(cal, ar);
+      };
+    })(window, 'https://app.cal.com/embed/embed.js', 'init');
+    const w = window as any;
+    w.Cal('init', 'strategy-call', { origin: 'https://app.cal.com' });
+    w.Cal.ns['strategy-call']('ui', { hideEventTypeDetails: false, layout: 'month_view' });
   }, []);
-  
-  return (
-    <div className="bg-background min-h-screen flex items-center justify-center text-white">
-      <p className="text-xl">Redirecting to booking...</p>
-    </div>
-  );
 }
 
-// Main landing page
 function HomePage() {
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ namespace: "strategy-call", origin: "https://app.cal.com" });
-      cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
-    })();
-  }, []);
-
+  useCalEmbed();
   return (
-    <div className="bg-background min-h-screen text-white selection:bg-primary selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-paper text-ink overflow-x-hidden">
       <Navbar />
-      <main className="overflow-x-hidden">
+      <main>
         <Hero />
         <Problem />
-        <TwoPaths />
-        <Credibility />
+        <FlaxieIntro />
         <HowItWorks />
-        <FAQ />
+        <FlaxieAsks />
+        <WhoItsFor />
+        <CTASection />
       </main>
       <Footer />
     </div>
@@ -53,10 +52,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/book" element={<BookPage />} />
+        <Route path="/"        element={<HomePage />} />
         <Route path="/studios" element={<StudiosApp />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/book"    element={<BookApp />} />
+        <Route path="*"        element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,70 +1,95 @@
 import React from 'react';
-import { Section } from './ui/Section';
-import { X } from 'lucide-react';
+import { Reveal } from './ui/Reveal';
 
-export const Problem: React.FC = () => {
-  return (
-    <Section id="problem" className="bg-background relative border-t border-white/5">
-      <div className="max-w-5xl mx-auto">
-        
-        {/* Big Statement */}
-        <div className="text-center mb-20">
-          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[1.05]">
-            The Old Playbook
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-gray-400 via-gray-500 to-gray-600">
-              Is Broken.
-            </span>
+export const Problem: React.FC = () => (
+  <section id="problem" className="border-t border-b border-rule py-24">
+    <div className="max-w-5xl mx-auto px-6">
+
+      <Reveal>
+        <div className="max-w-2xl mb-16">
+          <h2 className="font-serif font-black text-ink"
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.12, letterSpacing: '-0.015em' }}>
+            Decisions happen in meetings.<br />Your docs don't know that.
           </h2>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-            What worked 5 years ago doesn't work anymore.
-          </p>
         </div>
+      </Reveal>
 
-        {/* Pain Points */}
-        <div className="grid md:grid-cols-3 gap-6 mb-20">
-          {[
-            { 
-              stat: "$33+", 
-              label: "CPM on LinkedIn Ads",
-              pain: "And people scroll right past them"
-            },
-            { 
-              stat: "2%", 
-              label: "Cold Email Reply Rate",
-              pain: "Nobody responds to strangers"
-            },
-            { 
-              stat: "0", 
-              label: "Inbound When Invisible",
-              pain: "Great product, zero distribution"
-            }
-          ].map((item, i) => (
-            <div key={i} className="glass-panel rounded-2xl p-8 text-center group hover:border-white/10 transition-all duration-300">
-              <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-4">
-                <X className="text-gray-500" size={24} />
+      {/* Visual contrast */}
+      <Reveal delay={100}>
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] items-stretch gap-0 mb-16">
+
+          {/* Meeting */}
+          <div className="card overflow-hidden">
+            <div className="bg-ink px-4 py-2.5 flex items-center justify-between">
+              <span className="label text-white/50">Meeting · 12 Mar</span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                <span className="font-mono text-[10px] text-white/40">Bot joined</span>
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2">{item.stat}</div>
-              <div className="text-white font-medium mb-2">{item.label}</div>
-              <div className="text-sm text-gray-500">{item.pain}</div>
+            </div>
+            <div className="p-6 space-y-4">
+              <div className="font-mono text-[11px] text-ink-muted">Engineering Lead · 14:22</div>
+              <p className="font-serif italic text-ink text-base leading-7">
+                "We're moving off MongoDB. Switching to PostgreSQL by end of Q1. The whole team agreed."
+              </p>
+              <div className="label border-t border-rule pt-4">Decision recorded · Flaxie analyzing</div>
+            </div>
+          </div>
+
+          {/* Desktop gap */}
+          <div className="hidden md:flex flex-col items-center justify-center gap-2">
+            <div className="w-px flex-1 bg-rule" />
+            <div className="card w-9 h-9 flex items-center justify-center shrink-0">
+              <span className="font-serif font-black text-ink-muted text-base">≠</span>
+            </div>
+            <div className="w-px flex-1 bg-rule" />
+          </div>
+
+          {/* Mobile gap */}
+          <div className="md:hidden flex items-center gap-3 py-3">
+            <div className="h-px flex-1 bg-rule" />
+            <span className="font-serif font-black text-ink-muted text-base">≠</span>
+            <div className="h-px flex-1 bg-rule" />
+          </div>
+
+          {/* Stale doc */}
+          <div className="card overflow-hidden">
+            <div className="bg-paper border-b border-rule px-4 py-2.5 flex items-center justify-between">
+              <span className="label">architecture.md</span>
+              <span className="font-mono text-[10px] text-ink-muted/60">Last edited: 7 months ago</span>
+            </div>
+            <div className="p-6 space-y-3">
+              <p className="text-base text-ink leading-7">
+                We use{' '}
+                <span className="bg-red-50 text-red-600 line-through decoration-red-300 px-0.5">MongoDB</span>
+                {' '}as our primary data store. The database layer was chosen for its flexible schema…
+              </p>
+              <div className="label border-t border-rule pt-4 text-red-400/70">
+                This information is no longer accurate.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </Reveal>
+
+      {/* Consequences */}
+      <Reveal delay={150}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-rule border border-rule rounded-md overflow-hidden">
+          {[
+            { n: '01', h: 'Engineers repeat past mistakes.',     note: 'Nobody wrote down why it was rejected.' },
+            { n: '02', h: 'New hires navigate by asking, not reading.', note: 'Onboarding runs on Slack threads.' },
+            { n: '03', h: 'Nobody knows why decisions were made.', note: 'The reasoning was verbal. Now it\'s gone.' },
+          ].map(item => (
+            <div key={item.n} className="bg-paper px-6 py-6">
+              <div className="label mb-3">{item.n}</div>
+              <h3 className="font-serif font-bold text-ink text-[15px] leading-snug mb-2">{item.h}</h3>
+              <p className="font-mono text-[11px] text-ink-muted leading-5">{item.note}</p>
             </div>
           ))}
         </div>
+      </Reveal>
 
-        {/* The Shift */}
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-3xl blur-xl"></div>
-          <div className="relative glass-panel rounded-3xl p-10 md:p-14 text-center">
-            <p className="text-2xl md:text-4xl text-white font-light leading-relaxed">
-              The winners aren't running more ads.
-            </p>
-            <p className="text-2xl md:text-4xl text-primary font-semibold mt-2">
-              They're building distribution through content.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </Section>
-  );
-};
+    </div>
+  </section>
+);
