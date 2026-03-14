@@ -172,8 +172,6 @@ export const Hero: React.FC = () => (
         <div className="flex flex-wrap items-center justify-center gap-14">
           {[
             { src: '/Antler_logo.svg',  alt: 'Antler',          h: 28 },
-            { src: '/FF logo.png',      alt: 'Founders Factory', h: 32 },
-            { src: '/AWS logo.png',     alt: 'AWS',              h: 44 },
           ].map(({ src, alt, h }) => (
             <img
               key={alt}
