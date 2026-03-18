@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Navbar }       from './components/Navbar';
-import { Hero }         from './components/Hero';
-import { Problem }      from './components/Problem';
-import { FlaxieIntro }  from './components/FlaxieIntro';
-import { HowItWorks }   from './components/HowItWorks';
-import { FlaxieAsks }   from './components/FlaxieAsks';
-import { WhoItsFor }    from './components/WhoItsFor';
-import { CTASection }   from './components/CTASection';
-import { Footer }       from './components/Footer';
+import { Navbar }        from './components/Navbar';
+import { Hero }          from './components/Hero';
+import { Problem }       from './components/Problem';
+import { FlaxieIntro }   from './components/FlaxieIntro';
+import { HowItWorks }    from './components/HowItWorks';
+import { FlaxieAsks }    from './components/FlaxieAsks';
+import { NudgeSection }  from './components/NudgeSection';
+import { WhoItsFor }     from './components/WhoItsFor';
+import { SocialProof }       from './components/SocialProof';
+import { ObjectionsSection } from './components/ObjectionsSection';
+import { CTASection }        from './components/CTASection';
+import { Footer }        from './components/Footer';
 import StudiosApp from './StudiosApp';
 import BookApp from './BookApp';
 
@@ -40,7 +43,10 @@ function HomePage() {
         <FlaxieIntro />
         <HowItWorks />
         <FlaxieAsks />
+        <NudgeSection />
         <WhoItsFor />
+        <SocialProof />
+        <ObjectionsSection />
         <CTASection />
       </main>
       <Footer />

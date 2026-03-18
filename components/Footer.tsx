@@ -8,7 +8,7 @@ export const Footer: React.FC = () => (
         <div className="flex items-center gap-3">
           <span className="font-serif font-black text-ink text-xl">Flax</span>
           <span className="text-rule">·</span>
-          <span className="font-mono text-[11px] text-ink-muted">Documentation that keeps up.</span>
+          <span className="font-mono text-[11px] text-ink-muted">Nothing slips.</span>
         </div>
 
         <a href="mailto:contact@joinflax.com"

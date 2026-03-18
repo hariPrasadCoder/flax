@@ -6,10 +6,10 @@ import { Reveal } from './ui/Reveal';
 const Step1Visual = () => (
   <div className="card overflow-hidden">
     <div className="px-4 py-2.5 bg-paper border-b border-rule flex items-center justify-between">
-      <span className="label">Calendar · Zoom</span>
+      <span className="label">Meeting Notes · Granola</span>
       <div className="flex items-center gap-1.5">
         <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-        <span className="font-mono text-[10px] text-green-700">In progress</span>
+        <span className="font-mono text-[10px] text-green-700">Reading</span>
       </div>
     </div>
     <div className="p-5 space-y-4 bg-surface">
@@ -21,8 +21,8 @@ const Step1Visual = () => (
           </svg>
         </div>
         <div>
-          <div className="font-mono text-[12px] text-ink font-medium">Backend Sync</div>
-          <div className="font-mono text-[10px] text-ink-muted mt-0.5">Today · 2:00 PM · 45 min</div>
+          <div className="font-mono text-[12px] text-ink font-medium">Founder Sync · notes</div>
+          <div className="font-mono text-[10px] text-ink-muted mt-0.5">Pasted from Granola · 847 words</div>
         </div>
       </div>
       <div className="rule-light" />
@@ -31,8 +31,8 @@ const Step1Visual = () => (
           <span className="font-serif font-black text-white text-[9px]">F</span>
         </div>
         <div>
-          <div className="font-mono text-[11px] text-ink font-medium">Flaxie joined your meeting</div>
-          <div className="font-mono text-[10px] text-ink-muted">She'll update your docs after the call</div>
+          <div className="font-mono text-[11px] text-ink font-medium">Flaxie is reading your notes</div>
+          <div className="font-mono text-[10px] text-ink-muted">Extracting commitments · no setup needed</div>
         </div>
       </div>
     </div>
@@ -42,31 +42,33 @@ const Step1Visual = () => (
 const Step2Visual = () => (
   <div className="card overflow-hidden">
     <div className="px-4 py-2.5 bg-paper border-b border-rule flex items-center justify-between">
-      <span className="label">Transcript · Backend Sync</span>
-      <span className="label text-flax">● Analyzing</span>
+      <span className="label">Commitments · Founder Sync</span>
+      <span className="label text-flax">● Extracted</span>
     </div>
-    <div className="p-5 space-y-4 bg-surface">
-      <div>
-        <div className="font-mono text-[10px] text-ink-muted mb-1.5">Engineering Lead · 14:22</div>
-        <p className="font-mono text-[12px] text-ink leading-5">
-          "We decided to{' '}
-          <span className="bg-yellow-100 border-b border-yellow-400 px-0.5">switch to PostgreSQL</span>
-          {' '}by end of Q1. Team agreed."
-        </p>
+    <div className="bg-surface">
+      <div className="px-4 py-2 border-b border-rule bg-paper/50">
+        <div className="grid grid-cols-[80px_1fr_40px] gap-2">
+          <span className="label">Person</span>
+          <span className="label">Task</span>
+          <span className="label">Due</span>
+        </div>
       </div>
-      <div className="rule-light" />
-      <div>
-        <div className="font-mono text-[10px] text-ink-muted mb-1.5">Product Lead · 14:35</div>
-        <p className="font-mono text-[12px] text-ink leading-5">
-          "We're also{' '}
-          <span className="bg-yellow-100 border-b border-yellow-400 px-0.5">deprecating v1 REST</span>
-          {' '}for all new integrations."
-        </p>
-      </div>
+      {[
+        { name: 'Alex',  task: 'Send the proposal to investors', due: 'Wed' },
+        { name: 'Sam', task: 'Review and finalize pricing',    due: 'Thu' },
+        { name: 'Nina', task: 'Set up demo environment',        due: 'Fri' },
+      ].map((c, i) => (
+        <div key={c.name} className={`px-4 py-3 grid grid-cols-[80px_1fr_40px] gap-2 items-start
+          ${i < 2 ? 'border-b border-rule' : ''}`}>
+          <span className="font-mono text-[11px] text-ink font-medium">{c.name}</span>
+          <span className="font-mono text-[11px] text-ink-muted leading-4">{c.task}</span>
+          <span className="font-mono text-[10px] text-ink-muted">{c.due}</span>
+        </div>
+      ))}
     </div>
     <div className="px-4 py-2.5 border-t border-rule bg-paper/70">
       <span className="font-mono text-[10px] text-ink-muted">
-        Flaxie found <span className="text-ink font-medium">2 decisions</span> · updating 1 document
+        3 commitments extracted · no notes to write
       </span>
     </div>
   </div>
@@ -75,27 +77,68 @@ const Step2Visual = () => (
 const Step3Visual = () => (
   <div className="card overflow-hidden">
     <div className="px-4 py-2.5 bg-paper border-b border-rule flex items-center justify-between">
-      <span className="label">architecture.md</span>
-      <span className="font-mono text-[10px] text-green-700">✓ Updated by Flaxie</span>
+      <span className="label">Flaxie · Nudge sent</span>
+      <span className="font-mono text-[10px] text-green-700">✓ Delivered</span>
     </div>
-    <div className="p-5 bg-surface space-y-3 font-mono text-[12px] leading-5">
-      <div className="label mb-1">Database Layer</div>
-      <div className="diff-remove px-1.5 py-0.5 rounded-sm line-through text-[11px]">
-        We use MongoDB as our primary data store.
+    <div className="p-5 bg-surface space-y-4">
+      <div className="flex gap-3">
+        <div className="w-7 h-7 rounded-full bg-flax flex items-center justify-center shrink-0 mt-0.5">
+          <span className="font-serif font-black text-white text-[9px]">F</span>
+        </div>
+        <div className="flex-1 bg-paper border border-rule rounded-sm px-3 py-2.5">
+          <div className="font-mono text-[10px] text-ink-muted mb-1.5">Flaxie · Wednesday 9:00 AM</div>
+          <p className="font-mono text-[11px] text-ink leading-5">
+            Hey Alex, just a nudge. You committed to sending the proposal by today.
+            Still open. Need help unblocking, or can you close this today?
+          </p>
+        </div>
       </div>
-      <div className="diff-add px-1.5 py-0.5 rounded-sm text-[11px]">
-        + PostgreSQL as primary data store (Q1 2026).
+      <div className="rule-light" />
+      <div className="flex items-center gap-2 text-[10px] font-mono text-ink-muted">
+        <span className="text-green-600 font-medium">Alex replied</span>
+        <span>· "On it, sending now"</span>
       </div>
-      <div className="rule-light my-1" />
-      <div className="label mb-1">API Layer</div>
-      <div className="diff-remove px-1.5 py-0.5 rounded-sm line-through text-[11px]">
-        v1 REST API is our primary integration layer.
-      </div>
-      <div className="diff-add px-1.5 py-0.5 rounded-sm text-[11px]">+ v1 REST deprecated, Q1 2026.</div>
-      <div className="diff-add px-1.5 py-0.5 rounded-sm text-[11px]">+ GraphQL for all new endpoints.</div>
     </div>
     <div className="px-4 py-2.5 border-t border-rule bg-paper/70">
-      <span className="font-mono text-[10px] text-ink-muted">Flaxie was confident · no review needed</span>
+      <span className="font-mono text-[10px] text-ink-muted">You weren't involved. Flaxie handled it.</span>
+    </div>
+  </div>
+);
+
+const Step4Visual = () => (
+  <div className="card overflow-hidden">
+    <div className="px-4 py-2.5 bg-ink flex items-center justify-between">
+      <span className="label text-white/50">War Room · Flaxie</span>
+      <div className="flex items-center gap-1.5">
+        <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+        <span className="font-mono text-[10px] text-white/40">Live</span>
+      </div>
+    </div>
+    <div className="px-4 py-2.5 border-b border-rule bg-paper flex items-center gap-5">
+      <span className="font-mono text-[11px] text-ink-muted">3 projects</span>
+      <span className="font-mono text-[11px] text-red-500 font-medium">6 overdue</span>
+      <span className="font-mono text-[11px] text-amber-600 font-medium">1 urgent</span>
+    </div>
+    <div className="p-5 bg-surface space-y-3">
+      {[
+        { name: 'Product Hunt Launch', pct: 72, color: 'bg-flax' },
+        { name: 'Investor Deck',       pct: 40, color: 'bg-amber-400' },
+        { name: 'Hiring Pipeline',     pct: 58, color: 'bg-flax' },
+      ].map(p => (
+        <div key={p.name}>
+          <div className="flex items-center justify-between mb-1">
+            <span className="font-mono text-[11px] text-ink">{p.name}</span>
+            <span className="font-mono text-[10px] text-ink-muted">{p.pct}%</span>
+          </div>
+          <div className="h-1.5 bg-rule rounded-full overflow-hidden">
+            <div className={`h-full ${p.color} rounded-full`} style={{ width: `${p.pct}%` }} />
+          </div>
+        </div>
+      ))}
+    </div>
+    <div className="px-4 py-2.5 border-t border-rule bg-paper/70 space-y-1">
+      <div className="font-mono text-[10px] text-ink-muted">⚡ Alex · 6 items open</div>
+      <div className="font-mono text-[10px] text-ink-muted">👻 Sam · 14 days silent</div>
     </div>
   </div>
 );
@@ -104,24 +147,31 @@ const Step3Visual = () => (
 const steps = [
   {
     num: '01',
-    title: 'A bot joins your call.',
-    body: 'Invite Flaxie to any Zoom, Google Meet, or Teams link. She shows up as a participant. No setup required for your team.',
+    title: 'Use whatever notetaker you already have.',
+    body: 'Granola, Otter, Fireflies, Google Doc, raw paste. Flaxie reads it all. No switching tools. No new setup for your team.',
     visual: <Step1Visual />,
     flip: false,
   },
   {
     num: '02',
-    title: 'She reads what changed.',
-    body: 'She reads the conversation, identifies decisions, pivots, and technical changes, then maps them to the right documents.',
+    title: 'She knows who owes what.',
+    body: 'Names, tasks, deadlines. Extracted automatically. No notes to write. No summaries to copy. Just a clean list of who committed to what.',
     visual: <Step2Visual />,
     flip: true,
   },
   {
     num: '03',
-    title: 'Docs updated. Automatically.',
-    body: 'When she\'s confident, she updates the doc directly. No copy-paste, no manual input, no action required from you.',
+    title: 'She follows up. So you don\'t have to.',
+    body: 'Nudges at the right time. Reminders before deadlines. Escalations when things go silent. You stay out of it until you need to step in.',
     visual: <Step3Visual />,
     flip: false,
+  },
+  {
+    num: '04',
+    title: 'You get a dashboard built for your company.',
+    body: 'Not a generic template. Flaxie figures out each project and builds the right view. A sales project looks like a pipeline. An ops project looks like a tracker. She decides based on your meetings.',
+    visual: <Step4Visual />,
+    flip: true,
   },
 ];
 
@@ -135,7 +185,7 @@ export const HowItWorks: React.FC = () => (
           <div className="label mb-4">How it works</div>
           <h2 className="font-serif font-black text-ink"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.12, letterSpacing: '-0.015em' }}>
-            Flaxie works<br />while you meet.
+            Flaxie works<br />while you build.
           </h2>
         </div>
       </Reveal>
@@ -163,13 +213,13 @@ export const HowItWorks: React.FC = () => (
         <div className="mt-20 pt-10 border-t border-rule flex flex-col sm:flex-row
           items-start sm:items-center justify-between gap-5">
           <p className="text-ink-muted text-base max-w-xs leading-relaxed">
-            Ready to give Flaxie to your team?
+            Ready to stop being the person who remembers everything?
           </p>
           <button className="btn btn-primary shrink-0"
             data-cal-link="joinflax/strategy-call"
             data-cal-namespace="strategy-call"
             data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>
-            Book a demo
+            Get early access
           </button>
         </div>
       </Reveal>
