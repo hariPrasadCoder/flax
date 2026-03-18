@@ -19,7 +19,10 @@ export const WhoItsFor: React.FC = () => (
             Founders wearing every hat. Chiefs of Staff managing too much. Ops leads who notice before anyone else does.
           </p>
           <p className="mt-4 text-ink-muted text-base leading-relaxed">
-            If your team makes commitments in meetings and you're the one tracking them — Flaxie is for you.
+            If your team makes commitments in meetings and you're the one tracking them, Flaxie is for you.
+          </p>
+          <p className="mt-6 font-mono text-[11px] text-ink-muted border-t border-rule pt-6">
+            Reading this and thinking of someone? That's the person who should see it.
           </p>
         </div>
       </Reveal>

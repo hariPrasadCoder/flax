@@ -23,8 +23,8 @@ export const Problem: React.FC = () => (
             <div className="bg-ink px-4 py-2.5 flex items-center justify-between">
               <span className="label text-white/50">Meeting · Monday 10am</span>
               <div className="flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                <span className="font-mono text-[10px] text-white/40">Flaxie joined</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                <span className="font-mono text-[10px] text-white/40">Untracked</span>
               </div>
             </div>
             <div className="p-6 space-y-4">

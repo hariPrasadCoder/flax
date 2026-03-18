@@ -8,8 +8,9 @@ import { HowItWorks }    from './components/HowItWorks';
 import { FlaxieAsks }    from './components/FlaxieAsks';
 import { NudgeSection }  from './components/NudgeSection';
 import { WhoItsFor }     from './components/WhoItsFor';
-import { SocialProof }   from './components/SocialProof';
-import { CTASection }    from './components/CTASection';
+import { SocialProof }       from './components/SocialProof';
+import { ObjectionsSection } from './components/ObjectionsSection';
+import { CTASection }        from './components/CTASection';
 import { Footer }        from './components/Footer';
 import StudiosApp from './StudiosApp';
 import BookApp from './BookApp';
@@ -45,6 +46,7 @@ function HomePage() {
         <NudgeSection />
         <WhoItsFor />
         <SocialProof />
+        <ObjectionsSection />
         <CTASection />
       </main>
       <Footer />

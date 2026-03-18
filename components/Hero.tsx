@@ -31,7 +31,7 @@ const DashboardMockup: React.FC = () => {
 
   const nudges = [
     { icon: '⚡', text: 'Alex · 6 items open' },
-    { icon: '⏰', text: 'Visa · deadline in 13 days' },
+    { icon: '⏰', text: 'Nina · deadline in 3 days' },
     { icon: '👻', text: 'Sam · 14 days silent' },
   ];
 
@@ -137,18 +137,20 @@ export const Hero: React.FC = () => (
 
         <h1
           className="font-serif font-black text-ink opacity-0-start animate-fade-in-up delay-100"
-          style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.25rem)', lineHeight: 1.08, letterSpacing: '-0.02em' }}
+          style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.25rem)', lineHeight: 1.12, letterSpacing: '-0.02em' }}
         >
-          Every commitment. Every deadline.<br />Nothing slips.
+          <span style={{ textDecoration: 'line-through', opacity: 0.35 }}>Meeting Note Taker.</span>
+          <br />
+          Meeting Action Taker.
         </h1>
 
-        <p className="mt-6 text-ink-muted text-lg leading-relaxed max-w-xl mx-auto opacity-0-start animate-fade-in-up delay-200">
-          Flaxie turns your meeting notes into a live dashboard. Tracks who owes what. Nudges your team automatically. So you always know what's moving and what isn't.
+        <p className="mt-6 text-ink-muted text-lg leading-relaxed max-w-md mx-auto opacity-0-start animate-fade-in-up delay-200">
+          Integrates your meeting notes. Flaxie tracks every commitment and follows up before things go quiet.
         </p>
 
         <div className="mt-8 flex items-center justify-center gap-3 flex-wrap opacity-0-start animate-fade-in-up delay-300">
           <button className="btn btn-primary" data-cal-link="joinflax/strategy-call" data-cal-namespace="strategy-call" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book a demo</button>
-          <a href="#how-it-works" className="btn btn-ghost">See how it works</a>
+          <a href="#how-it-works" className="btn btn-ghost">How it works ↓</a>
         </div>
       </div>
 

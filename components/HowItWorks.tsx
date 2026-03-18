@@ -88,7 +88,7 @@ const Step3Visual = () => (
         <div className="flex-1 bg-paper border border-rule rounded-sm px-3 py-2.5">
           <div className="font-mono text-[10px] text-ink-muted mb-1.5">Flaxie · Wednesday 9:00 AM</div>
           <p className="font-mono text-[11px] text-ink leading-5">
-            Hey Alex, just a nudge — you committed to sending the proposal by today.
+            Hey Alex, just a nudge. You committed to sending the proposal by today.
             Still open. Need help unblocking, or can you close this today?
           </p>
         </div>
@@ -219,7 +219,7 @@ export const HowItWorks: React.FC = () => (
             data-cal-link="joinflax/strategy-call"
             data-cal-namespace="strategy-call"
             data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>
-            Book a demo
+            Get early access
           </button>
         </div>
       </Reveal>

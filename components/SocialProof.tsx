@@ -8,7 +8,11 @@ export const SocialProof: React.FC = () => (
         <div className="max-w-2xl">
           <p className="font-serif font-black text-ink"
             style={{ fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', lineHeight: 1.2, letterSpacing: '-0.01em' }}>
-            Built for founders who are tired of being the one who remembers everything.
+            The problem isn't that your team doesn't care.
+            It's that nobody's keeping score.
+          </p>
+          <p className="mt-5 text-ink-muted text-base leading-relaxed">
+            Flaxie keeps score.
           </p>
         </div>
       </Reveal>
