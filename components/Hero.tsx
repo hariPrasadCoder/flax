@@ -1,21 +1,39 @@
 import React, { useState, useEffect } from 'react';
 
-/* ─── App window mockup (loops) ────────────────────────────────── */
-const AppMockup: React.FC = () => {
+/* ─── War Room Dashboard Mockup (loops) ────────────────────────── */
+const DashboardMockup: React.FC = () => {
   const [step, setStep] = useState(0);
   const [cycle, setCycle] = useState(0);
 
   useEffect(() => {
     setStep(0);
     const timers = [
-      setTimeout(() => setStep(1), 900),
-      setTimeout(() => setStep(2), 2500),
-      setTimeout(() => setStep(3), 3900),
-      setTimeout(() => setStep(4), 5300),
-      setTimeout(() => setCycle(c => c + 1), 8400), // pause then loop
+      setTimeout(() => setStep(1), 800),
+      setTimeout(() => setStep(2), 2000),
+      setTimeout(() => setStep(3), 3400),
+      setTimeout(() => setStep(4), 4600),
+      setTimeout(() => setCycle(c => c + 1), 8500),
     ];
     return () => timers.forEach(clearTimeout);
   }, [cycle]);
+
+  const people = [
+    { name: 'Alex',  overdue: 3, done: 4 },
+    { name: 'Sam', overdue: 2, done: 5 },
+    { name: 'Nina', overdue: 1, done: 6 },
+  ];
+
+  const projects = [
+    { name: 'Product Hunt Launch', pct: 72 },
+    { name: 'Investor Deck',       pct: 40 },
+    { name: 'Hiring Pipeline',     pct: 58 },
+  ];
+
+  const nudges = [
+    { icon: '⚡', text: 'Alex · 6 items open' },
+    { icon: '⏰', text: 'Visa · deadline in 13 days' },
+    { icon: '👻', text: 'Sam · 14 days silent' },
+  ];
 
   return (
     <div className="w-full rounded-lg overflow-hidden border border-rule"
@@ -29,7 +47,7 @@ const AppMockup: React.FC = () => {
           ))}
         </div>
         <div className="flex-1 text-center">
-          <span className="font-mono text-[11px] text-white/35">architecture.md · Flax</span>
+          <span className="font-mono text-[11px] text-white/35">War Room · Flaxie</span>
         </div>
         <div className={`flex items-center gap-1.5 transition-opacity duration-700 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`}>
           <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
@@ -37,94 +55,68 @@ const AppMockup: React.FC = () => {
         </div>
       </div>
 
-      {/* Body */}
-      <div className="flex bg-surface" style={{ height: '400px' }}>
+      {/* Stats bar */}
+      <div className={`px-5 py-3 border-b border-rule bg-paper flex items-center gap-6
+        transition-opacity duration-500 ${step >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+        <span className="font-mono text-[11px] text-ink-muted">3 projects</span>
+        <span className="font-mono text-[11px] text-red-500 font-medium">6 overdue</span>
+        <span className="font-mono text-[11px] text-amber-600 font-medium">1 urgent</span>
+      </div>
 
-        {/* Sidebar — hidden on small screens */}
+      {/* Body */}
+      <div className="flex bg-surface" style={{ height: '340px' }}>
+
+        {/* People sidebar */}
         <div className="hidden sm:flex w-44 shrink-0 border-r border-rule bg-paper flex-col p-3 gap-1">
-          <div className="label mb-2 px-1">Meetings</div>
-          <div className={`px-2 py-2 rounded-sm text-[11px] font-mono transition-all duration-500
-            ${step >= 1 ? 'bg-ink text-white' : 'text-ink-muted'}`}>
-            <div className="font-medium">Backend Sync</div>
-            <div className={`text-[9px] mt-0.5 ${step >= 1 ? 'text-white/45' : 'text-ink-muted/60'}`}>
-              {step >= 1 ? '● Live · 12 Mar' : '12 Mar'}
-            </div>
-          </div>
-          {['Planning Review', 'Design Sync', 'All Hands'].map((name, i) => (
-            <div key={name} className="px-2 py-2 text-[11px] font-mono text-ink-muted/60">
-              <div>{name}</div>
-              <div className="text-[9px]">{['10 Mar','8 Mar','5 Mar'][i]}</div>
+          <div className="label mb-2 px-1">People</div>
+          {people.map((p, i) => (
+            <div key={p.name}
+              className={`px-2 py-2 rounded-sm transition-all duration-500 ${step >= 2 ? 'opacity-100' : 'opacity-0'}`}
+              style={{ transitionDelay: `${i * 100}ms` }}>
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[11px] text-ink font-medium">{p.name}</span>
+                <span className="font-mono text-[10px] text-red-500">{p.overdue} overdue</span>
+              </div>
+              <div className="font-mono text-[9px] text-green-700 mt-0.5">{p.done} done ✓</div>
             </div>
           ))}
         </div>
 
-        {/* Document */}
-        <div className="flex-1 min-w-0 px-5 md:px-7 py-5 md:py-6">
-          <h2 className="font-serif font-bold text-ink text-base md:text-lg mb-5">Architecture Overview</h2>
-
-          {/* Database */}
-          <div className="mb-6">
-            <div className="label mb-2">Database Layer</div>
-            <div className="font-mono text-[11px] md:text-[12px] leading-5 space-y-1">
-              {step >= 3 ? (
-                <>
-                  <div className="diff-remove px-1.5 py-0.5 rounded-sm line-through">
-                    We use MongoDB as our primary data store.
-                  </div>
-                  <div className="diff-add px-1.5 py-0.5 rounded-sm">
-                    + PostgreSQL as primary data store (migrating Q1 2026).
-                  </div>
-                  <div className="text-[10px] text-ink-muted/55 italic pl-1 mt-0.5">
-                    ↑ Updated by Flaxie · just now
-                  </div>
-                </>
-              ) : (
-                <div className="text-ink px-1.5 py-0.5">
-                  We use{' '}
-                  <span className={step >= 2 ? 'bg-yellow-100 px-0.5' : ''}>MongoDB</span>
-                  {' '}as our primary data store.
+        {/* Main panel */}
+        <div className="flex-1 min-w-0 px-5 py-5">
+          <div className="label mb-3">Projects</div>
+          <div className="space-y-4">
+            {projects.map((proj, i) => (
+              <div key={proj.name}
+                className={`transition-all duration-500 ${step >= 3 ? 'opacity-100' : 'opacity-0'}`}
+                style={{ transitionDelay: `${i * 80}ms` }}>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="font-mono text-[11px] text-ink">{proj.name}</span>
+                  <span className="font-mono text-[10px] text-ink-muted">{proj.pct}%</span>
                 </div>
-              )}
-            </div>
-          </div>
-
-          {/* API */}
-          <div className="mb-5">
-            <div className="label mb-2">API Layer</div>
-            <div className="font-mono text-[11px] md:text-[12px] leading-5 space-y-1">
-              {step >= 4 ? (
-                <>
-                  <div className="diff-remove px-1.5 py-0.5 rounded-sm line-through">
-                    The v1 REST API is our primary integration layer.
-                  </div>
-                  <div className="diff-add px-1.5 py-0.5 rounded-sm">+ v1 REST API deprecated, Q1 2026.</div>
-                  <div className="diff-add px-1.5 py-0.5 rounded-sm">+ GraphQL adopted for all new endpoints.</div>
-                  <div className="text-[10px] text-ink-muted/55 italic pl-1 mt-0.5">
-                    ↑ Updated by Flaxie · just now
-                  </div>
-                </>
-              ) : (
-                <div className="text-ink px-1.5 py-0.5">
-                  The{' '}
-                  <span className={step >= 2 ? 'bg-yellow-100 px-0.5' : ''}>v1 REST API</span>
-                  {' '}is our primary integration layer.
+                <div className="h-1.5 bg-rule rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-flax rounded-full transition-all duration-700"
+                    style={{
+                      width: step >= 3 ? `${proj.pct}%` : '0%',
+                      transitionDelay: `${i * 80 + 200}ms`,
+                    }}
+                  />
                 </div>
-              )}
-            </div>
+              </div>
+            ))}
           </div>
 
-          {/* Status */}
-          <div className={`flex items-center gap-2 text-[10px] font-mono text-ink-muted
-            transition-opacity duration-500 ${step >= 2 && step < 4 ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="w-1 h-1 rounded-full bg-flax animate-pulse" />
-            Flaxie is reading the transcript…
+          {/* Nudge lines */}
+          <div className={`mt-6 pt-5 border-t border-rule space-y-2
+            transition-opacity duration-500 ${step >= 4 ? 'opacity-100' : 'opacity-0'}`}>
+            {nudges.map((n, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <span className="text-[11px]">{n.icon}</span>
+                <span className="font-mono text-[10px] text-ink-muted">{n.text}</span>
+              </div>
+            ))}
           </div>
-          {step >= 4 && (
-            <div className="flex items-center gap-2 text-[10px] font-mono text-green-700">
-              <div className="w-1 h-1 rounded-full bg-green-500" />
-              2 sections updated · no review needed
-            </div>
-          )}
         </div>
       </div>
     </div>
@@ -147,12 +139,11 @@ export const Hero: React.FC = () => (
           className="font-serif font-black text-ink opacity-0-start animate-fade-in-up delay-100"
           style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.25rem)', lineHeight: 1.08, letterSpacing: '-0.02em' }}
         >
-          Your meetings<br />write your docs.
+          Every commitment. Every deadline.<br />Nothing slips.
         </h1>
 
-        <p className="mt-6 text-ink-muted text-lg leading-relaxed max-w-lg mx-auto opacity-0-start animate-fade-in-up delay-200">
-          Flaxie joins every meeting, reads what was decided,
-          and updates your docs, automatically.
+        <p className="mt-6 text-ink-muted text-lg leading-relaxed max-w-xl mx-auto opacity-0-start animate-fade-in-up delay-200">
+          Flaxie turns your meeting notes into a live dashboard. Tracks who owes what. Nudges your team automatically. So you always know what's moving and what isn't.
         </p>
 
         <div className="mt-8 flex items-center justify-center gap-3 flex-wrap opacity-0-start animate-fade-in-up delay-300">
@@ -161,17 +152,17 @@ export const Hero: React.FC = () => (
         </div>
       </div>
 
-      {/* App window */}
+      {/* Dashboard window */}
       <div className="opacity-0-start animate-fade-in delay-400">
-        <AppMockup />
+        <DashboardMockup />
       </div>
 
-      {/* Partner trust bar — below mockup */}
+      {/* Partner trust bar */}
       <div className="mt-12 pt-10 border-t border-rule flex flex-col items-center gap-5 opacity-0-start animate-fade-in delay-500">
         <span className="label">Supported by</span>
         <div className="flex flex-wrap items-center justify-center gap-14">
           {[
-            { src: '/Antler_logo.svg',  alt: 'Antler',          h: 28 },
+            { src: '/Antler_logo.svg', alt: 'Antler', h: 28 },
           ].map(({ src, alt, h }) => (
             <img
               key={alt}

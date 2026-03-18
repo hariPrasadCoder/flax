@@ -1,12 +1,6 @@
 import React from 'react';
 import { Reveal } from './ui/Reveal';
 
-const people = [
-  { name: 'Alex Chen',   initial: 'A' },
-  { name: 'Maya Patel',  initial: 'M' },
-  { name: 'Rohan Mehta', initial: 'R' },
-];
-
 const FlaxieCard: React.FC = () => (
   <div className="card overflow-hidden max-w-xs mx-auto">
     <div className="bg-ink px-4 py-3 flex items-center gap-3">
@@ -15,7 +9,7 @@ const FlaxieCard: React.FC = () => (
       </div>
       <div>
         <div className="font-mono text-[12px] text-white font-medium">Flaxie joined</div>
-        <div className="font-mono text-[10px] text-white/40">Backend Sync · 2:14 PM</div>
+        <div className="font-mono text-[10px] text-white/40">Founder Sync · 10:00 AM</div>
       </div>
       <div className="ml-auto flex items-center gap-1.5">
         <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
@@ -24,14 +18,22 @@ const FlaxieCard: React.FC = () => (
     </div>
 
     <div className="p-4 space-y-3 bg-surface">
-      <div className="label">Participants</div>
+      <div className="label">Commitments tracked</div>
 
-      {people.map(p => (
-        <div key={p.name} className="flex items-center gap-2.5">
-          <div className="w-6 h-6 rounded-full bg-rule flex items-center justify-center shrink-0">
-            <span className="font-mono text-[9px] font-semibold text-ink-muted">{p.initial}</span>
+      {[
+        { name: 'Alex',  task: 'Send investor update',    due: 'Wed' },
+        { name: 'Sam', task: 'Finalize pricing deck',   due: 'Thu' },
+        { name: 'Nina', task: 'Schedule demo calls',     due: 'Fri' },
+      ].map(c => (
+        <div key={c.name} className="flex items-start gap-2.5">
+          <div className="w-6 h-6 rounded-full bg-rule flex items-center justify-center shrink-0 mt-0.5">
+            <span className="font-mono text-[9px] font-semibold text-ink-muted">{c.name[0]}</span>
           </div>
-          <span className="font-mono text-[12px] text-ink-muted">{p.name}</span>
+          <div className="flex-1 min-w-0">
+            <span className="font-mono text-[11px] text-ink">{c.name}</span>
+            <span className="font-mono text-[10px] text-ink-muted ml-1.5">· {c.task}</span>
+          </div>
+          <span className="font-mono text-[10px] text-ink-muted shrink-0">{c.due}</span>
         </div>
       ))}
 
@@ -40,13 +42,13 @@ const FlaxieCard: React.FC = () => (
           <span className="font-serif font-black text-white text-[9px]">F</span>
         </div>
         <span className="font-mono text-[12px] text-ink font-medium">Flaxie</span>
-        <span className="label bg-paper border border-rule px-1.5 py-0.5 ml-auto">AI · Docs</span>
+        <span className="label bg-paper border border-rule px-1.5 py-0.5 ml-auto">AI · Commitments</span>
       </div>
     </div>
 
     <div className="px-4 py-2.5 border-t border-rule bg-paper">
       <span className="font-mono text-[10px] text-ink-muted">
-        Listening · She'll update docs after the call
+        Listening · She'll follow up when things go quiet
       </span>
     </div>
   </div>
@@ -65,13 +67,13 @@ export const FlaxieIntro: React.FC = () => (
           <div className="label mb-5">Meet Flaxie</div>
           <h2 className="font-serif font-black text-ink mb-5"
             style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.015em' }}>
-            Your team's AI<br />documentation agent.
+            She remembers everything<br />so your team doesn't have to.
           </h2>
           <p className="text-ink-muted text-base leading-relaxed mb-4">
-            She joins, listens, and updates your docs, without being asked.
+            She reads your meeting notes, figures out who committed to what, builds a dashboard for your projects, and nudges people before things go quiet.
           </p>
           <p className="text-ink-muted text-base leading-relaxed">
-            No workflows to configure. No summaries to copy-paste. She just works.
+            No new tools for your team. No workflows to set up. Works with whatever notetaker you already use.
           </p>
         </Reveal>
 

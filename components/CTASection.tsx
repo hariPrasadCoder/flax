@@ -17,10 +17,12 @@ export const CTASection: React.FC = () => (
         </div>
         <h2 className="font-serif font-black text-white mb-5"
           style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', lineHeight: 1.08, letterSpacing: '-0.02em' }}>
-          Give Flaxie<br />to your team.
+          We're onboarding<br />10 founding teams.
         </h2>
-        <p className="text-white/45 text-base mb-10 max-w-sm mx-auto leading-relaxed">
-          We're accepting 5 design partners. The product is built and working. Join early, use it with your team, and help us shape what comes next.
+        <p className="text-white/45 text-base mb-10 max-w-md mx-auto leading-relaxed">
+          60 days. Custom dashboard built from your actual meetings.
+          Action items tracked. Team nudged automatically.<br /><br />
+          In return, 30 minutes of honest feedback per month.
         </p>
       </Reveal>
 
@@ -33,8 +35,8 @@ export const CTASection: React.FC = () => (
       <Reveal delay={150}>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           {[
+            '15 minutes. No slides.',
             'Works with Zoom, Meet & Teams',
-            'No setup for your team',
           ].map(t => (
             <span key={t} className="font-mono text-[11px]" style={{ color: 'rgba(255,255,255,0.28)' }}>
               {t}
