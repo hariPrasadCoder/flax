@@ -39,8 +39,8 @@ export const CTASection: React.FC = () => (
       </Reveal>
 
       <Reveal delay={100}>
-        <button className="btn btn-primary" {...calProps}>
-          Request access
+        <button className="btn btn-primary" data-tally-open="GxLXyQ" data-tally-layout="modal" data-tally-width="400" data-tally-form-events-forwarding="1">
+          Get Early Access
         </button>
       </Reveal>
 
