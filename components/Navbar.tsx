@@ -21,11 +21,13 @@ export const Navbar: React.FC = () => {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
         ${scrolled ? 'bg-paper/95 backdrop-blur-sm border-b border-rule' : 'bg-transparent'}
       `}>
-        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center">
 
-          <a href="/" className="font-serif font-black text-ink text-xl tracking-tight select-none">
-            Flax
-          </a>
+          <div className="flex-1">
+            <a href="/" className="font-serif font-black text-ink text-xl tracking-tight select-none">
+              Flax
+            </a>
+          </div>
 
           <div className="hidden md:flex items-center gap-8">
             {links.map(l => (
@@ -36,16 +38,20 @@ export const Navbar: React.FC = () => {
             ))}
           </div>
 
-          <div className="hidden md:block">
-            <button className="btn btn-primary btn-sm"
+          <div className="flex-1 hidden md:flex items-center gap-2 justify-end">
+            <button className="btn btn-ghost btn-sm"
               data-cal-link="joinflax/strategy-call"
               data-cal-namespace="strategy-call"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>
               Book a demo
             </button>
+            <button className="btn btn-primary btn-sm"
+              data-tally-open="GxLXyQ" data-tally-layout="modal" data-tally-width="400" data-tally-form-events-forwarding="1">
+              Get Early Access
+            </button>
           </div>
 
-          <button className="md:hidden text-ink" onClick={() => setOpen(!open)} aria-label="Menu">
+          <button className="md:hidden text-ink ml-auto" onClick={() => setOpen(!open)} aria-label="Menu">
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
@@ -61,7 +67,12 @@ export const Navbar: React.FC = () => {
                 {l.label}
               </a>
             ))}
-            <button className="btn btn-primary self-start mt-2"
+            <button className="btn btn-secondary self-start mt-2"
+              data-tally-open="GxLXyQ" data-tally-layout="modal" data-tally-width="400" data-tally-form-events-forwarding="1"
+              onClick={() => setOpen(false)}>
+              Get Early Access
+            </button>
+            <button className="btn btn-primary self-start"
               data-cal-link="joinflax/strategy-call"
               data-cal-namespace="strategy-call"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'

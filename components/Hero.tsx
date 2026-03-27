@@ -149,8 +149,8 @@ export const Hero: React.FC = () => (
         </p>
 
         <div className="mt-8 flex items-center justify-center gap-3 flex-wrap opacity-0-start animate-fade-in-up delay-300">
-          <button className="btn btn-primary" data-cal-link="joinflax/strategy-call" data-cal-namespace="strategy-call" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book a demo</button>
-          <a href="#how-it-works" className="btn btn-ghost">How it works ↓</a>
+          <button className="btn btn-secondary" data-tally-open="GxLXyQ" data-tally-layout="modal" data-tally-width="400" data-tally-form-events-forwarding="1">Get Early Access</button>
+          <button className="btn btn-ghost" data-cal-link="joinflax/strategy-call" data-cal-namespace="strategy-call" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book a demo</button>
         </div>
       </div>
 
