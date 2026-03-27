@@ -17,6 +17,8 @@ export default defineConfig({
         main: path.resolve(__dirname, 'index.html'),
         book: path.resolve(__dirname, 'book/index.html'),
         studios: path.resolve(__dirname, 'studios/index.html'),
+        privacy: path.resolve(__dirname, 'privacy/index.html'),
+        terms: path.resolve(__dirname, 'terms/index.html'),
       },
     },
   }
