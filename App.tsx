@@ -14,6 +14,8 @@ import { CTASection }        from './components/CTASection';
 import { Footer }        from './components/Footer';
 import StudiosApp from './StudiosApp';
 import BookApp from './BookApp';
+import { PrivacyPolicy } from './components/PrivacyPolicy';
+import { TermsOfService } from './components/TermsOfService';
 
 function useCalEmbed() {
   useEffect(() => {
@@ -61,6 +63,8 @@ function App() {
         <Route path="/"        element={<HomePage />} />
         <Route path="/studios" element={<StudiosApp />} />
         <Route path="/book"    element={<BookApp />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms"   element={<TermsOfService />} />
         <Route path="*"        element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

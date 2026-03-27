@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => (
   <footer className="bg-paper border-t border-rule">
@@ -19,7 +20,10 @@ export const Footer: React.FC = () => (
       </div>
       <div className="mt-6 pt-6 border-t border-rule flex items-center justify-between">
         <span className="font-mono text-[10px] text-ink-muted">© 2026 Flax. All rights reserved.</span>
-        <span className="font-mono text-[10px] text-ink-muted">Made with care.</span>
+        <div className="flex items-center gap-4">
+          <Link to="/privacy" className="font-mono text-[10px] text-ink-muted hover:text-ink transition-colors">Privacy Policy</Link>
+          <Link to="/terms"   className="font-mono text-[10px] text-ink-muted hover:text-ink transition-colors">Terms of Service</Link>
+        </div>
       </div>
     </div>
   </footer>
