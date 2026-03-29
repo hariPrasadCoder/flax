@@ -44,7 +44,7 @@ export const PrivacyPolicy: React.FC = () => (
               <strong>Google Calendar</strong> — We read your calendar to understand your schedule and upcoming meetings, and we create or update calendar events when action items require scheduling.
             </li>
             <li>
-              <strong>Google Drive</strong> — We access files you share with Flaxie to attach relevant documents to follow-ups or to store meeting summaries and notes you choose to save to Drive.
+              <strong>Google Drive</strong> (including Google Docs, Sheets, and Slides) — We read and write files with your approval to attach relevant documents to follow-ups or to store meeting summaries and notes you choose to save to Drive.
             </li>
           </ul>
 

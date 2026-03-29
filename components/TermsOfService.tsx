@@ -74,7 +74,7 @@ export const TermsOfService: React.FC = () => (
               <strong>Google Calendar</strong> — To read your schedule and to create, update, or delete calendar events for action items that require scheduling.
             </li>
             <li>
-              <strong>Google Drive</strong> — To read and write files when you direct Flaxie to attach, retrieve, or save documents related to your meetings.
+              <strong>Google Drive</strong> (including Google Docs, Sheets, and Slides) — To read and write files with your approval when you direct Flaxie to attach, retrieve, or save documents related to your meetings.
             </li>
           </ul>
           <p className="mt-4">
