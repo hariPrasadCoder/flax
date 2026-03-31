@@ -223,7 +223,9 @@ export const HowItWorks: React.FC = () => (
             className="font-serif font-black text-ink"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.12, letterSpacing: '-0.015em' }}
           >
-            From meeting to done.<br />Without the follow-up chase.
+            From meeting to{' '}
+            <span style={{ color: '#5A53E1' }}>done.</span>
+            <br />Without the follow-up chase.
           </h2>
         </div>
       </Reveal>

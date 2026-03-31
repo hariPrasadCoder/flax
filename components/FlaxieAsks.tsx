@@ -2,7 +2,7 @@ import React from 'react';
 import { Reveal } from './ui/Reveal';
 
 const ProactiveCard = () => (
-  <div className="card overflow-hidden">
+  <div className="card overflow-hidden" style={{ boxShadow: '0 8px 48px rgba(90,83,225,0.12), 0 2px 8px rgba(0,0,0,0.06)', borderColor: 'rgba(90,83,225,0.15)' }}>
     <div className="px-4 py-2.5 bg-paper border-b border-rule flex items-center justify-between">
       <span className="label">Flaxie · Right now</span>
       <div className="flex items-center gap-1.5">

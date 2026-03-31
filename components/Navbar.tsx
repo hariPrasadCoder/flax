@@ -11,7 +11,6 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', fn);
   }, []);
 
-  // On dark hero until scrolled past it — use white text
   const onDark = !scrolled;
 
   const links = [
@@ -21,27 +20,40 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav
+      {/* Floating pill wrapper — pointer-events none so gaps don't block scroll */}
+      <div
         style={{
           position: 'fixed',
           top: 0,
           left: 0,
           right: 0,
+          padding: '14px 20px',
           zIndex: 50,
-          transition: 'background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease',
-          background: scrolled ? 'rgba(245,241,233,0.96)' : 'transparent',
-          borderBottom: scrolled ? '1px solid hsl(0,0%,82%)' : '1px solid transparent',
-          backdropFilter: scrolled ? 'blur(8px)' : 'none',
+          pointerEvents: 'none',
         }}
       >
-        <div
+        <nav
           style={{
-            maxWidth: '1100px',
+            maxWidth: '1060px',
             margin: '0 auto',
-            padding: '0 1.5rem',
-            height: '56px',
+            height: '52px',
+            borderRadius: '100px',
+            background: scrolled
+              ? 'rgba(248,246,242,0.96)'
+              : 'rgba(255,255,255,0.04)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            border: scrolled
+              ? '1px solid rgba(0,0,0,0.08)'
+              : '1px solid rgba(255,255,255,0.14)',
             display: 'flex',
             alignItems: 'center',
+            padding: '0 1.5rem',
+            pointerEvents: 'auto',
+            transition: 'background 0.3s ease, border-color 0.3s ease',
+            boxShadow: scrolled
+              ? '0 4px 24px rgba(0,0,0,0.08)'
+              : '0 0 0 1px rgba(255,255,255,0.06) inset',
           }}
         >
           {/* Logo */}
@@ -51,7 +63,7 @@ export const Navbar: React.FC = () => {
               style={{
                 fontFamily: 'Merriweather, Georgia, serif',
                 fontWeight: 900,
-                fontSize: '1.2rem',
+                fontSize: '1.15rem',
                 letterSpacing: '-0.02em',
                 color: onDark ? '#fff' : 'hsl(0,0%,10%)',
                 textDecoration: 'none',
@@ -63,8 +75,8 @@ export const Navbar: React.FC = () => {
             </a>
           </div>
 
-          {/* Nav links — desktop */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="hidden md:flex">
+          {/* Nav links — desktop only. No display:flex in inline style — relies on className to stay hidden on mobile */}
+          <div style={{ alignItems: 'center', gap: '2rem' }} className="hidden md:flex">
             {links.map(l => (
               <a
                 key={l.label}
@@ -84,9 +96,9 @@ export const Navbar: React.FC = () => {
             ))}
           </div>
 
-          {/* CTAs — desktop */}
+          {/* CTAs — desktop only */}
           <div
-            style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'flex-end' }}
+            style={{ flex: 1, alignItems: 'center', gap: '8px', justifyContent: 'flex-end' }}
             className="hidden md:flex"
           >
             <button
@@ -96,6 +108,7 @@ export const Navbar: React.FC = () => {
                 border: onDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid hsl(0,0%,80%)',
                 color: onDark ? 'rgba(255,255,255,0.6)' : 'hsl(0,0%,40%)',
                 transition: 'all 0.2s ease',
+                borderRadius: '100px',
               }}
               data-cal-link="joinflax/strategy-call"
               data-cal-namespace="strategy-call"
@@ -105,6 +118,7 @@ export const Navbar: React.FC = () => {
             </button>
             <button
               className="btn btn-primary btn-sm"
+              style={{ borderRadius: '100px' }}
               data-tally-open="GxLXyQ"
               data-tally-layout="modal"
               data-tally-width="400"
@@ -129,8 +143,8 @@ export const Navbar: React.FC = () => {
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
       {/* Mobile menu */}
       {open && (
@@ -139,8 +153,8 @@ export const Navbar: React.FC = () => {
             position: 'fixed',
             inset: 0,
             zIndex: 40,
-            background: 'hsl(42,24%,95%)',
-            paddingTop: '56px',
+            background: 'hsl(0,0%,10%)',
+            paddingTop: '80px',
             display: 'flex',
             flexDirection: 'column',
           }}
@@ -155,9 +169,9 @@ export const Navbar: React.FC = () => {
                   fontFamily: 'Merriweather, serif',
                   fontSize: '1.25rem',
                   fontWeight: 700,
-                  color: 'hsl(0,0%,10%)',
+                  color: '#fff',
                   textDecoration: 'none',
-                  borderBottom: '1px solid hsl(0,0%,82%)',
+                  borderBottom: '1px solid rgba(255,255,255,0.1)',
                   paddingBottom: '1.5rem',
                 }}
                 onClick={() => setOpen(false)}
@@ -178,7 +192,7 @@ export const Navbar: React.FC = () => {
             </button>
             <button
               className="btn btn-ghost"
-              style={{ alignSelf: 'flex-start' }}
+              style={{ alignSelf: 'flex-start', borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.6)' }}
               data-cal-link="joinflax/strategy-call"
               data-cal-namespace="strategy-call"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'

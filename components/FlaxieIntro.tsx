@@ -2,7 +2,7 @@ import React from 'react';
 import { Reveal } from './ui/Reveal';
 
 const FlaxieCard: React.FC = () => (
-  <div className="card overflow-hidden max-w-xs mx-auto">
+  <div className="card overflow-hidden max-w-xs mx-auto" style={{ boxShadow: '0 8px 48px rgba(90,83,225,0.12), 0 2px 8px rgba(0,0,0,0.06)', borderColor: 'rgba(90,83,225,0.15)' }}>
     <div className="bg-ink px-4 py-3 flex items-center gap-3">
       <div className="w-8 h-8 rounded-full bg-flax flex items-center justify-center shrink-0">
         <span className="font-serif font-black text-white text-sm select-none">F</span>
@@ -69,7 +69,7 @@ export const FlaxieIntro: React.FC = () => (
             className="font-serif font-black text-ink mb-5"
             style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.015em' }}
           >
-            Not a tracker.<br />An operator.
+            Not a tracker.<br /><span style={{ color: '#5A53E1' }}>An operator.</span>
           </h2>
           <p className="text-ink-muted text-base leading-relaxed mb-4">
             Flaxie reads your meeting notes, figures out who committed to what, and

@@ -84,12 +84,24 @@ const MemoryPanel: React.FC = () => {
 
 export const LearnsSection: React.FC = () => (
   <section
+    className="dot-grid"
     style={{
-      background: 'hsl(0,0%,10%)',
+      backgroundColor: 'hsl(0,0%,10%)',
       padding: '6rem 1.5rem',
       borderTop: '1px solid rgba(255,255,255,0.05)',
+      position: 'relative',
+      overflow: 'hidden',
     }}
   >
+    {/* Ambient glow — center-right */}
+    <div className="glow-drift" style={{
+      position: 'absolute', top: '20%', right: '-10%',
+      width: '550px', height: '550px', borderRadius: '50%',
+      background: 'radial-gradient(circle, rgba(90,83,225,0.1) 0%, transparent 65%)',
+      pointerEvents: 'none',
+      animationDelay: '2s',
+    }} />
+
     <div
       style={{
         maxWidth: '960px',
@@ -98,6 +110,8 @@ export const LearnsSection: React.FC = () => (
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
         gap: '4rem',
         alignItems: 'center',
+        position: 'relative',
+        zIndex: 1,
       }}
     >
       {/* Left: copy */}

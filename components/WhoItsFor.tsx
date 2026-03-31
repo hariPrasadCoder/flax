@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { Reveal } from './ui/Reveal';
 
-const roles = [
-  'Account Executives',
-  'Consultants',
-  'Product Managers',
-  'Chiefs of Staff',
-  'Founders',
-  'Operations Leads',
-];
+const rolesRow1 = ['Account Executives', 'Consultants', 'Product Managers'];
+const rolesRow2 = ['Chiefs of Staff', 'Founders', 'Operations Leads'];
 
 const RolePill: React.FC<{ label: string; delay: number }> = ({ label, delay }) => {
   const [hovered, setHovered] = useState(false);
@@ -92,18 +86,32 @@ export const WhoItsFor: React.FC = () => (
       </Reveal>
 
       <Reveal delay={100}>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '10px',
-          }}
-        >
-          {roles.map((role, i) => (
-            <RolePill key={role} label={role} delay={i * 60} />
-          ))}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
+            {rolesRow1.map((role, i) => (
+              <RolePill key={role} label={role} delay={i * 60} />
+            ))}
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
+            {rolesRow2.map((role, i) => (
+              <RolePill key={role} label={role} delay={(rolesRow1.length + i) * 60} />
+            ))}
+            <span
+              style={{
+                fontFamily: 'IBM Plex Mono, monospace',
+                fontWeight: 500,
+                fontSize: '0.8rem',
+                color: 'hsl(0,0%,55%)',
+                border: '1.5px dashed hsl(0,0%,75%)',
+                background: 'transparent',
+                padding: '10px 20px',
+                borderRadius: '100px',
+                letterSpacing: '0.01em',
+              }}
+            >
+              & everyone in between
+            </span>
+          </div>
         </div>
       </Reveal>
 

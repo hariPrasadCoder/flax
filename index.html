@@ -211,6 +211,20 @@
         cursor: pointer;
       }
 
+      /* ─── Dot grid texture (for dark sections) ────────── */
+      .dot-grid {
+        background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
+        background-size: 28px 28px;
+      }
+
+      /* ─── Ambient glow blob animation ──────────────────── */
+      @keyframes glow-drift {
+        0%,100% { opacity: 0.65; transform: scale(1) translate(0,0); }
+        33%      { opacity: 0.85; transform: scale(1.06) translate(3%,-3%); }
+        66%      { opacity: 0.72; transform: scale(0.97) translate(-2%,2%); }
+      }
+      .glow-drift { animation: glow-drift 12s ease-in-out infinite; }
+
       /* ─── Scrollbar ──────────────────────────────────── */
       ::-webkit-scrollbar { width: 5px; }
       ::-webkit-scrollbar-track { background: hsl(42,20%,92%); }

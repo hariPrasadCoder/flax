@@ -224,12 +224,24 @@ const moreItems = [
 
 export const CapabilitiesSection: React.FC = () => (
   <section
+    className="dot-grid"
     style={{
-      background: 'hsl(0,0%,10%)',
+      backgroundColor: 'hsl(0,0%,10%)',
       padding: '6rem 1.5rem',
+      position: 'relative',
+      overflow: 'hidden',
     }}
   >
-    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+    {/* Ambient glow — bottom-left */}
+    <div className="glow-drift" style={{
+      position: 'absolute', bottom: '-15%', left: '-8%',
+      width: '700px', height: '700px', borderRadius: '50%',
+      background: 'radial-gradient(circle, rgba(90,83,225,0.11) 0%, transparent 65%)',
+      pointerEvents: 'none',
+      animationDelay: '4s',
+    }} />
+
+    <div style={{ maxWidth: '1000px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
       <Reveal>
         <div style={{ marginBottom: '3.5rem' }}>

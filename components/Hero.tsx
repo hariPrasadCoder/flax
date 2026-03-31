@@ -2,33 +2,71 @@ import React from 'react';
 
 export const Hero: React.FC = () => (
   <section
+    className="dot-grid"
     style={{
       minHeight: '100vh',
-      background: 'hsl(0,0%,10%)',
+      backgroundColor: 'hsl(0,0%,10%)',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      paddingTop: '56px',
+      paddingTop: '80px',
       position: 'relative',
       overflow: 'hidden',
     }}
   >
-    {/* Animated background orb */}
+    {/* Primary glow — large central orb */}
     <div
-      className="animate-hero-bg"
+      className="glow-drift"
       style={{
         position: 'absolute',
-        top: '5%',
+        top: '-5%',
         left: '50%',
         transform: 'translateX(-50%)',
-        width: '700px',
-        height: '700px',
+        width: '1100px',
+        height: '1100px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(90,83,225,0.18) 0%, transparent 65%)',
+        background: 'radial-gradient(circle, rgba(90,83,225,0.22) 0%, rgba(90,83,225,0.06) 45%, transparent 68%)',
         pointerEvents: 'none',
         zIndex: 0,
       }}
     />
+
+    {/* Secondary glow — off-axis, adds depth */}
+    <div
+      style={{
+        position: 'absolute',
+        top: '30%',
+        right: '-8%',
+        width: '500px',
+        height: '500px',
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(90,83,225,0.08) 0%, transparent 65%)',
+        pointerEvents: 'none',
+        zIndex: 0,
+        animation: 'glow-drift 16s ease-in-out infinite reverse',
+      }}
+    />
+
+    {/* Decoration lines — thin horizontal accents scattered across hero */}
+    {([
+      { top: '22%', left: '7%',  width: 72,  opacity: 0.09 },
+      { top: '38%', right: '9%', width: 52,  opacity: 0.07 },
+      { top: '58%', left: '4%',  width: 96,  opacity: 0.06 },
+      { top: '70%', right: '6%', width: 64,  opacity: 0.08 },
+      { top: '82%', left: '14%', width: 40,  opacity: 0.05 },
+    ] as Array<{top:string;left?:string;right?:string;width:number;opacity:number}>).map((l, i) => (
+      <div key={i} style={{
+        position: 'absolute',
+        top: l.top,
+        left: l.left,
+        right: l.right,
+        width: l.width,
+        height: '1px',
+        background: `rgba(255,255,255,${l.opacity})`,
+        pointerEvents: 'none',
+        zIndex: 0,
+      }} />
+    ))}
 
     {/* Main content */}
     <div
@@ -43,13 +81,11 @@ export const Hero: React.FC = () => (
         position: 'relative',
         zIndex: 1,
         width: '100%',
-        maxWidth: '860px',
+        maxWidth: '900px',
       }}
     >
       {/* Label */}
-      <div
-        className="inline-flex items-center gap-2 mb-10 opacity-0-start animate-fade-in"
-      >
+      <div className="inline-flex items-center gap-2 mb-10 opacity-0-start animate-fade-in">
         <div className="w-1.5 h-1.5 rounded-full bg-flax animate-pulse" />
         <span
           style={{
@@ -64,13 +100,13 @@ export const Hero: React.FC = () => (
         </span>
       </div>
 
-      {/* Headline — constrained so each sentence stays on one line */}
+      {/* Headline */}
       <h1
         className="font-serif font-black opacity-0-start animate-fade-in-up delay-100"
         style={{
-          fontSize: 'clamp(2rem, 5vw, 4rem)',
-          lineHeight: 1.1,
-          letterSpacing: '-0.025em',
+          fontSize: 'clamp(2.8rem, 6.5vw, 5.5rem)',
+          lineHeight: 1.05,
+          letterSpacing: '-0.03em',
           color: '#fff',
           whiteSpace: 'nowrap',
         }}
@@ -95,9 +131,9 @@ export const Hero: React.FC = () => (
           wordBreak: 'keep-all',
         }}
       >
-        Draft emails. Create tickets. Schedule follow-ups.
+        Meet Flaxie, your AI personal assistant.
         <br />
-        You approve before anything goes out.
+        The work gets done. You did not have to ask.
       </p>
 
       {/* CTAs */}
@@ -150,7 +186,7 @@ export const Hero: React.FC = () => (
       </div>
     </div>
 
-    {/* Supported by Antler — bottom, in normal flow */}
+    {/* Supported by Antler */}
     <div
       className="opacity-0-start animate-fade-in delay-500"
       style={{

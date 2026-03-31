@@ -6,13 +6,25 @@ const notetakers = ['Granola', 'Fireflies', 'Google Meet', 'Paste anything'];
 
 export const WorksWith: React.FC = () => (
   <section
+    className="dot-grid"
     style={{
-      background: 'hsl(0,0%,10%)',
+      backgroundColor: 'hsl(0,0%,10%)',
       padding: '5rem 1.5rem',
       borderTop: '1px solid rgba(255,255,255,0.06)',
+      position: 'relative',
+      overflow: 'hidden',
     }}
   >
-    <div style={{ maxWidth: '860px', margin: '0 auto', textAlign: 'center' }}>
+    {/* Ambient glow — center */}
+    <div className="glow-drift" style={{
+      position: 'absolute', top: '50%', left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: '600px', height: '600px', borderRadius: '50%',
+      background: 'radial-gradient(circle, rgba(90,83,225,0.09) 0%, transparent 65%)',
+      pointerEvents: 'none',
+      animationDelay: '6s',
+    }} />
+    <div style={{ maxWidth: '860px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
 
       <Reveal>
         <h2

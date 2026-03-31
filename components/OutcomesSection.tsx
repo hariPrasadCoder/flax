@@ -54,7 +54,6 @@ const CountdownStat: React.FC<{
     return () => clearInterval(timer);
   }, [phase, startValue]);
 
-  const striking = phase >= 2;
   const done = phase >= 3;
 
   return (
@@ -75,39 +74,14 @@ const CountdownStat: React.FC<{
       {/* Label with animated strikethrough — fixed height keeps cards aligned */}
       <div style={{ height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem' }}>
         <div style={{ position: 'relative', textAlign: 'center' }}>
-          {/* Base text — dims when striking */}
           <p
             style={{
               fontFamily: 'IBM Plex Mono, monospace',
               fontSize: '0.9rem',
               letterSpacing: '0.02em',
               lineHeight: 1.45,
-              color: striking ? 'rgba(255,255,255,0.22)' : 'rgba(255,255,255,0.65)',
-              transition: 'color 0.4s ease 0.2s',
+              color: 'rgba(255,255,255,0.65)',
               margin: 0,
-            }}
-          >
-            {label}
-          </p>
-          {/* Overlay: same text, transparent, with line-through decoration.
-              clip-path reveals left→right, so the line draws across naturally
-              across all lines of wrapped text. */}
-          <p
-            aria-hidden
-            style={{
-              position: 'absolute',
-              inset: 0,
-              fontFamily: 'IBM Plex Mono, monospace',
-              fontSize: '0.9rem',
-              letterSpacing: '0.02em',
-              lineHeight: 1.45,
-              margin: 0,
-              color: 'transparent',
-              textDecoration: 'line-through',
-              textDecorationColor: 'rgba(255,255,255,0.55)',
-              textDecorationThickness: '1.5px',
-              clipPath: striking ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)',
-              transition: striking ? 'clip-path 0.65s cubic-bezier(0.4,0,0.2,1)' : 'none',
             }}
           >
             {label}
@@ -226,17 +200,28 @@ const AnimatedStat: React.FC<{
 
 export const OutcomesSection: React.FC = () => (
   <section
+    className="dot-grid"
     style={{
       minHeight: '80vh',
-      background: 'hsl(0,0%,10%)',
+      backgroundColor: 'hsl(0,0%,10%)',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
       padding: '5rem 1.5rem',
+      position: 'relative',
+      overflow: 'hidden',
     }}
   >
-    <div style={{ width: '100%', maxWidth: '1000px', margin: '0 auto' }}>
+    {/* Ambient glow — top-right */}
+    <div className="glow-drift" style={{
+      position: 'absolute', top: '-10%', right: '-5%',
+      width: '600px', height: '600px', borderRadius: '50%',
+      background: 'radial-gradient(circle, rgba(90,83,225,0.14) 0%, transparent 65%)',
+      pointerEvents: 'none',
+    }} />
+
+    <div style={{ width: '100%', maxWidth: '1000px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
       <Reveal>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
