@@ -6,77 +6,196 @@ export const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', fn);
+    const fn = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', fn, { passive: true });
     return () => window.removeEventListener('scroll', fn);
   }, []);
 
+  const onDark = !scrolled;
+
   const links = [
     { label: 'How it works', href: '#how-it-works' },
-    { label: 'Who it\'s for', href: '#who' },
+    { label: "Who it's for", href: '#who' },
   ];
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
-        ${scrolled ? 'bg-paper/95 backdrop-blur-sm border-b border-rule' : 'bg-transparent'}
-      `}>
-        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center">
-
-          <div className="flex-1">
-            <a href="/" className="font-serif font-black text-ink text-xl tracking-tight select-none">
+      {/* Floating pill wrapper — pointer-events none so gaps don't block scroll */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          padding: '14px 20px',
+          zIndex: 50,
+          pointerEvents: 'none',
+        }}
+      >
+        <nav
+          style={{
+            maxWidth: '1060px',
+            margin: '0 auto',
+            height: '52px',
+            borderRadius: '100px',
+            background: scrolled
+              ? 'rgba(248,246,242,0.96)'
+              : 'rgba(255,255,255,0.04)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            border: scrolled
+              ? '1px solid rgba(0,0,0,0.08)'
+              : '1px solid rgba(255,255,255,0.14)',
+            display: 'flex',
+            alignItems: 'center',
+            padding: '0 1.5rem',
+            pointerEvents: 'auto',
+            transition: 'background 0.3s ease, border-color 0.3s ease',
+            boxShadow: scrolled
+              ? '0 4px 24px rgba(0,0,0,0.08)'
+              : '0 0 0 1px rgba(255,255,255,0.06) inset',
+          }}
+        >
+          {/* Logo */}
+          <div style={{ flex: 1 }}>
+            <a
+              href="/"
+              style={{
+                fontFamily: 'Merriweather, Georgia, serif',
+                fontWeight: 900,
+                fontSize: '1.15rem',
+                letterSpacing: '-0.02em',
+                color: onDark ? '#fff' : 'hsl(0,0%,10%)',
+                textDecoration: 'none',
+                transition: 'color 0.3s ease',
+                userSelect: 'none',
+              }}
+            >
               Flax
             </a>
           </div>
 
-          <div className="hidden md:flex items-center gap-8">
+          {/* Nav links — desktop only. No display:flex in inline style — relies on className to stay hidden on mobile */}
+          <div style={{ alignItems: 'center', gap: '2rem' }} className="hidden md:flex">
             {links.map(l => (
-              <a key={l.label} href={l.href}
-                className="text-sm text-ink-muted hover:text-ink transition-colors">
+              <a
+                key={l.label}
+                href={l.href}
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: '0.875rem',
+                  color: onDark ? 'rgba(255,255,255,0.55)' : 'hsl(0,0%,42%)',
+                  textDecoration: 'none',
+                  transition: 'color 0.2s ease',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = onDark ? '#fff' : 'hsl(0,0%,10%)')}
+                onMouseLeave={e => (e.currentTarget.style.color = onDark ? 'rgba(255,255,255,0.55)' : 'hsl(0,0%,42%)')}
+              >
                 {l.label}
               </a>
             ))}
           </div>
 
-          <div className="flex-1 hidden md:flex items-center gap-2 justify-end">
-            <button className="btn btn-ghost btn-sm"
-              data-cal-link="joinflax/strategy-call"
-              data-cal-namespace="strategy-call"
-              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>
-              Book a demo
-            </button>
-            <button className="btn btn-primary btn-sm"
-              data-tally-open="GxLXyQ" data-tally-layout="modal" data-tally-width="400" data-tally-form-events-forwarding="1">
-              Get Early Access
-            </button>
-          </div>
-
-          <button className="md:hidden text-ink ml-auto" onClick={() => setOpen(!open)} aria-label="Menu">
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </nav>
-
-      {open && (
-        <div className="fixed inset-0 z-40 bg-paper pt-14 flex flex-col md:hidden">
-          <div className="flex flex-col px-6 py-10 gap-7">
-            {links.map(l => (
-              <a key={l.label} href={l.href}
-                className="text-xl font-serif font-bold text-ink border-b border-rule pb-6"
-                onClick={() => setOpen(false)}>
-                {l.label}
-              </a>
-            ))}
-            <button className="btn btn-secondary self-start mt-2"
-              data-tally-open="GxLXyQ" data-tally-layout="modal" data-tally-width="400" data-tally-form-events-forwarding="1"
-              onClick={() => setOpen(false)}>
-              Get Early Access
-            </button>
-            <button className="btn btn-primary self-start"
+          {/* CTAs — desktop only */}
+          <div
+            style={{ flex: 1, alignItems: 'center', gap: '8px', justifyContent: 'flex-end' }}
+            className="hidden md:flex"
+          >
+            <button
+              className="btn btn-sm"
+              style={{
+                background: 'transparent',
+                border: onDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid hsl(0,0%,80%)',
+                color: onDark ? 'rgba(255,255,255,0.6)' : 'hsl(0,0%,40%)',
+                transition: 'all 0.2s ease',
+                borderRadius: '100px',
+              }}
               data-cal-link="joinflax/strategy-call"
               data-cal-namespace="strategy-call"
               data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-              onClick={() => setOpen(false)}>
+            >
+              Book a demo
+            </button>
+            <a
+              className="btn btn-primary btn-sm"
+              style={{ borderRadius: '100px' }}
+              href="https://app.joinflax.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Get Early Access
+            </a>
+          </div>
+
+          {/* Mobile menu button */}
+          <button
+            className="md:hidden ml-auto"
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              color: onDark ? '#fff' : 'hsl(0,0%,10%)',
+              transition: 'color 0.3s ease',
+            }}
+            onClick={() => setOpen(!open)}
+            aria-label="Menu"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </nav>
+      </div>
+
+      {/* Mobile menu */}
+      {open && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 40,
+            background: 'hsl(0,0%,10%)',
+            paddingTop: '80px',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+          className="md:hidden"
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', padding: '2.5rem 1.5rem', gap: '1.75rem' }}>
+            {links.map(l => (
+              <a
+                key={l.label}
+                href={l.href}
+                style={{
+                  fontFamily: 'Merriweather, serif',
+                  fontSize: '1.25rem',
+                  fontWeight: 700,
+                  color: '#fff',
+                  textDecoration: 'none',
+                  borderBottom: '1px solid rgba(255,255,255,0.1)',
+                  paddingBottom: '1.5rem',
+                }}
+                onClick={() => setOpen(false)}
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              className="btn btn-primary"
+              style={{ alignSelf: 'flex-start', marginTop: '0.5rem' }}
+              href="https://app.joinflax.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+            >
+              Get Early Access
+            </a>
+            <button
+              className="btn btn-ghost"
+              style={{ alignSelf: 'flex-start', borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.6)' }}
+              data-cal-link="joinflax/strategy-call"
+              data-cal-namespace="strategy-call"
+              data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+              onClick={() => setOpen(false)}
+            >
               Book a demo
             </button>
           </div>

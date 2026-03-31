@@ -4,15 +4,27 @@ import { Reveal } from './ui/Reveal';
 const objections = [
   {
     q: 'Does my team need to change anything?',
-    a: 'No. They keep using whatever they already use. Flaxie reads what you share with it. Zero disruption, zero onboarding for your team.',
+    a: 'Nothing. They keep using Granola, Zoom, Otter, Google Meet   whatever they already use. Flaxie reads what you share with it. Zero disruption, zero onboarding for your team.',
   },
   {
-    q: 'Is my meeting data secure?',
-    a: 'Yes. Notes are processed and never stored as raw text. Nobody at Flax reads your meetings. Your data stays yours.',
+    q: 'Will Flaxie train AI on my meeting data?',
+    a: 'Never. Your meetings are yours. We process notes to extract commitments, then discard the raw text. Your data is never used to train models   not ours, not anyone\'s.',
   },
   {
-    q: 'What if my notetaker isn\'t supported?',
-    a: 'If you can paste text, Flaxie can read it. Granola, Otter, Fireflies, a Google Doc, a raw copy-paste. All work exactly the same.',
+    q: 'What does Flaxie actually do vs. just track?',
+    a: 'She acts. Not just tracks. She drafts the follow-up email, creates the Jira ticket, schedules the calendar invite. You approve before anything goes out. That\'s the difference.',
+  },
+  {
+    q: 'What if my notetaker isn\'t listed?',
+    a: 'If you can paste text, Flaxie can read it. Any format, any tool. Paste from a Google Doc, a Notion page, a raw transcript   it all works exactly the same.',
+  },
+  {
+    q: 'Is there a free plan?',
+    a: 'Yes. The free plan covers the essentials. If you want more   more meetings, more integrations, more automation   there\'s a Pro plan with a 14-day free trial.',
+  },
+  {
+    q: 'How long does setup take?',
+    a: 'Under 10 minutes for you. Zero for your team. Connect your calendar and email, paste your first meeting notes, and Flaxie is working.',
   },
 ];
 
@@ -24,9 +36,9 @@ export const ObjectionsSection: React.FC = () => (
         <div className="label mb-12">Common questions</div>
       </Reveal>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-rule border border-rule rounded-md overflow-hidden">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-rule border border-rule rounded-md overflow-hidden">
         {objections.map((item, i) => (
-          <Reveal key={i} delay={i * 60}>
+          <Reveal key={i} delay={i * 50}>
             <div className="bg-paper px-6 py-6 h-full">
               <h3 className="font-serif font-bold text-ink text-[15px] leading-snug mb-3">
                 {item.q}
