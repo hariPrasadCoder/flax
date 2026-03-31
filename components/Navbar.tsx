@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
-export const Navbar: React.FC = () => {
+export const Navbar: React.FC<{ forceLight?: boolean }> = ({ forceLight = false }) => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', fn);
   }, []);
 
-  const onDark = !scrolled;
+  const onDark = !forceLight && !scrolled;
 
   const links = [
     { label: 'How it works', href: '#how-it-works' },
@@ -58,20 +58,26 @@ export const Navbar: React.FC = () => {
         >
           {/* Logo */}
           <div style={{ flex: 1 }}>
-            <a
-              href="/"
-              style={{
-                fontFamily: 'Merriweather, Georgia, serif',
-                fontWeight: 900,
-                fontSize: '1.15rem',
-                letterSpacing: '-0.02em',
-                color: onDark ? '#fff' : 'hsl(0,0%,10%)',
-                textDecoration: 'none',
-                transition: 'color 0.3s ease',
-                userSelect: 'none',
-              }}
-            >
-              Flax
+            <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+              <img
+                src="/logo.svg"
+                alt="Flax"
+                style={{ height: '26px', width: 'auto', display: 'block', flexShrink: 0 }}
+              />
+              <span
+                style={{
+                  fontFamily: 'Merriweather, Georgia, serif',
+                  fontWeight: 900,
+                  fontSize: '1.15rem',
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1,
+                  color: onDark ? '#fff' : 'hsl(0,0%,10%)',
+                  transition: 'color 0.3s ease',
+                  userSelect: 'none',
+                }}
+              >
+                Flax
+              </span>
             </a>
           </div>
 

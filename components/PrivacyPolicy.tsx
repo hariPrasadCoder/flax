@@ -4,7 +4,7 @@ import { Footer } from './Footer';
 
 export const PrivacyPolicy: React.FC = () => (
   <div className="min-h-screen bg-paper text-ink overflow-x-hidden">
-    <Navbar />
+    <Navbar forceLight />
     <main className="max-w-3xl mx-auto px-6 py-24">
 
       <div className="mb-12">
