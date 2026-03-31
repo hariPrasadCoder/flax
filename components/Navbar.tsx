@@ -14,8 +14,8 @@ export const Navbar: React.FC<{ forceLight?: boolean }> = ({ forceLight = false 
   const onDark = !forceLight && !scrolled;
 
   const links = [
-    { label: 'How it works', href: '#how-it-works' },
-    { label: "Who it's for", href: '#who' },
+    { label: 'How it works', href: '/#how-it-works' },
+    { label: "Who it's for", href: '/#who' },
   ];
 
   return (
