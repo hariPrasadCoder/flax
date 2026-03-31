@@ -1,44 +1,124 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Reveal } from './ui/Reveal';
 
+const roles = [
+  'Account Executives',
+  'Consultants',
+  'Product Managers',
+  'Chiefs of Staff',
+  'Founders',
+  'Operations Leads',
+];
+
+const RolePill: React.FC<{ label: string; delay: number }> = ({ label, delay }) => {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <span
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        fontFamily: 'IBM Plex Mono, monospace',
+        fontWeight: 500,
+        fontSize: '0.8rem',
+        color: hovered ? '#fff' : 'hsl(0,0%,20%)',
+        background: hovered ? '#5A53E1' : '#fff',
+        border: `1px solid ${hovered ? '#5A53E1' : 'hsl(0,0%,80%)'}`,
+        padding: '10px 20px',
+        borderRadius: '100px',
+        letterSpacing: '0.01em',
+        cursor: 'default',
+        transition: 'all 0.2s ease',
+        transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
+        boxShadow: hovered ? '0 6px 20px rgba(90,83,225,0.25)' : 'none',
+        animationDelay: `${delay}ms`,
+      }}
+    >
+      {label}
+    </span>
+  );
+};
+
 export const WhoItsFor: React.FC = () => (
-  <section id="who" className="py-24 border-b border-rule">
-    <div className="max-w-5xl mx-auto px-6">
+  <section
+    id="who"
+    style={{
+      minHeight: '65vh',
+      background: 'hsl(42,24%,95%)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '5rem 1.5rem',
+    }}
+  >
+    <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
 
       <Reveal>
-        <div className="label mb-16">Who it's for</div>
-      </Reveal>
-
-      <Reveal delay={60}>
-        <div className="max-w-2xl mb-16">
-          <h2 className="font-serif font-black text-ink"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', lineHeight: 1.12, letterSpacing: '-0.015em' }}>
-            For founders who can't afford to let things slip. And the people who keep them accountable.
-          </h2>
-          <p className="mt-6 text-ink-muted text-lg leading-relaxed">
-            Founders wearing every hat. Chiefs of Staff managing too much. Ops leads who notice before anyone else does.
-          </p>
-          <p className="mt-4 text-ink-muted text-base leading-relaxed">
-            If your team makes commitments in meetings and you're the one tracking them, Flaxie is for you.
-          </p>
-          <p className="mt-6 font-mono text-[11px] text-ink-muted border-t border-rule pt-6">
-            Reading this and thinking of someone? That's the person who should see it.
-          </p>
-        </div>
+        <h2
+          className="font-serif font-black"
+          style={{
+            fontSize: 'clamp(2rem, 4.5vw, 3.75rem)',
+            lineHeight: 1.1,
+            letterSpacing: '-0.025em',
+            color: 'hsl(0,0%,10%)',
+            marginBottom: '0.75rem',
+          }}
+        >
+          If you live in meetings,
+        </h2>
+        <h2
+          className="font-serif font-black"
+          style={{
+            fontSize: 'clamp(2rem, 4.5vw, 3.75rem)',
+            lineHeight: 1.1,
+            letterSpacing: '-0.025em',
+            color: '#5A53E1',
+            marginBottom: '1.5rem',
+          }}
+        >
+          Flaxie is for you.
+        </h2>
+        <p
+          style={{
+            fontFamily: 'IBM Plex Mono, monospace',
+            fontSize: '0.7rem',
+            color: 'hsl(0,0%,48%)',
+            letterSpacing: '0.02em',
+            marginBottom: '3rem',
+          }}
+        >
+          Technical or not. Startup or enterprise. Any industry.
+        </p>
       </Reveal>
 
       <Reveal delay={100}>
-        <div className="mt-12 pt-10 border-t border-rule">
-          <div className="label mb-5">Works with your existing notetaker. No switching. No setup.</div>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-            {['Granola', 'Otter', 'Fireflies', 'Google Meet', 'Zoom', 'Any format'].map(t => (
-              <span key={t} className="font-mono text-[11px] text-ink-muted border border-rule
-                px-2.5 py-1 bg-surface rounded-sm">
-                {t}
-              </span>
-            ))}
-          </div>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '10px',
+          }}
+        >
+          {roles.map((role, i) => (
+            <RolePill key={role} label={role} delay={i * 60} />
+          ))}
         </div>
+      </Reveal>
+
+      <Reveal delay={220}>
+        <p
+          style={{
+            marginTop: '3.5rem',
+            fontFamily: 'IBM Plex Mono, monospace',
+            fontSize: '0.68rem',
+            color: 'hsl(0,0%,55%)',
+            letterSpacing: '0.01em',
+          }}
+        >
+          Reading this and thinking of someone? That is the person who should see it.
+        </p>
       </Reveal>
 
     </div>

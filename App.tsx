@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Navbar }        from './components/Navbar';
-import { Hero }          from './components/Hero';
-import { Problem }       from './components/Problem';
-import { FlaxieIntro }   from './components/FlaxieIntro';
-import { HowItWorks }    from './components/HowItWorks';
-import { FlaxieAsks }    from './components/FlaxieAsks';
-import { NudgeSection }  from './components/NudgeSection';
-import { WhoItsFor }     from './components/WhoItsFor';
-import { SocialProof }       from './components/SocialProof';
-import { ObjectionsSection } from './components/ObjectionsSection';
-import { CTASection }        from './components/CTASection';
-import { Footer }        from './components/Footer';
+import { Navbar }           from './components/Navbar';
+import { Hero }             from './components/Hero';
+import { TransferSection }  from './components/TransferSection';
+import { OutcomesSection }  from './components/OutcomesSection';
+import { ApprovalSection }  from './components/ApprovalSection';
+import { CapabilitiesSection } from './components/CapabilitiesSection';
+import { LearnsSection }    from './components/LearnsSection';
+import { WorksWith }        from './components/WorksWith';
+import { WhoItsFor }        from './components/WhoItsFor';
+import { TrustSection }     from './components/TrustSection';
+import { CTASection }       from './components/CTASection';
+import { Footer }           from './components/Footer';
 import StudiosApp from './StudiosApp';
 import BookApp from './BookApp';
-import { PrivacyPolicy } from './components/PrivacyPolicy';
-import { TermsOfService } from './components/TermsOfService';
+import { PrivacyPolicy }    from './components/PrivacyPolicy';
+import { TermsOfService }   from './components/TermsOfService';
 
 function useCalEmbed() {
   useEffect(() => {
@@ -41,14 +41,13 @@ function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        <Problem />
-        <FlaxieIntro />
-        <HowItWorks />
-        <FlaxieAsks />
-        <NudgeSection />
+        <TransferSection />
+        <OutcomesSection />
+        <ApprovalSection />
+        <CapabilitiesSection />
+        <LearnsSection />
         <WhoItsFor />
-        <SocialProof />
-        <ObjectionsSection />
+        <TrustSection />
         <CTASection />
       </main>
       <Footer />
