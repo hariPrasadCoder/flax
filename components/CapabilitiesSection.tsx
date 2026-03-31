@@ -142,7 +142,7 @@ const capabilities = [
 
 const comingSoon = [
   { tool: 'Jira', logo: '/jira.svg' },
-  { tool: 'HubSpot', logo: '/hubspot.png' },
+  { tool: 'HubSpot', logo: '/hubspot.webp' },
 ];
 
 /* ── Card ────────────────────────────────────────────────────── */
@@ -214,7 +214,7 @@ const CapCard: React.FC<{ cap: typeof capabilities[0]; delay: number }> = ({ cap
 const moreItems = [
   { logo: '/google drive.png', label: 'Search Drive files' },
   { logo: '/Google docs.png',  label: 'Write & update Docs' },
-  { logo: '/Gmeet.avif',       label: 'Import Meet notes' },
+  { logo: '/Gmeet.png',        label: 'Import Meet notes' },
   { logo: '/Gmail.png',        label: 'Write and send emails' },
   { logo: '/Slack.png',        label: 'Summarise threads' },
   { logo: '/Notion.png',       label: 'Query databases' },

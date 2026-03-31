@@ -76,16 +76,15 @@ export const CTASection: React.FC = () => (
             marginBottom: '2rem',
           }}
         >
-          <button
+          <a
             className="btn btn-primary"
             style={{ fontSize: '0.875rem', padding: '0.8rem 2rem' }}
-            data-tally-open="GxLXyQ"
-            data-tally-layout="modal"
-            data-tally-width="400"
-            data-tally-form-events-forwarding="1"
+            href="https://app.joinflax.com/"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Get Early Access
-          </button>
+          </a>
           <button
             className="btn"
             style={{

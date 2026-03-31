@@ -148,15 +148,14 @@ export const Hero: React.FC = () => (
           flexWrap: 'wrap',
         }}
       >
-        <button
+        <a
           className="btn btn-primary"
-          data-tally-open="GxLXyQ"
-          data-tally-layout="modal"
-          data-tally-width="400"
-          data-tally-form-events-forwarding="1"
+          href="https://app.joinflax.com/"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Get Early Access
-        </button>
+        </a>
         <button
           className="btn"
           style={{
@@ -185,6 +184,83 @@ export const Hero: React.FC = () => (
         </button>
       </div>
     </div>
+
+    {/* Integration marquee */}
+    {(() => {
+      const integrations = [
+        { name: 'Gmail',            logo: '/Gmail.png' },
+        { name: 'Slack',            logo: '/Slack.png' },
+        { name: 'Notion',           logo: '/Notion.png' },
+        { name: 'Jira',             logo: '/jira.svg' },
+        { name: 'HubSpot',          logo: '/hubspot.webp' },
+        { name: 'Google Calendar',  logo: '/Google calendar.png' },
+        { name: 'Google Docs',      logo: '/Google docs.png' },
+        { name: 'Google Sheets',    logo: '/Google sheets.png' },
+        { name: 'Google Drive',     logo: '/google drive.png' },
+        { name: 'Google Slides',    logo: '/Google slides.png' },
+      ];
+      const items = [...integrations, ...integrations]; // duplicate for seamless loop
+      return (
+        <div
+          className="opacity-0-start animate-fade-in delay-500"
+          style={{
+            width: '100%',
+            overflow: 'hidden',
+            marginBottom: '3rem',
+            position: 'relative',
+            zIndex: 1,
+            maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
+          }}
+        >
+          <p style={{
+            fontFamily: 'IBM Plex Mono, monospace',
+            fontSize: '0.58rem',
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.18)',
+            textAlign: 'center',
+            marginBottom: '1rem',
+          }}>
+            Works with your stack
+          </p>
+          <div className="marquee-track">
+            {items.map((tool, i) => (
+              <div
+                key={i}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '0 36px',
+                  opacity: 0.45,
+                  transition: 'opacity 0.2s ease',
+                  cursor: 'default',
+                  flexShrink: 0,
+                }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = '0.85')}
+                onMouseLeave={e => (e.currentTarget.style.opacity = '0.45')}
+              >
+                <img
+                  src={tool.logo}
+                  alt={tool.name}
+                  style={{ height: '18px', width: 'auto', objectFit: 'contain' }}
+                />
+                <span style={{
+                  fontFamily: 'IBM Plex Mono, monospace',
+                  fontSize: '0.72rem',
+                  color: 'rgba(255,255,255,0.75)',
+                  letterSpacing: '0.02em',
+                  whiteSpace: 'nowrap',
+                }}>
+                  {tool.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    })()}
 
     {/* Supported by Antler */}
     <div

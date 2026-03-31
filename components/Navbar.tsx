@@ -116,16 +116,15 @@ export const Navbar: React.FC = () => {
             >
               Book a demo
             </button>
-            <button
+            <a
               className="btn btn-primary btn-sm"
               style={{ borderRadius: '100px' }}
-              data-tally-open="GxLXyQ"
-              data-tally-layout="modal"
-              data-tally-width="400"
-              data-tally-form-events-forwarding="1"
+              href="https://app.joinflax.com/"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Get Early Access
-            </button>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -179,17 +178,16 @@ export const Navbar: React.FC = () => {
                 {l.label}
               </a>
             ))}
-            <button
+            <a
               className="btn btn-primary"
               style={{ alignSelf: 'flex-start', marginTop: '0.5rem' }}
-              data-tally-open="GxLXyQ"
-              data-tally-layout="modal"
-              data-tally-width="400"
-              data-tally-form-events-forwarding="1"
+              href="https://app.joinflax.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
             >
               Get Early Access
-            </button>
+            </a>
             <button
               className="btn btn-ghost"
               style={{ alignSelf: 'flex-start', borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.6)' }}

@@ -256,15 +256,14 @@ export const HowItWorks: React.FC = () => (
           <p className="text-ink-muted text-base max-w-xs leading-relaxed">
             Ready to stop being the person who follows everything up?
           </p>
-          <button
+          <a
             className="btn btn-primary shrink-0"
-            data-tally-open="GxLXyQ"
-            data-tally-layout="modal"
-            data-tally-width="400"
-            data-tally-form-events-forwarding="1"
+            href="https://app.joinflax.com/"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Get Early Access   It's Free
-          </button>
+            Get Early Access — It's Free
+          </a>
         </div>
       </Reveal>
 

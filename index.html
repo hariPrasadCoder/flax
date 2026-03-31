@@ -225,6 +225,18 @@
       }
       .glow-drift { animation: glow-drift 12s ease-in-out infinite; }
 
+      /* ─── Logo marquee ──────────────────────────────── */
+      @keyframes marquee {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 28s linear infinite;
+      }
+      .marquee-track:hover { animation-play-state: paused; }
+
       /* ─── Scrollbar ──────────────────────────────────── */
       ::-webkit-scrollbar { width: 5px; }
       ::-webkit-scrollbar-track { background: hsl(42,20%,92%); }
