@@ -2,7 +2,12 @@ import React from 'react';
 import { Reveal } from './ui/Reveal';
 
 const tools = ['Gmail', 'Slack', 'Jira', 'Notion', 'HubSpot', 'Google Calendar'];
-const notetakers = ['Granola', 'Fireflies', 'Google Meet', 'Paste anything'];
+const notetakers = [
+  { name: 'Granola',       logo: '/granola.png' },
+  { name: 'Fireflies',     logo: '/fireflies.webp' },
+  { name: 'Google Meet',   logo: '/Gmeet.png' },
+  { name: 'Paste anything', logo: null },
+];
 
 export const WorksWith: React.FC = () => (
   <section
@@ -117,15 +122,21 @@ export const WorksWith: React.FC = () => (
         >
           {notetakers.map((n, i) => (
             <span
-              key={n}
+              key={n.name}
               style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
                 fontFamily: 'IBM Plex Mono, monospace',
                 fontSize: '0.78rem',
                 color: i === notetakers.length - 1 ? '#5A53E1' : 'rgba(255,255,255,0.35)',
                 letterSpacing: '0.02em',
               }}
             >
-              {n}
+              {n.logo && (
+                <img src={n.logo} alt={n.name} style={{ width: '14px', height: '14px', objectFit: 'contain', opacity: 0.6, borderRadius: '3px' }} draggable={false} />
+              )}
+              {n.name}
             </span>
           ))}
         </div>

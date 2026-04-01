@@ -193,6 +193,8 @@ export const Hero: React.FC = () => (
         { name: 'Jira',             logo: '/jira.svg' },
         { name: 'HubSpot',          logo: '/hubspot.webp' },
         { name: 'Google Calendar',  logo: '/Google calendar.png' },
+        { name: 'Granola',          logo: '/granola.png' },
+        { name: 'Fireflies',        logo: '/fireflies.webp' },
         { name: 'Google Docs',      logo: '/Google docs.png' },
         { name: 'Google Sheets',    logo: '/Google sheets.png' },
         { name: 'Google Drive',     logo: '/google drive.png' },
