@@ -104,11 +104,10 @@ export const Hero: React.FC = () => (
       <h1
         className="font-serif font-black opacity-0-start animate-fade-in-up delay-100"
         style={{
-          fontSize: 'clamp(2.8rem, 6.5vw, 5.5rem)',
+          fontSize: 'clamp(2rem, 6.5vw, 5.5rem)',
           lineHeight: 1.05,
           letterSpacing: '-0.03em',
           color: '#fff',
-          whiteSpace: 'nowrap',
         }}
       >
         Your meeting ends.
