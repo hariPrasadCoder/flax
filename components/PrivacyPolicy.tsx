@@ -10,7 +10,7 @@ export const PrivacyPolicy: React.FC = () => (
       <div className="mb-12">
         <span className="font-mono text-[11px] text-ink-muted uppercase tracking-widest">Legal</span>
         <h1 className="font-serif font-black text-4xl text-ink mt-3 mb-4">Privacy Policy</h1>
-        <p className="font-mono text-[12px] text-ink-muted">Last updated: March 27, 2026</p>
+        <p className="font-mono text-[12px] text-ink-muted">Last updated: April 2, 2026</p>
       </div>
 
       <div className="prose-flax space-y-10 font-sans text-[15px] leading-relaxed text-ink">

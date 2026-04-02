@@ -10,6 +10,7 @@ import { LearnsSection }    from './components/LearnsSection';
 import { WorksWith }        from './components/WorksWith';
 import { WhoItsFor }        from './components/WhoItsFor';
 import { TrustSection }     from './components/TrustSection';
+import { GoogleDataSection } from './components/GoogleDataSection';
 import { CTASection }       from './components/CTASection';
 import { Footer }           from './components/Footer';
 import StudiosApp from './StudiosApp';
@@ -45,9 +46,11 @@ function HomePage() {
         <OutcomesSection />
         <ApprovalSection />
         <CapabilitiesSection />
+        <WorksWith />
         <LearnsSection />
         <WhoItsFor />
         <TrustSection />
+        <GoogleDataSection />
         <CTASection />
       </main>
       <Footer />

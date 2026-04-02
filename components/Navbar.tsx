@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 export const Navbar: React.FC<{ forceLight?: boolean }> = ({ forceLight = false }) => {
@@ -16,6 +17,7 @@ export const Navbar: React.FC<{ forceLight?: boolean }> = ({ forceLight = false 
   const links = [
     { label: 'How it works', href: '/#how-it-works' },
     { label: "Who it's for", href: '/#who' },
+    { label: 'Privacy Policy', href: '/privacy', isRoute: true },
   ];
 
   return (
@@ -83,23 +85,28 @@ export const Navbar: React.FC<{ forceLight?: boolean }> = ({ forceLight = false 
 
           {/* Nav links — desktop only. No display:flex in inline style — relies on className to stay hidden on mobile */}
           <div style={{ alignItems: 'center', gap: '2rem' }} className="hidden md:flex">
-            {links.map(l => (
-              <a
-                key={l.label}
-                href={l.href}
-                style={{
-                  fontFamily: 'Inter, sans-serif',
-                  fontSize: '0.875rem',
-                  color: onDark ? 'rgba(255,255,255,0.55)' : 'hsl(0,0%,42%)',
-                  textDecoration: 'none',
-                  transition: 'color 0.2s ease',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.color = onDark ? '#fff' : 'hsl(0,0%,10%)')}
-                onMouseLeave={e => (e.currentTarget.style.color = onDark ? 'rgba(255,255,255,0.55)' : 'hsl(0,0%,42%)')}
-              >
-                {l.label}
-              </a>
-            ))}
+            {links.map(l => {
+              const linkStyle = {
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '0.875rem',
+                color: onDark ? 'rgba(255,255,255,0.55)' : 'hsl(0,0%,42%)',
+                textDecoration: 'none' as const,
+                transition: 'color 0.2s ease',
+              };
+              const onEnter = (e: React.MouseEvent<HTMLAnchorElement>) =>
+                (e.currentTarget.style.color = onDark ? '#fff' : 'hsl(0,0%,10%)');
+              const onLeave = (e: React.MouseEvent<HTMLAnchorElement>) =>
+                (e.currentTarget.style.color = onDark ? 'rgba(255,255,255,0.55)' : 'hsl(0,0%,42%)');
+              return l.isRoute ? (
+                <Link key={l.label} to={l.href} style={linkStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+                  {l.label}
+                </Link>
+              ) : (
+                <a key={l.label} href={l.href} style={linkStyle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+                  {l.label}
+                </a>
+              );
+            })}
           </div>
 
           {/* CTAs — desktop only */}
@@ -166,24 +173,26 @@ export const Navbar: React.FC<{ forceLight?: boolean }> = ({ forceLight = false 
           className="md:hidden"
         >
           <div style={{ display: 'flex', flexDirection: 'column', padding: '2.5rem 1.5rem', gap: '1.75rem' }}>
-            {links.map(l => (
-              <a
-                key={l.label}
-                href={l.href}
-                style={{
-                  fontFamily: 'Merriweather, serif',
-                  fontSize: '1.25rem',
-                  fontWeight: 700,
-                  color: '#fff',
-                  textDecoration: 'none',
-                  borderBottom: '1px solid rgba(255,255,255,0.1)',
-                  paddingBottom: '1.5rem',
-                }}
-                onClick={() => setOpen(false)}
-              >
-                {l.label}
-              </a>
-            ))}
+            {links.map(l => {
+              const mobileStyle = {
+                fontFamily: 'Merriweather, serif',
+                fontSize: '1.25rem',
+                fontWeight: 700,
+                color: '#fff',
+                textDecoration: 'none' as const,
+                borderBottom: '1px solid rgba(255,255,255,0.1)',
+                paddingBottom: '1.5rem',
+              };
+              return l.isRoute ? (
+                <Link key={l.label} to={l.href} style={mobileStyle} onClick={() => setOpen(false)}>
+                  {l.label}
+                </Link>
+              ) : (
+                <a key={l.label} href={l.href} style={mobileStyle} onClick={() => setOpen(false)}>
+                  {l.label}
+                </a>
+              );
+            })}
             <a
               className="btn btn-primary"
               style={{ alignSelf: 'flex-start', marginTop: '0.5rem' }}
