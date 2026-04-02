@@ -7,8 +7,8 @@ const pillars = [
     body: 'Nothing goes out without your say. Every time.',
   },
   {
-    headline: 'We never train on your data.',
-    body: 'Your meetings stay yours. Not ours. Not anyone else.',
+    headline: 'Third parties never train on your data.',
+    body: 'We only use it to make your Flaxie smarter over time (opt out anytime in Settings).',
   },
   {
     headline: 'Enterprise infrastructure.',
