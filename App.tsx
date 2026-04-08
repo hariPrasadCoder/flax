@@ -16,6 +16,7 @@ import { Footer }           from './components/Footer';
 import StudiosApp from './StudiosApp';
 import BookApp from './BookApp';
 import AssistantApp from './AssistantApp';
+import CompareApp from './CompareApp';
 import { PrivacyPolicy }    from './components/PrivacyPolicy';
 import { TermsOfService }   from './components/TermsOfService';
 
@@ -67,6 +68,7 @@ function App() {
         <Route path="/studios"   element={<StudiosApp />} />
         <Route path="/assistant" element={<AssistantApp />} />
         <Route path="/book"    element={<BookApp />} />
+        <Route path="/compare"  element={<CompareApp />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms"   element={<TermsOfService />} />
         <Route path="*"        element={<Navigate to="/" replace />} />

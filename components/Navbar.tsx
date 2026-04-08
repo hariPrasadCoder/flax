@@ -17,6 +17,7 @@ export const Navbar: React.FC<{ forceLight?: boolean }> = ({ forceLight = false 
   const links = [
     { label: 'How it works', href: '/#how-it-works' },
     { label: "Who it's for", href: '/#who' },
+    { label: 'Compare', href: '/compare', isRoute: true },
     { label: 'Privacy Policy', href: '/privacy', isRoute: true },
   ];
 
