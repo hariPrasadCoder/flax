@@ -22,8 +22,9 @@ export const Footer: React.FC = () => (
         <span className="font-mono text-[10px] text-ink-muted">© 2026 Flax. All rights reserved.</span>
         <div className="flex items-center gap-4">
           <Link to="/ea"      className="font-mono text-[10px] text-ink-muted hover:text-ink transition-colors">AI Executive Assistant</Link>
-          <Link to="/privacy" className="font-mono text-[10px] text-ink-muted hover:text-ink transition-colors">Privacy Policy</Link>
-          <Link to="/terms"   className="font-mono text-[10px] text-ink-muted hover:text-ink transition-colors">Terms of Service</Link>
+          <Link to="/security" className="font-mono text-[10px] text-ink-muted hover:text-ink transition-colors">Security</Link>
+          <Link to="/privacy"  className="font-mono text-[10px] text-ink-muted hover:text-ink transition-colors">Privacy Policy</Link>
+          <Link to="/terms"    className="font-mono text-[10px] text-ink-muted hover:text-ink transition-colors">Terms of Service</Link>
         </div>
       </div>
     </div>

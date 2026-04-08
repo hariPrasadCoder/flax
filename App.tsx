@@ -19,6 +19,7 @@ import AssistantApp from './AssistantApp';
 import CompareApp from './CompareApp';
 import { PrivacyPolicy }    from './components/PrivacyPolicy';
 import { TermsOfService }   from './components/TermsOfService';
+import { SecurityPage }     from './components/SecurityPage';
 
 function useCalEmbed() {
   useEffect(() => {
@@ -70,8 +71,9 @@ function App() {
         <Route path="/assistant" element={<Navigate to="/ea" replace />} />
         <Route path="/book"    element={<BookApp />} />
         <Route path="/compare"  element={<CompareApp />} />
-        <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="/terms"   element={<TermsOfService />} />
+        <Route path="/privacy"   element={<PrivacyPolicy />} />
+        <Route path="/terms"     element={<TermsOfService />} />
+        <Route path="/security"  element={<SecurityPage />} />
         <Route path="*"        element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
