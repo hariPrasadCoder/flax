@@ -66,7 +66,8 @@ function App() {
       <Routes>
         <Route path="/"        element={<HomePage />} />
         <Route path="/studios"   element={<StudiosApp />} />
-        <Route path="/assistant" element={<AssistantApp />} />
+        <Route path="/ea"        element={<AssistantApp />} />
+        <Route path="/assistant" element={<Navigate to="/ea" replace />} />
         <Route path="/book"    element={<BookApp />} />
         <Route path="/compare"  element={<CompareApp />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
