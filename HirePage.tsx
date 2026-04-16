@@ -984,6 +984,9 @@ function HireFooter() {
 
 export default function HireApp() {
   useCalEmbed();
+  useEffect(() => {
+    document.title = 'Flax | Hire your AI Employee';
+  }, []);
   return (
     <div style={{ fontFamily: 'Inter, sans-serif', overflowX: 'hidden' }}>
       <HireNavbar />
