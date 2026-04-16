@@ -20,6 +20,7 @@ import CompareApp from './CompareApp';
 import { PrivacyPolicy }    from './components/PrivacyPolicy';
 import { TermsOfService }   from './components/TermsOfService';
 import { SecurityPage }     from './components/SecurityPage';
+import HireApp from './HirePage';
 
 function useCalEmbed() {
   useEffect(() => {
@@ -74,6 +75,7 @@ function App() {
         <Route path="/privacy"   element={<PrivacyPolicy />} />
         <Route path="/terms"     element={<TermsOfService />} />
         <Route path="/security"  element={<SecurityPage />} />
+        <Route path="/hire"      element={<HireApp />} />
         <Route path="*"        element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
