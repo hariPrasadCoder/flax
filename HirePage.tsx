@@ -113,6 +113,29 @@ function HireNavbar() {
 
 /* ── Hero ──────────────────────────────────────────────────── */
 
+const PARTICLES = [
+  { left: '6%',  top: '88%', size: 1.5, dur: 9,  delay: 0   },
+  { left: '11%', top: '72%', size: 1,   dur: 13, delay: 1.5 },
+  { left: '17%', top: '83%', size: 2,   dur: 8,  delay: 3.2 },
+  { left: '23%', top: '65%', size: 1,   dur: 14, delay: 0.8 },
+  { left: '30%', top: '91%', size: 1.5, dur: 10, delay: 2.4 },
+  { left: '37%', top: '77%', size: 1,   dur: 7,  delay: 4.1 },
+  { left: '43%', top: '86%', size: 2,   dur: 11, delay: 1.0 },
+  { left: '50%', top: '70%', size: 1,   dur: 13, delay: 2.9 },
+  { left: '56%', top: '93%', size: 1.5, dur: 9,  delay: 3.7 },
+  { left: '62%', top: '75%', size: 1,   dur: 8,  delay: 0.4 },
+  { left: '68%', top: '84%', size: 2,   dur: 12, delay: 1.9 },
+  { left: '74%', top: '67%', size: 1,   dur: 10, delay: 4.6 },
+  { left: '80%', top: '89%', size: 1.5, dur: 7,  delay: 2.1 },
+  { left: '86%', top: '76%', size: 1,   dur: 11, delay: 0.6 },
+  { left: '92%', top: '82%', size: 2,   dur: 9,  delay: 3.3 },
+  { left: '4%',  top: '42%', size: 1,   dur: 15, delay: 1.1 },
+  { left: '28%', top: '32%', size: 1,   dur: 12, delay: 2.7 },
+  { left: '73%', top: '36%', size: 1,   dur: 14, delay: 0.9 },
+  { left: '95%', top: '48%', size: 1,   dur: 11, delay: 3.8 },
+  { left: '52%', top: '55%', size: 1,   dur: 16, delay: 5.2 },
+];
+
 function HireHero() {
   return (
     <section className="dot-grid" style={{
@@ -120,15 +143,55 @@ function HireHero() {
       paddingTop: 160, paddingBottom: 120, minHeight: '100vh',
       display: 'flex', alignItems: 'center',
     }}>
-      {/* Single, restrained glow */}
+      <style>{`
+        @keyframes ember-rise {
+          0%   { transform: translateY(0px) scale(1);     opacity: 0; }
+          8%   { opacity: 1; }
+          85%  { opacity: 0.6; }
+          100% { transform: translateY(-90px) scale(0.4); opacity: 0; }
+        }
+      `}</style>
+
+      {/* ── Background: layered glows ── */}
+      {/* Central orb */}
       <div className="glow-drift" style={{
         position: 'absolute', top: '-10%', left: '50%', transform: 'translateX(-50%)',
         width: 800, height: 800, borderRadius: '50%',
         background: 'radial-gradient(circle,rgba(90,83,225,0.18) 0%,rgba(90,83,225,0.04) 50%,transparent 70%)',
-        pointerEvents: 'none',
+        pointerEvents: 'none', zIndex: 0,
+      }} />
+      {/* Bottom-left satellite */}
+      <div style={{
+        position: 'absolute', bottom: '-5%', left: '-10%',
+        width: 560, height: 560, borderRadius: '50%',
+        background: 'radial-gradient(circle,rgba(90,83,225,0.16) 0%,transparent 65%)',
+        animation: 'glow-drift 20s ease-in-out infinite',
+        pointerEvents: 'none', zIndex: 0,
+      }} />
+      {/* Top-right satellite */}
+      <div style={{
+        position: 'absolute', top: '0%', right: '-12%',
+        width: 440, height: 440, borderRadius: '50%',
+        background: 'radial-gradient(circle,rgba(90,83,225,0.13) 0%,transparent 65%)',
+        animation: 'glow-drift 15s ease-in-out infinite reverse',
+        pointerEvents: 'none', zIndex: 0,
       }} />
 
-      <div style={{ maxWidth: 780, margin: '0 auto', padding: '0 24px', textAlign: 'center', position: 'relative', width: '100%' }}>
+
+      {/* ── Background: ember particles ── */}
+      {PARTICLES.map((p, i) => (
+        <div key={i} style={{
+          position: 'absolute', left: p.left, top: p.top,
+          width: p.size + 1, height: p.size + 1, borderRadius: '50%',
+          background: 'rgba(120,110,255,0.9)',
+          boxShadow: '0 0 4px rgba(90,83,225,0.6)',
+          pointerEvents: 'none', zIndex: 0,
+          animation: `ember-rise ${p.dur}s ease-in ${p.delay}s infinite`,
+        }} />
+      ))}
+
+      {/* ── Content ── */}
+      <div style={{ maxWidth: 780, margin: '0 auto', padding: '0 24px', textAlign: 'center', position: 'relative', width: '100%', zIndex: 1 }}>
         <div style={{ animationName: 'fade-in', animationDuration: '0.6s', animationFillMode: 'both', marginBottom: 28 }}>
           <span style={{
             display: 'inline-block',
